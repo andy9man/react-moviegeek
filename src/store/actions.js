@@ -51,7 +51,7 @@ export const dataResultHandler = (actionType, stateObjectType, stateObjectResult
 // export const edit = (id, obj) => {
 //   return (dispatch, getState, url) => {
 //     console.log(`Updating Data... ${id}`);
-//     console.log(ProductObj);
+//     console.log(obj);
 //     axios.put(`${url}/${id}`, obj)
 //       .then( (response) => {
 //         dispatch( {type: DATA_STATUS_HANDLER, payload: {type: 'editSuccess', result: true}} );
