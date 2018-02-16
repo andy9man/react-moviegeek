@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        HAPPY HACKING!
+        <h1>HAPPY HACKING!</h1>
 
       </div>
     );
