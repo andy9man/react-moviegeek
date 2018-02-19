@@ -3,7 +3,7 @@ import { getRanking } from '../store/actions'
 import { connect } from 'react-redux'
 import { ProgressBar, Well } from 'react-bootstrap'
 
-class RankingsView extends Component{
+class MovieView extends Component{
 
   componentDidMount(){
     this.props.dispatchGetRanking()
@@ -41,7 +41,7 @@ class RankingsView extends Component{
 }
 
 const mapStateToProps = (state) => {
-  console.log('mapping state to props - RankingsView')
+  console.log('mapping state to props - MovieView')
   return {
     rankingData: state.rankingData,
     loadingData: state.loadingData
@@ -56,4 +56,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RankingsView)
+export default connect(mapStateToProps, mapDispatchToProps)(MovieView)
