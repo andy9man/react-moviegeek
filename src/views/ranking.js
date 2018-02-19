@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getRanking } from '../store/actions'
 import { connect } from 'react-redux'
-import { ProgressBar, Well } from 'react-bootstrap'
+import { Progress, Card } from 'reactstrap'
 
 class RankingsView extends Component{
 
@@ -15,7 +15,7 @@ class RankingsView extends Component{
 
     return (
       <div key={idx}>
-        <Well bsSize="small">{rankingObject.name}: {rankingObject.score}</Well>
+        <Card bsSize="small">{rankingObject.name}: {rankingObject.score}</Card>
       </div>
     )
   }
@@ -28,7 +28,7 @@ class RankingsView extends Component{
       <div className='rankcontainer'>
         <h3>Rankings - Top: 5</h3>
         {this.props.loadingData ?
-          <div><ProgressBar active bsStyle="success" min={1} max={2} now={2} label='Loading...'/></div>
+          <div><Progress active animated color="success" value="100" max="100" now="100" label='Loading...'/></div>
           :
           // Map an object - use helper function to return what to render
           <div className='rankscroll'>

@@ -7,6 +7,7 @@ import {
 import store from './store';
 import App from './App';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const Root = () => {
     return (

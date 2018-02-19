@@ -1,52 +1,65 @@
-import React from 'react';
-import {NavLink} from 'react-router-dom'
+import React, { Component } from 'react';
 import {
+  Collapse,
   Navbar,
+  NavbarToggler,
+  NavbarBrand,
   Nav,
   NavItem,
-  MenuItem,
-  NavDropdown,
-  Form,
-  FormGroup,
-  FormControl,
-  Button,
-
-} from 'react-bootstrap';
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from 'reactstrap';
 import icon from '../assets/clapper-icon.png';
 
-const MovieGeekNav = props => {
+class MovieGeekNav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false,
+    }
+  }
 
-  return (
-    <Navbar inverse collapseOnSelect staticTop>
-      <Navbar.Header>
-        <Navbar.Brand>
-          <a href="/">
-            <img className="navbar-brand" src={icon} alt="Movie Geek" />
-            Movie Geek
-          </a>
-        </Navbar.Brand>
-      </Navbar.Header>
-      <Navbar.Collapse>
-        <Nav>
-          <NavItem href="/">Link</NavItem>
-          <NavItem href="#">Link  </NavItem>
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <MenuItem eventKey={3.1}>Action</MenuItem>
-            <MenuItem eventKey={3.2}>Another action</MenuItem>
-            <MenuItem eventKey={3.3}>Something else here</MenuItem>
-            <MenuItem divider />
-            <MenuItem eventKey={3.4}>Separated link</MenuItem>
-          </NavDropdown>
-          <Navbar.Form pullRight>
-            <FormGroup>
-              <FormControl type="text" placeholder="Search" />
-            </FormGroup>{' '}
-            <Button type="submit">Search</Button>
-          </Navbar.Form>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-  );
+  render() {
+
+    return (
+      <div>
+      <Navbar color="faded" light expand="md">
+        <NavbarBrand href="/">Movie Geek</NavbarBrand>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink href="/components/">Components</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Options
+              </DropdownToggle>
+              <DropdownMenu >
+                <DropdownItem>
+                  Option 1
+                </DropdownItem>
+                <DropdownItem>
+                  Option 2
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>
+                  Reset
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+        </Collapse>
+      </Navbar>
+      </div>
+    );
+  }
 }
 
 export default MovieGeekNav;
