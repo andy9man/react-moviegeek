@@ -1,5 +1,7 @@
 //import { SOME_ACTION } from './actions'
-import { DATA_STATUS_HANDLER, GET_RANKING, GET_QUEUE, GET_WATCHED } from './actions'
+import { DATA_STATUS_HANDLER, GET_RANKING, GET_QUEUE, GET_WATCHED, LOAD_TOPMOVIES } from './actions'
+
+
 
 // const CreateUid = () => {
 //     // Math.random should be unique because of its seeding algorithm.
@@ -57,14 +59,17 @@ export const reducer = (state = initialState, action) => {
     }
     //********* DATA_STATUS_HANDLER *********
     case DATA_STATUS_HANDLER:
-      return {
-        ...state,
-        [action.payload.type]: action.payload.result,
-        displayAlert: action.payload.result
-      }
-        default:
-            return state;
-    }
+return {
+...state,
+[action.payload.type]: action.payload.result,
+displayAlert: action.payload.result
+}
+case LOAD_TOPMOVIES:
+return {...state, movies: action.payload, loadingData: false, moviesLoadSuccess: true};
+default:
+return state;
+}
+
 
 
 }
