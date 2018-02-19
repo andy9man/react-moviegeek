@@ -3,6 +3,21 @@ import { getData } from '../store/actions';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+const getInfo = path => {
+
+  axios.get(`http://5a8b1dc33d92490012370bcc.mockapi.io/user/${this.props.userId}${path}`,{
+
+  })
+          .then((response) => {
+              console.log('get response');
+              console.log(response);
+
+          })
+          .catch(err => {
+              console.log('error retrieving data', err);
+          });
+
+}
 
 const Queue = () => {
   let path = "/queue"
@@ -21,28 +36,14 @@ const Watched = () => {
 class Profile extends Component{
 
 
-  getInfo (path) {
 
-    axios.get(`http://5a8b1dc33d92490012370bcc.mockapi.io/user/${this.props.userId}${path}`,{
-
-    })
-            .then((response) => {
-                console.log('get response');
-                console.log(response);
-                
-            })
-            .catch(err => {
-                console.log('error retrieving data', err);
-            });
-    
-}
 
 
   render(){
     return(
       <div>
         <div>Geek Score: </div>
-        
+
         <div>Movies to Watch</div>
         <Queue />
         <div>Movies Watched</div>
