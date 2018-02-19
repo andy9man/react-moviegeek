@@ -1,5 +1,5 @@
 //import { SOME_ACTION } from './actions'
-import { DATA_STATUS_HANDLER, GET_RANKING } from './actions'
+import { DATA_STATUS_HANDLER, GET_RANKING, GET_QUEUE, GET_WATCHED } from './actions'
 
 // const CreateUid = () => {
 //     // Math.random should be unique because of its seeding algorithm.
@@ -10,6 +10,8 @@ import { DATA_STATUS_HANDLER, GET_RANKING } from './actions'
 
 const initialState = {
     rankingData: [],
+    queueData: [],
+    watchedData: [],
     movieData: [],
     // Expecting this data structure for movieData[]
     // {
@@ -37,6 +39,20 @@ export const reducer = (state = initialState, action) => {
       ...state,
       rankingData: action.payload,
       // news_source: [],
+      loadingData: false
+    }
+     //********* GET_QUEUE *********
+     case GET_QUEUE:
+     return {
+       ...state,
+       queueData: action.payload,
+       loadingData: false
+     }
+      //********* GET_WATCHED *********
+    case GET_WATCHED:
+    return {
+      ...state,
+      watchedData: action.payload,
       loadingData: false
     }
     //********* DATA_STATUS_HANDLER *********
