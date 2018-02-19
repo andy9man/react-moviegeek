@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getRanking } from '../store/actions'
 import { connect } from 'react-redux'
-import { ProgressBar, Well } from 'reactstrap'
+import { ProgressBar, Card } from 'reactstrap'
 
 class RankingsView extends Component{
 
@@ -15,7 +15,7 @@ class RankingsView extends Component{
 
     return (
       <div key={idx}>
-        <Well bsSize="small">{rankingObject.name}: {rankingObject.score}</Well>
+        <Card bsSize="small">{rankingObject.name}: {rankingObject.score}</Card>
       </div>
     )
   }

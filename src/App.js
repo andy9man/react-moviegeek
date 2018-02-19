@@ -23,9 +23,9 @@ class App extends Component {
 
 
         <Switch>
-          {/* <Route exact path='/' component={HomeView} /> */}
+          <Route exact path='/' component={HomeView} />
           {/* <Route exact path='/profile' component={ProfileView} /> */}
-          <Route exact path='/ranking' component={RankingsView} />
+          {/* <Route exact path='/ranking' component={RankingsView} /> */}
           {/* <Route exact path='/top-movies' component={MovieRankingView} /> */}
           {/* <Route exact path='/search/:searchtext' component={SearchView} /> */}
           <Route render={ () => ( <Redirect to='/ranking' />) } />
