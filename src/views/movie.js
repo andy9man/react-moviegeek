@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getRanking, postFavorite } from '../store/actions'
 import { connect } from 'react-redux'
-import { ProgressBar, Well } from 'react-bootstrap'
+import { Progress, Card } from 'reactstrap'
 
 class MovieView extends Component{
 
@@ -11,7 +11,7 @@ class MovieView extends Component{
 
     return (
       <div key={idx}>
-        <Well bsSize="small">{idx + 1}) {rankingObject.name}</Well>
+        <Card bsSize="small">{idx + 1}) {rankingObject.name}</Card>
       </div>
     )
   }
@@ -25,7 +25,7 @@ class MovieView extends Component{
       <div className='rankcontainer'>
         <h3 className='rankingtxt'>Movie</h3>
         {this.props.loadingData ?
-          <div><ProgressBar active bsStyle="success" min={1} max={2} now={2} label='Loading...'/></div>
+          <div><Progress active bsStyle="success" min={1} max={2} now={2} label='Loading...'/></div>
           :
           // Map an object - use helper function to return what to render
           <div className='rankscroll'>
