@@ -6,7 +6,7 @@ import { Progress, Card } from 'reactstrap'
 class RankingsView extends Component{
 
   componentDidMount(){
-    this.props.dispatchGetRanking()
+    this.props.dispatchGetMockInfo( "", "?sortBy=score&order=desc&page=1&limit=5")
   }
 
   // helper function to map news object
@@ -50,8 +50,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchGetMockInfo(id){
-      dispatch(getMockInfo(id))
+    dispatchGetMockInfo(id, path){
+      dispatch(getMockInfo(id, path))
     }
   }
 }
