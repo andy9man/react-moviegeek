@@ -5,6 +5,9 @@ export const MOCKAPI_API_URL = 'http://5a8b034f3d92490012370bb4.mockapi.io/api/v
 export const DATA_STATUS_HANDLER = 'DATA_STATUS_HANDLER';
 export const GET_RANKING = 'GET_RANKING'
 
+export const postFavorite = () => {
+  return true
+}
 
 export const dataResultHandler = (actionType, stateObjectType, stateObjectResult) => {
   return {

@@ -1,11 +1,53 @@
 import React, { Component } from 'react';
-import { getData } from '../store/actions'
-import { connect } from 'react-redux'
+import { getData } from '../store/actions';
+import { connect } from 'react-redux';
+import axios from 'axios';
+
+
+const Queue = () => {
+  let path = "/queue"
+  return (
+    getInfo(path)
+  )
+}
+
+const Watched = () => {
+  let path = "/watched"
+  return (
+    getInfo(path)
+  )
+}
 
 class Profile extends Component{
+
+
+  getInfo (path) {
+
+    axios.get(`http://5a8b1dc33d92490012370bcc.mockapi.io/user/${this.props.userId}${path}`,{
+
+    })
+            .then((response) => {
+                console.log('get response');
+                console.log(response);
+                
+            })
+            .catch(err => {
+                console.log('error retrieving data', err);
+            });
+    
+}
+
+
   render(){
     return(
-      <div>View</div>
+      <div>
+        <div>Geek Score: </div>
+        
+        <div>Movies to Watch</div>
+        <Queue />
+        <div>Movies Watched</div>
+        <Watched />
+      </div>
     )
   }
 }
@@ -13,8 +55,8 @@ class Profile extends Component{
 const mapStateToProps = (state) => {
   console.log('mapping state to props - Profile')
   return {
-    viewData: state.viewData,
-    loadingData: state.loadingData
+    userId: state.userId,
+
   }
 }
 
