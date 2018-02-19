@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import './App.css';
+import background from './assets/movieBackground_1.png';
 import {
   Switch,
   Route,
   Redirect
 } from 'react-router-dom';
+import MovieGeekNav from './components/nav';
 import HomeView from './views/HomeView';
 import RankingsView from './views/ranking';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App" style={ {backgroundImage: `url(${background})`} }>
         <nav>
+          <MovieGeekNav />
         </nav>
 
 
