@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getRanking } from '../store/actions'
 import { connect } from 'react-redux'
-import { ProgressBar, Card } from 'reactstrap'
+import { ProgressBar, Well } from 'react-bootstrap'
 
 class RankingsView extends Component{
 
@@ -15,7 +15,7 @@ class RankingsView extends Component{
 
     return (
       <div key={idx}>
-        <Card bsSize="small">{rankingObject.name}: {rankingObject.score}</Card>
+        <Well bsSize="small">{idx + 1}) {rankingObject.name}: {rankingObject.score}</Well>
       </div>
     )
   }
@@ -26,7 +26,7 @@ class RankingsView extends Component{
 
     return(
       <div className='rankcontainer'>
-        <h3>Rankings - Top: 5</h3>
+        <h3 className='rankingtxt'>Rankings - Top: 5</h3>
         {this.props.loadingData ?
           <div><ProgressBar active bsStyle="success" min={1} max={2} now={2} label='Loading...'/></div>
           :

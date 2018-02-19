@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { getRanking } from '../store/actions'
+import { getRanking, postFavorite } from '../store/actions'
 import { connect } from 'react-redux'
 import { ProgressBar, Well } from 'react-bootstrap'
 
 class MovieView extends Component{
-
-  componentDidMount(){
-    this.props.dispatchGetRanking()
-  }
 
   // helper function to map news object
   rankingMap(rankingObject, idx) {
@@ -15,24 +11,25 @@ class MovieView extends Component{
 
     return (
       <div key={idx}>
-        <Well bsSize="small">{rankingObject.name}: {rankingObject.score}</Well>
+        <Well bsSize="small">{idx + 1}) {rankingObject.name}</Well>
       </div>
     )
   }
 
   render(){
-    let localRanking = []
-    if(this.props.rankingData) localRanking = this.props.rankingData
+    let localMovie = []
+    if(this.props.movieData) localMovie = this.props.movieData
+    localMovie = []
 
     return(
       <div className='rankcontainer'>
-        <h3>Rankings - Top: 5</h3>
+        <h3 className='rankingtxt'>Movie</h3>
         {this.props.loadingData ?
           <div><ProgressBar active bsStyle="success" min={1} max={2} now={2} label='Loading...'/></div>
           :
           // Map an object - use helper function to return what to render
           <div className='rankscroll'>
-            {localRanking.map(this.rankingMap)}
+            {localMovie.map(this.rankingMap)}
           </div>
         }
       </div>
@@ -43,15 +40,15 @@ class MovieView extends Component{
 const mapStateToProps = (state) => {
   console.log('mapping state to props - MovieView')
   return {
-    rankingData: state.rankingData,
+    movieData: state.movieData,
     loadingData: state.loadingData
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchGetRanking(id){
-      dispatch(getRanking(id))
+    dispatchPostFavorite(movie){
+      dispatch(postFavorite(movie))
     }
   }
 }
