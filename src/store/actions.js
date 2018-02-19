@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 export const API_URL = "";
+export const MOCKAPI_API_URL = 'http://5a8b034f3d92490012370bb4.mockapi.io/api/v1/person'
 export const DATA_STATUS_HANDLER = 'DATA_STATUS_HANDLER';
+export const GET_RANKING = 'GET_RANKING'
 
 
 export const dataResultHandler = (actionType, stateObjectType, stateObjectResult) => {
@@ -11,6 +13,36 @@ export const dataResultHandler = (actionType, stateObjectType, stateObjectResult
       type: stateObjectType,
       result: stateObjectResult
     }
+  }
+}
+
+export const getRanking = () => {
+  let localUrl = MOCKAPI_API_URL + '?sortBy=score&order=desc&page=1&limit=5'
+
+  return (dispatch, getState) => {
+    dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
+    console.log(`Getting data... ${localUrl}`);
+
+    axios.get(localUrl)
+      .then( ({data: ranking}) => {
+        setTimeout( () => { dispatch( {type: GET_RANKING, payload: ranking} ) }, 1000);
+      })
+      .catch( error => {
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(`Error Response: ${error.response}`);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(`Error Request: ${error.request}`);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log(`General Error: ${error.message}`);
+        }
+        console.log("Error has occured in loading data...");
+        console.log(error);
+        dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingError', true) );
+    })
   }
 }
 

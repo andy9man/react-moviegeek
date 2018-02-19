@@ -10,3 +10,11 @@
 .navbar-brand>img {
   padding: 7px 14px;
 }
+.rankcontainer {
+  height: 25vh;
+  width: 25vh;
+}
+.rankscroll {
+  height: 25vh;
+  overflow: scroll;
+}
