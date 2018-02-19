@@ -10,9 +10,25 @@ import { DATA_STATUS_HANDLER, GET_RANKING } from './actions'
 
 const initialState = {
     rankingData: [],
+<<<<<<< HEAD
+    movieData: [],
+    // Expecting this data structure for movieData[]
+    // {
+    //   Title: "Batman",
+    //   Year: "1989",
+    //   Rated: "PG-13",
+    //   Released: "23 Jun 1989",
+    //   Runtime: "126 min",
+    //   Plot: "The Dark Knight of Gotham City begins his war on crime with his first major enemy being the clownishly homicidal Joker.",
+    //   Poster: "https://images-na.ssl-images-amazon.com/images/M/MV5BMTYwNjAyODIyMF5BMl5BanBnXkFtZTYwNDMwMDk2._V1_SX300.jpg",
+    //   Ratings:[{"Source":"Rotten Tomatoes","Value":"72%"}]
+    // }
+    loadingData: false
+=======
     loadingData: false,
     userId: 1
   
+>>>>>>> cbddfc7a1471f90919dc4d9fd730ab5a999e06d7
 }
 
 

@@ -15,7 +15,7 @@ class RankingsView extends Component{
 
     return (
       <div key={idx}>
-        <Card bsSize="small">{rankingObject.name}: {rankingObject.score}</Card>
+        <Card bsSize="small">{idx + 1}) {rankingObject.name}: {rankingObject.score}</Card>
       </div>
     )
   }
@@ -26,7 +26,7 @@ class RankingsView extends Component{
 
     return(
       <div className='rankcontainer'>
-        <h3>Rankings - Top: 5</h3>
+        <h3 className='rankingtxt'>Rankings - Top: 5</h3>
         {this.props.loadingData ?
           <div><Progress active animated color="success" value="100" max="100" now="100" label='Loading...'/></div>
           :
