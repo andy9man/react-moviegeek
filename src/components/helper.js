@@ -1,5 +1,8 @@
 import React from 'react';
 import {Link, Route} from 'react-router-dom';
+import axios from 'axios';
+
+const movieApi = "http://www.omdbapi.com/?apikey=b99d98de&type=movie";
 
 export const CustomNav = ( {label, to, activeOnlyWhenExact, generalClassName} ) => {
     return (
@@ -16,3 +19,5 @@ export const CustomNav = ( {label, to, activeOnlyWhenExact, generalClassName} ) 
 export const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+export const movieSearch = (movie, page=1) => axios.get(`${movieApi}&t=${movie}&page=${page}`);

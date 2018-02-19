@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { FormControl } from 'react-bootstrap';
 
 
-const HomeView = props => {
+class HomeView extends Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div>
-      Search Here
-    </div>
-  );
+    this.state = {
+      input: ''
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <FormControl
+          type="text"
+          value={this.state.input}
+          onChange={(e) => this.setState({input: e.target.value})}
+        />
+      </div>
+    );
+  }
 }
 
 export default HomeView;
