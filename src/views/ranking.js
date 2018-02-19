@@ -28,7 +28,7 @@ class RankingsView extends Component{
       <div className='rankcontainer'>
         <h3>Rankings - Top: 5</h3>
         {this.props.loadingData ?
-          <div><Progress active bsStyle="success" min={1} max={2} now={2} label='Loading...'/></div>
+          <div><Progress active animated color="success" value="100" max="100" now="100" label='Loading...'/></div>
           :
           // Map an object - use helper function to return what to render
           <div className='rankscroll'>
