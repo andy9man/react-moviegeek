@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getData } from '../store/actions';
+import { getMockInfo } from '../store/actions';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
@@ -7,35 +7,18 @@ import axios from 'axios';
 const Queue = () => {
   let path = "/queue"
   return (
-    getInfo(path)
+    getMockInfo(path)
   )
 }
 
 const Watched = () => {
   let path = "/watched"
   return (
-    getInfo(path)
+    getMockInfo(path)
   )
 }
 
 class Profile extends Component{
-
-
-  getInfo (path) {
-
-    axios.get(`http://5a8b1dc33d92490012370bcc.mockapi.io/user/${this.props.userId}${path}`,{
-
-    })
-            .then((response) => {
-                console.log('get response');
-                console.log(response);
-                
-            })
-            .catch(err => {
-                console.log('error retrieving data', err);
-            });
-    
-}
 
 
   render(){
@@ -62,8 +45,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchGetData(data){
-      dispatch(getData(data))
+    dispatchGetMockInfo(data){
+      dispatch(getMockInfo(data))
     }
   }
 }

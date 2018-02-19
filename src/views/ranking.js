@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getRanking } from '../store/actions'
+import { getMockInfo } from '../store/actions'
 import { connect } from 'react-redux'
 import { Progress, Card } from 'reactstrap'
 
@@ -50,8 +50,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchGetRanking(id){
-      dispatch(getRanking(id))
+    dispatchGetMockInfo(id){
+      dispatch(getMockInfo(id))
     }
   }
 }

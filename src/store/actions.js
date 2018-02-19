@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const API_URL = "";
-export const MOCKAPI_API_URL = 'http://5a8b034f3d92490012370bb4.mockapi.io/api/v1/person'
+export const MOCKAPI_API_URL = 'http://5a8b1dc33d92490012370bcc.mockapi.io/user/'
 export const DATA_STATUS_HANDLER = 'DATA_STATUS_HANDLER';
 export const GET_RANKING = 'GET_RANKING'
 
@@ -16,8 +16,9 @@ export const dataResultHandler = (actionType, stateObjectType, stateObjectResult
   }
 }
 
-export const getRanking = () => {
-  let localUrl = MOCKAPI_API_URL + '?sortBy=score&order=desc&page=1&limit=5'
+
+export const getMockInfo = (userId, path) => {
+  let localUrl = MOCKAPI_API_URL + userId + path
 
   return (dispatch, getState) => {
     dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
