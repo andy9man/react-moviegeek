@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { getMockInfo } from '../store/actions'
+import { getRankings } from '../store/actions'
 import { connect } from 'react-redux'
 import { Progress, Card } from 'reactstrap'
 
 class RankingsView extends Component{
 
   componentDidMount(){
-    this.props.dispatchGetMockInfo( "", "?sortBy=score&order=desc&page=1&limit=5")
+    this.props.dispatchGetRankings()
   }
 
   // helper function to map news object
@@ -50,8 +50,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchGetMockInfo(id, path){
-      dispatch(getMockInfo(id, path))
+    dispatchGetRankings(){
+      dispatch(getRankings())
     }
   }
 }
