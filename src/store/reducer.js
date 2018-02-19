@@ -10,7 +10,9 @@ import { DATA_STATUS_HANDLER, GET_RANKING } from './actions'
 
 const initialState = {
     rankingData: [],
-    loadingData: false
+    loadingData: false,
+    uid: 1
+  
 }
 
 
