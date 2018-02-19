@@ -36,12 +36,9 @@ const Watched = () => {
 class Profile extends Component{
 
 
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> b10083587ce38cd65b1c64136b50e6ca67686479
   render(){
     return(
       <div>
