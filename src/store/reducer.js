@@ -10,7 +10,6 @@ import { DATA_STATUS_HANDLER, GET_RANKING } from './actions'
 
 const initialState = {
     rankingData: [],
-<<<<<<< HEAD
     movieData: [],
     // Expecting this data structure for movieData[]
     // {
@@ -23,12 +22,9 @@ const initialState = {
     //   Poster: "https://images-na.ssl-images-amazon.com/images/M/MV5BMTYwNjAyODIyMF5BMl5BanBnXkFtZTYwNDMwMDk2._V1_SX300.jpg",
     //   Ratings:[{"Source":"Rotten Tomatoes","Value":"72%"}]
     // }
-    loadingData: false
-=======
     loadingData: false,
     uid: 1
-  
->>>>>>> cbddfc7a1471f90919dc4d9fd730ab5a999e06d7
+
 }
 
 
