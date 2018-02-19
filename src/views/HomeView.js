@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { FormControl } from 'react-bootstrap';
-
 
 class HomeView extends Component {
   constructor(props) {
@@ -14,11 +12,7 @@ class HomeView extends Component {
   render() {
     return (
       <div>
-        <FormControl
-          type="text"
-          value={this.state.input}
-          onChange={(e) => this.setState({input: e.target.value})}
-        />
+        Home
       </div>
     );
   }
