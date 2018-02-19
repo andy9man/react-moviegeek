@@ -8,6 +8,7 @@ import {
 import HomeView from './views/HomeView';
 import RankingsView from './views/ranking';
 import MovieView from './views/movie';
+import ProfileView from './views/profile';
 import MovieGeekNav from './components/nav';
 import background from './assets/movieBackground-1.png';
 
