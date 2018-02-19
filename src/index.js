@@ -7,7 +7,6 @@ import {
 import store from './store';
 import App from './App';
 import './index.css';
-//import './ui-toolkit/css/nm-cx/main.css';
 
 const Root = () => {
     return (
