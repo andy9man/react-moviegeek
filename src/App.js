@@ -15,13 +15,8 @@ import background from './assets/movieBackground-1.png';
 class App extends Component {
   render() {
     return (
-      <div className="App" style={ {backgroundImage: background} }>
-        <nav>
-          <MovieGeekNav />
-        </nav>
-
-
-
+      <div className="App" style={ {backgroundImage: `url(${background})`} }>
+        <MovieGeekNav />
 
         <Switch>
           <Route exact path='/' component={HomeView} />
