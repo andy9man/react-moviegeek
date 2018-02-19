@@ -22,16 +22,10 @@ const initialState = {
     //   Poster: "https://images-na.ssl-images-amazon.com/images/M/MV5BMTYwNjAyODIyMF5BMl5BanBnXkFtZTYwNDMwMDk2._V1_SX300.jpg",
     //   Ratings:[{"Source":"Rotten Tomatoes","Value":"72%"}]
     // }
-<<<<<<< HEAD
  
     loadingData: false,
     userId: 1
   
-=======
-    loadingData: false,
-    uid: 1
-
->>>>>>> b10083587ce38cd65b1c64136b50e6ca67686479
 }
 
 
