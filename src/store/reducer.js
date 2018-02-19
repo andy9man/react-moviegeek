@@ -1,4 +1,5 @@
 //import { SOME_ACTION } from './actions'
+import { DATA_STATUS_HANDLER, GET_RANKING } from './actions'
 
 // const CreateUid = () => {
 //     // Math.random should be unique because of its seeding algorithm.
@@ -8,12 +9,28 @@
 //  };
 
 const initialState = {
-
+    rankingData: [],
+    loadingData: false
 }
 
 
 export const reducer = (state = initialState, action) => {
     switch(action.type){
+    //********* GET_RANKING *********
+    case GET_RANKING:
+    return {
+      ...state,
+      rankingData: action.payload,
+      // news_source: [],
+      loadingData: false
+    }
+    //********* DATA_STATUS_HANDLER *********
+    case DATA_STATUS_HANDLER:
+      return {
+        ...state,
+        [action.payload.type]: action.payload.result,
+        displayAlert: action.payload.result
+      }
         default:
             return state;
     }
