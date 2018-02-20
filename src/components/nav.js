@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink as RouterNav } from 'react-router-dom';
+import AppBar from 'material-ui/AppBar';
 import icon from '../assets/clapper-icon.png';
 
 class MovieGeekNav extends Component {
@@ -13,9 +14,12 @@ class MovieGeekNav extends Component {
   render() {
 
     return (
-      <div style={ {height: 50, width: '100%', position: 'fixed', top: 0, backgroundColor: '#fff'} }>
-        NavBar
-      </div>
+      <nav>
+        <AppBar
+          title="Movie Geek"
+          iconClassNameRight="muidocs-icon-navigation-expand-more"
+        />
+      </nav>
     );
   }
 }

@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { getRanking, postFavorite } from '../store/actions'
 import { connect } from 'react-redux'
-import { Progress, Card, CardImg } from 'reactstrap'
+import {
+  Card,
+  CardHeader,
+  CardText
+} from 'material-ui/Card';
+import CircularProgress from 'material-ui/CircularProgress';
 
 class MovieView extends Component{
 
@@ -12,13 +17,19 @@ class MovieView extends Component{
     return (
       <div key={idx}>
         <Card>
-          Title: {movieObject.Title}<br/>
-          Year: {movieObject.Year}<br/>
-          Rated: {movieObject.Rated}<br/>
-          Released: {movieObject.Released}<br/>
-          Runtime: {movieObject.Runtime}<br/>
-          Plot: {movieObject.Plot}<br/>
-          Rating: {movieObject.Ratings[0].Source} {movieObject.Ratings[0].Value}
+          <CardHeader
+            title={movieObject.Title}
+            actAsExpander={false}
+          />
+          <CardText expandable={false}>
+            Title: {movieObject.Title}<br/>
+            Year: {movieObject.Year}<br/>
+            Rated: {movieObject.Rated}<br/>
+            Released: {movieObject.Released}<br/>
+            Runtime: {movieObject.Runtime}<br/>
+            Plot: {movieObject.Plot}<br/>
+            Rating: {movieObject.Ratings[0].Source} {movieObject.Ratings[0].Value}
+          </CardText>
         </Card>
         <img src={movieObject.Poster} />
       </div>
@@ -45,8 +56,10 @@ class MovieView extends Component{
       <div className='moviecontainer'>
         <h3 className='rankingtxt'>Movie</h3>
         {this.props.loadingData ?
-          <div><Progress active bsStyle="success" min={1} max={2} now={2} label='Loading...'/></div>
-          :
+          <div>
+            <CircularProgress size={60} thickness={5} />
+          </div>
+        :
           // Map an object - use helper function to return what to render
           <div>
             {localMovie.map(this.movieMap)}

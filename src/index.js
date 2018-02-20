@@ -7,12 +7,15 @@ import {
 import store from './store';
 import App from './App';
 import './index.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const Root = () => {
     return (
       <Provider store={store}>
           <BrowserRouter>
+            <MuiThemeProvider>
               <App />
+            </MuiThemeProvider>
           </BrowserRouter>
       </Provider>
     )

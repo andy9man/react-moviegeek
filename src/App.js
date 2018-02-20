@@ -5,6 +5,7 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
+import Paper from 'material-ui/Paper';
 import HomeView from './views/HomeView';
 import RankingsView from './views/ranking';
 import MovieView from './views/movie';
@@ -19,15 +20,19 @@ class App extends Component {
       <div className="App" style={ {backgroundImage: `url(${background})`} }>
         <MovieGeekNav />
 
-        <Switch>
-          <Route exact path='/' component={HomeView} />
-          <Route exact path='/profile' component={ProfileView} />
-          <Route exact path='/ranking' component={RankingsView} />
-          <Route exact path='/movie' component={MovieView} />
-          <Route exact path='/top-movies' component={Top50} />
-          {/* <Route exact path='/search/:searchtext' component={SearchView} /> */}
-          <Route render={ () => ( <Redirect to='/' />) } />
-        </Switch>
+        <div className="content-container">
+            <Switch>
+              <Route exact path='/' component={HomeView} />
+              <Route exact path='/profile' component={ProfileView} />
+              <Route exact path='/ranking' component={RankingsView} />
+              <Route exact path='/movie' component={MovieView} />
+              <Route exact path='/top-movies' component={Top50} />
+              {/* <Route exact path='/search/:searchtext' component={SearchView} /> */}
+              <Route render={ () => ( <Redirect to='/' />) } />
+            </Switch>
+        </div>
+
+
       </div>
     );
   }

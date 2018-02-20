@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { getRankings } from '../store/actions'
 import { connect } from 'react-redux'
-import { Progress, Card } from 'reactstrap'
+import CircularProgress from 'material-ui/CircularProgress';
+import {
+  Card,
+  CardHeader,
+  CardText
+} from 'material-ui/Card';
+
 
 class RankingsView extends Component{
 
@@ -15,7 +21,14 @@ class RankingsView extends Component{
 
     return (
       <div key={idx}>
-        <Card bsSize="small">{idx + 1}) {rankingObject.name}: {rankingObject.score}</Card>
+        <Card>
+          <CardHeader
+            title={rankingObject.name}
+          />
+          <CardText>
+            {idx + 1} - {rankingObject.name}: {rankingObject.score}
+          </CardText>
+        </Card>
       </div>
     )
   }
@@ -28,8 +41,10 @@ class RankingsView extends Component{
       <div className='rankcontainer'>
         <h3 className='rankingtxt'>Rankings - Top: 5</h3>
         {this.props.loadingData ?
-          <div><Progress active animated color="success" value="100" max="100" now="100" label='Loading...'/></div>
-          :
+          <div>
+            <CircularProgress size={60} thickness={5} />
+          </div>
+        :
           // Map an object - use helper function to return what to render
           <div className='rankscroll'>
             {localRanking.map(this.rankingMap)}
