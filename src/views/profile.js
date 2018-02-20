@@ -4,12 +4,6 @@ import { getWatched } from '../store/actions';
 import Movie from '../components/movie';
 import { connect } from 'react-redux';
 import CircularProgress from 'material-ui/CircularProgress';
-import {
-  Card,
-  CardHeader,
-  CardText
-} from 'material-ui/Card';
-
 
 class Profile extends Component{
 
@@ -18,44 +12,10 @@ class Profile extends Component{
     this.props.dispatchGetWatched(this.props.userId)
   }
 
-  // queueMap(queueObject, idx) {
-  //   console.log(queueObject)
-
-  //   return (
-  //     <div key={idx}>
-  //       <Card>
-  //         <CardHeader
-  //           title={queueObject.name}
-  //         />
-  //         <CardText>
-  //           {queueObject.name}
-  //         </CardText>
-  //       </Card>
-  //     </div>
-  //   )
-  // }
-
-  // watchedMap(mapObject, idx) {
-  //   console.log(mapObject)
-
-  //   return (
-  //     <div key={idx}>
-  //       <Card>
-  //         <CardHeader
-  //           title={mapObject.name}
-  //         />
-  //         <CardText>
-  //           {mapObject.name}
-  //         </CardText>
-  //       </Card>
-  //     </div>
-  //   )
-  // }
-
   render(){
     console.log("value of user id")
     console.log(this.props.userId)
-    
+
     let localQueue = []
     if(this.props.queueData) localQueue = this.props.queueData
     let localWatched = []
@@ -74,13 +34,13 @@ class Profile extends Component{
           <div>
             <CircularProgress size={60} thickness={5} />
           </div>
-          
+
         :
-          
+
           <div className="profile-container">
             <h3>Movies to Watch</h3>
             <div>
-                
+
                 {localQueue.map( (movie, index) => (
                 <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
               ))}

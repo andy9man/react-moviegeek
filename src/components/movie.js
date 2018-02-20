@@ -3,9 +3,15 @@ import { connect } from 'react-redux';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import CircularProgress from 'material-ui/CircularProgress';
 import FlatButton from 'material-ui/FlatButton';
+import ListAdded from 'material-ui/svg-icons/av/playlist-add-check';
+import ListAdd from 'material-ui/svg-icons/av/playlist-add';
+import MovieAdd from 'material-ui/svg-icons/image/movie-creation';
+import MovieAdded from 'material-ui/svg-icons/image/movie-filter';
+// import {fullWhite} from 'material-ui/styles/colors';
+
 import { movieFetchImdbId, deconstructRatings } from './helper';
 import noImage from '../assets/no-image.gif';
-import { postToWatched } from '../store/actions';
+import { postToWatched, postToQueue } from '../store/actions';
 
 
 class Movie extends Component {
@@ -33,9 +39,9 @@ class Movie extends Component {
   }
 
   render() {
-    const { imdbID, Title, Year, Poster} = this.props.movie;
+    const { Title, Year, Poster} = this.props.movie;
     const { loading, movieDetails } = this.state;
-    const { addMovieWatched, userId } = this.props;
+    const { addMovieWatched, addMovieQueue, userId } = this.props;
     const expand = this.props.expand === undefined ? true : !this.props.expand;
 
     return (
@@ -56,16 +62,17 @@ class Movie extends Component {
             </div>
             :
               movieDetails ?
-                <div style={ {display: 'flex', flexDirection: 'row', width: '100%'} } className="movieDetails">
-                  <div>
-                    <p><span className="movieDetails-title">Rated:</span> {movieDetails.Rated}</p>
-                    <p><span className="movieDetails-title">Runtime:</span>  {movieDetails.Runtime}</p>
-                    <p><span className="movieDetails-title">Rotten Tomatoes Score:</span>  {deconstructRatings(movieDetails.Ratings).Value}</p>
-                    <p><span className="movieDetails-title">IMDb ID:</span>  {movieDetails.imdbID}</p>
-                    <p><span className="movieDetails-title">Plot:</span></p>
-                    <p>{movieDetails.Plot}</p>
+                // <div style={ {display: 'flex', flexDirection: 'row', width: '100%'} } className="movieDetails">
+                <div className="movieDetails">
+                  <div style={{float: 'left', minWidth: 300, width: '50vw'}}>
+                    <p><h3 className="movieDetails-title">Rated:</h3> <span style={{display: 'inline-block'}}>{movieDetails.Rated}</span></p>
+                    <p><h3 className="movieDetails-title">Runtime:</h3>  {movieDetails.Runtime}</p>
+                    <p><h3 className="movieDetails-title">Rotten Tomatoes Score:</h3>  {deconstructRatings(movieDetails.Ratings).Value}</p>
+                    <p><h3 className="movieDetails-title">IMDb ID:</h3>  {movieDetails.imdbID}</p>
+                    <p><h3 className="movieDetails-title">Plot:</h3></p>
+                    <p style={ {lineHeight: 1.6, marginLeft: 30} }>{movieDetails.Plot}</p>
                   </div>
-                  <div style={ {textAlign: 'right'} }>
+                  <div style={ {textAlign: 'center', float: 'left', width: '30vw'} }>
                     <img src={movieDetails.Poster ? movieDetails.Poster.includes("http") ? movieDetails.Poster : noImage : noImage} alt={Title} />
                   </div>
                 </div>
@@ -75,12 +82,20 @@ class Movie extends Component {
 
           <CardActions>
             <FlatButton
-              label="I Want To Watch"
-              onClick={this.prop}
+              label="add to queue"
+              onClick={() => addMovieQueue(movieDetails, userId)}
+              backgroundColor="#FFEA00"
+              hoverColor="#FFFF8D"
+              icon={<ListAdd />}
+              style={ {margin: 12} }
             />
             <FlatButton
               label="Watched"
               onClick={() => addMovieWatched(movieDetails, userId)}
+              backgroundColor="#64DD17"
+              hoverColor="#CCFF90"
+              icon={<MovieAdd />}
+              style={ {margin: 12} }
             />
           </CardActions>
         </CardText>
@@ -100,7 +115,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     addMovieWatched(movieObj, uId){
-      dispatch(postToWatched(movieObj, uId))
+      dispatch( postToWatched(movieObj, uId) )
+    },
+    addMovieQueue(movieObj, uId) {
+      dispatch( postToQueue(movieObj, uId) )
     }
   }
 }
