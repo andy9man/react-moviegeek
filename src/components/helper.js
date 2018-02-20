@@ -21,8 +21,11 @@ export const numberWithCommas = (x) => {
 }
 
 export const deconstructRatings = (ratingObj) => {
-  let deconstructedRating = ratingObj.Ratings.find((rating) => { return (rating.Source === "Rotten Tomatoes") } )
-  if(deconstructedRating) return deconstructedRating
+  console.log(ratingObj)
+  if( ratingObj ) {
+    let deconstructedRating = ratingObj.find((rating) => { return (rating.Source === "Rotten Tomatoes") } )
+    if(deconstructedRating) return deconstructedRating
+  }
   return {Source: '', Value: ''}
 }
 
