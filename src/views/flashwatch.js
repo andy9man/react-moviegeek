@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { getData } from '../store/actions'
+import { getFlashWatch } from '../store/actions'
 import { connect } from 'react-redux'
 
 class FlashWatch extends Component{
+  
+  
+  
+  
   render(){
     return(
       <div>View</div>
@@ -20,8 +24,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchGetData(data){
-      dispatch(getData(data))
+    dispatchGetFlashWatch(data){
+      dispatch(getFlashWatch(data))
     }
   }
 }
