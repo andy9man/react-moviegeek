@@ -29,7 +29,7 @@ return (
 {
 localMovie.map(
     (movie, index) => (
-        <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
+        <Movie key={`${movie.imdbID}idx${index}`} movie={movie} expand={true} />
 //     <Card>
 // <CardHeader
 // title={`${movie.rank}  ${movie.title}`}
