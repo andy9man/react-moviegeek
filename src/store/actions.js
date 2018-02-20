@@ -147,16 +147,18 @@ export const getWatched = (userId) => {
 }
 
 export const getFlashWatch = () => {
-  let localUrl = MOCKAPI_API_URL + "/top50"
+  let localUrl = "http://5a8b1dc33d92490012370bcc.mockapi.io/top50"
 
   return (dispatch, getState) => {
     dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true));
     console.log(`Getting data... ${localUrl}`);
 
     axios.get(localUrl)
-      .then(({ data: flashwatch }) => {
-        console.log("value of retrieve in getFlashWatch")
-        console.log(flashwatch)
+      .then(({ data }) => {
+        console.log("value of date in getFlashWatch")
+        console.log(data)
+        let select = Math.floor(Math.random() * data.length)
+        let flashwatch = data[select]
         setTimeout(() => { dispatch({ type: GET_FLASHWATCH, payload: flashwatch }) }, 1000);
       })
       .catch(error => {

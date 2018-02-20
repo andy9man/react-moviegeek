@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import {
   Switch,
   Route,
-  Redirect
+  Redirect,
+  withRouter
 } from 'react-router-dom';
+import { getFlashWatch } from './store/actions';
 import Home from './views/home';
 import RankingsView from './views/ranking';
 import MovieView from './views/movie';
@@ -15,6 +18,11 @@ import Top50 from './views/top50';
 import FlashWatch from './views/flashwatch';
 
 class App extends Component {
+
+  componentDidMount(){
+    this.props.dispatchGetFlashWatch() 
+  }
+
   render() {
 
     return (
@@ -40,4 +48,22 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  console.log('mapping state to props - FlashWatch')
+  return {
+    viewData: state.viewData,
+    loadingData: state.loadingData,
+    flashWatchData: state.flashWatchData,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchGetFlashWatch(data){
+      dispatch(getFlashWatch(data))
+    }
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+
