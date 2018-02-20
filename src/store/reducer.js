@@ -21,7 +21,6 @@ const initialState = {
   //   Title: "Batman",
   //   Year: "1989",
   //   Rated: "PG-13",
-  //   Released: "23 Jun 1989",
   //   Runtime: "126 min",
   //   Plot: "The Dark Knight of Gotham City begins his war on crime with his first major enemy being the clownishly homicidal Joker.",
   //   Poster: "https://images-na.ssl-images-amazon.com/images/M/MV5BMTYwNjAyODIyMF5BMl5BanBnXkFtZTYwNDMwMDk2._V1_SX300.jpg",

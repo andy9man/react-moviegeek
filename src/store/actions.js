@@ -177,17 +177,17 @@ export const getFlashWatch = () => {
 
 export const postToWatched = (movieObj, user_id) => {
   let localUrl = MOCKAPI_API_URL + user_id + "/watched"
+  let localRating = movieObj.Ratings.find((rating) => { return (rating.Source === "Rotten Tomatoes") } )
   let localObject = {
-    title: movieObj.title,
-    year: movieObj.year,
-    rated: movieObj.rated,
-    released: movieObj.released,
-    runtime: movieObj.runtime,
-    plot: movieObj.plot,
-    poster: movieObj.poster,
-    ratings: {
-      source: movieObj.ratings[0].source,
-      value: movieObj.ratings[0].value
+    Title: movieObj.Title,
+    Year: movieObj.Year,
+    Rated: movieObj.Rated,
+    Runtime: movieObj.Runtime,
+    Plot: movieObj.Plot,
+    Poster: movieObj.Poster,
+    Ratings: {
+      Source: localRating.Source,
+      Value: localRating.Value
     }
   }
 
@@ -225,17 +225,17 @@ export const postToWatched = (movieObj, user_id) => {
 
 export const postToQueue = (movieObj, user_id) => {
   let localUrl = MOCKAPI_API_URL + user_id + "/queue"
+  let localRating = movieObj.Ratings.find((rating) => { return (rating.Source === "Rotten Tomatoes") } )
   let localObject = {
-    title: movieObj.title,
-    year: movieObj.year,
-    rated: movieObj.rated,
-    released: movieObj.released,
-    runtime: movieObj.runtime,
-    plot: movieObj.plot,
-    poster: movieObj.poster,
-    ratings: {
-      source: movieObj.ratings[0].source,
-      value: movieObj.ratings[0].value
+    Title: movieObj.Title,
+    Year: movieObj.Year,
+    Rated: movieObj.Rated,
+    Runtime: movieObj.Runtime,
+    Plot: movieObj.Plot,
+    Poster: movieObj.Poster,
+    Ratings: {
+      Source: localRating.Source,
+      Value: localRating.Value
     }
   }
 
