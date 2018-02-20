@@ -13,8 +13,8 @@ import icon from '../assets/clapper-icon.png';
 
 const Title = () => {
   return (
-    <div>
-      <span style={ {marginRight: 10} }>Movie Geek</span>
+    <div style={ {display: 'flex', flexDirection: 'row', justifyContent: 'left', alignItems: 'center'}}>
+      Movie Geek
       <img src={icon} alt="Movie Geek Logo" />
     </div>
   );
