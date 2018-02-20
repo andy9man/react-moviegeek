@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {getTopMovie} from '../store/actions';
 import { sortArray } from '../components/helper';
-
+import {Card, CardActions, CardHeader, CardText,CardMedia} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 
 
@@ -27,15 +28,22 @@ return (
 <div>
 {
 localMovie.map( movie => (
-<div className='card'>
-<div>{movie.rank}</div>
-<div> Title:{movie.title}</div>
-<div> Year:{movie.year}</div>
-<img src={movie.imgurl} />
-<div> Description {movie.description} </div>
-<div><button className="button btn-cta" onClick={this.handleBtnClk} >Watched</button></div>
-<div><button className="button btn-cta" onClick={this.handleBtnClk} >Add to the list</button></div>
-</div>
+    <Card>
+<CardHeader
+title={`${movie.rank}  ${movie.title}`}
+subtitle={`(${movie.year})`} />
+  <CardMedia>
+      <img src={movie.img} alt="" />
+    </CardMedia>
+<CardText expandable={true}> 
+{movie.Description}
+</CardText>
+<CardActions>
+      <FlatButton label="Add To Queue" />
+      <FlatButton label="Watched" />
+    </CardActions>
+
+</Card>
 ))
 }
 </div>

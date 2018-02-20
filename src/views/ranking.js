@@ -22,9 +22,9 @@ class RankingsView extends Component{
     return (
       <div key={idx}>
         <Card>
-          <CardHeader
+          {/* <CardHeader
             title={rankingObject.name}
-          />
+          /> */}
           <CardText>
             {idx + 1} - {rankingObject.name}: {rankingObject.score}
           </CardText>
