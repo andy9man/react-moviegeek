@@ -54,22 +54,22 @@ class Search extends Component{
     return(
       <div>
         <h3>Search Results ...  {search}</h3>
-
-        {
-          loading ?
-            <h1>Loading...</h1>
-          :
-            error || (searchResults === undefined) ?
-              <h4><em>No results found for <b>{search}</b></em></h4>
+        <div style={ {padding: '0 15px'} }>
+          {
+            loading ?
+              <h1>Loading...</h1>
             :
-              searchResults.length > 0 ?
-                searchResults.map( (movie, index) => (
-                  <Movie key={`${movie.imdbID}idx${index}`} movie={movie} expand={false} />
-                ))
-              :
+              error || (searchResults === undefined) ?
                 <h4><em>No results found for <b>{search}</b></em></h4>
-        }
-
+              :
+                searchResults.length > 0 ?
+                  searchResults.map( (movie, index) => (
+                    <Movie key={`${movie.imdbID}idx${index}`} movie={movie} expand={false} />
+                  ))
+                :
+                  <h4><em>No results found for <b>{search}</b></em></h4>
+          }
+        </div>
       </div>
     );
   }
