@@ -61,7 +61,7 @@ class Movie extends Component {
                     <p><span className="movieDetails-title">Rated:</span> {movieDetails.Rated}</p>
                     <p><span className="movieDetails-title">Runtime:</span>  {movieDetails.Runtime}</p>
                     <p><span className="movieDetails-title">Rotten Tomatoes Score:</span>  {deconstructRatings(movieDetails.Ratings).Value}</p>
-                    <p><span className="movieDetails-title">imDb:</span>  {movieDetails.imdbID}</p>
+                    <p><span className="movieDetails-title">IMDb ID:</span>  {movieDetails.imdbID}</p>
                     <p><span className="movieDetails-title">Plot:</span></p>
                     <p>{movieDetails.Plot}</p>
                   </div>
