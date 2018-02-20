@@ -5,7 +5,7 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
-import Home from './views/Home';
+import Home from './views/home';
 import RankingsView from './views/ranking';
 import MovieView from './views/movie';
 import ProfileView from './views/profile';
