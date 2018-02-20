@@ -3,6 +3,12 @@ import { getQueue } from '../store/actions';
 import { getWatched } from '../store/actions';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import CircularProgress from 'material-ui/CircularProgress';
+import {
+  Card,
+  CardHeader,
+  CardText
+} from 'material-ui/Card';
 
 
 class Profile extends Component{
@@ -12,17 +18,81 @@ class Profile extends Component{
     this.props.dispatchGetWatched(this.props.userId)
   }
 
+  queueMap(queueObject, idx) {
+    console.log(queueObject)
+
+    return (
+      <div key={idx}>
+        <Card>
+          <CardHeader
+            title={queueObject.name}
+          />
+          <CardText>
+            {queueObject.name}
+          </CardText>
+        </Card>
+      </div>
+    )
+  }
+
+  watchedMap(mapObject, idx) {
+    console.log(mapObject)
+
+    return (
+      <div key={idx}>
+        <Card>
+          <CardHeader
+            title={mapObject.name}
+          />
+          <CardText>
+            {mapObject.name}
+          </CardText>
+        </Card>
+      </div>
+    )
+  }
+
   render(){
     console.log("value of user id")
     console.log(this.props.userId)
+    
+    let localQueue = []
+    if(this.props.queueData) localQueue = this.props.queueData
+    let localWatched = []
+    if(this.props.watchedData) localWatched = this.props.watchedData
+
     return(
       <div>
-        <div>Geek Score: </div>
-
-        <div>Movies to Watch</div>
-       
-        <div>Movies Watched</div>
         
+          <div>
+            <h2>Geek Score: </h2>
+          </div>
+
+        {this.props.loadingData ?
+          <div>
+            <CircularProgress size={60} thickness={5} />
+          </div>
+        :
+          <div>
+            <h2>Movies to Watch</h2>
+            <div className='rankscroll'>
+                {localQueue.map(this.queueMap)}
+            </div>
+          </div>
+        }
+
+        {this.props.loadingData ?
+          <div>
+            <CircularProgress size={60} thickness={5} />
+          </div>
+        :
+          <div>
+            <h2>Movies Watched</h2>
+            <div className='rankscroll'>
+                {localWatched.map(this.watchedMap)}
+            </div>
+          </div>
+        }
       </div>
     )
   }
@@ -34,6 +104,7 @@ const mapStateToProps = (state) => {
     userId: state.userId,
     queueData: state.queueData,
     watchedData: state.watchedData,
+    loadingData: state.loadingData,
 
   }
 }

@@ -98,6 +98,8 @@ export const getQueue = (userId) => {
 
     axios.get(localUrl)
       .then( ({data: queue}) => {
+        console.log("value of retrieve in getQueue")
+        console.log(queue)
         setTimeout( () => { dispatch( {type: GET_QUEUE, payload: queue} ) }, 1000);
       })
       .catch( error => {
@@ -128,6 +130,8 @@ export const getWatched = (userId) => {
 
     axios.get(localUrl)
       .then( ({data: watched}) => {
+        console.log("value of retrieve in getWatched")
+        console.log(watched)
         setTimeout( () => { dispatch( {type: GET_WATCHED, payload: watched} ) }, 1000);
       })
       .catch( error => {

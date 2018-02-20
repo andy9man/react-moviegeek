@@ -45,6 +45,7 @@ export const reducer = (state = initialState, action) => {
     }
      //********* GET_QUEUE *********
      case GET_QUEUE:
+     console.log('made it to reducer GET_QUEUE')
      return {
        ...state,
        queueData: action.payload,
