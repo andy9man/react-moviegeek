@@ -7,6 +7,11 @@ export const GET_RANKING = 'GET_RANKING';
 export const GET_QUEUE = 'GET_QUEUE';
 export const GET_WATCHED = 'GET_WATCHED';
 
+export const LOAD_TOPMOVIES='LOAD_TOPMOVIES'
+
+
+
+
 export const postFavorite = () => {
   return true
 }
@@ -20,7 +25,39 @@ export const dataResultHandler = (actionType, stateObjectType, stateObjectResult
     }
   }
 }
-
+export const getTopMovie = () => {
+  return (dispatch, getState, url) => {
+  dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
+  console.log(`Getting Data... ${url}`);
+  axios.get(`http://5a8b07983d92490012370bba.mockapi.io/notes`)
+  .then( ({data}) => {
+  //setTimeout( () => { dispatch( {type: LOAD_DATA, payload: products} ) }, 1);
+  dispatch( {type: LOAD_TOPMOVIES, payload: data});
+  })
+  .catch( error => {
+  if (error.response) {
+  // The request was made and the server responded with a status code
+  // that falls out of the range of 2xx
+  // console.log(error.response.data.message);
+  // console.log(error.response.status);
+  // console.log(error.response.headers);
+  console.log(`Error Response: ${error.response}`);
+  } else if (error.request) {
+  // The request was made but no response was received
+  // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+  // http.ClientRequest in node.js
+  console.log(`Error Request: ${error.request}`);
+  } else {
+  // Something happened in setting up the request that triggered an Error
+  console.log(`General Error: ${error.message}`);
+  }
+  console.log("Error has occured in loading data...");
+  console.log(error);
+  dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingError', true) );
+  })
+  }
+  }
+  
 
 export const getRankings = () => {
   let localUrl = MOCKAPI_API_URL + "?sortBy=score&order=desc&page=1&limit=5"

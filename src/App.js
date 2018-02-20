@@ -11,6 +11,7 @@ import MovieView from './views/movie';
 import ProfileView from './views/profile';
 import MovieGeekNav from './components/nav';
 import background from './assets/movieBackground-1.png';
+import Top50 from './views/top50'
 
 class App extends Component {
   render() {
@@ -23,7 +24,7 @@ class App extends Component {
           <Route exact path='/profile' component={ProfileView} />
           <Route exact path='/ranking' component={RankingsView} />
           <Route exact path='/movie' component={MovieView} />
-          {/* <Route exact path='/top-movies' component={MovieRankingView} /> */}
+          <Route exact path='/top-movies' component={Top50} />
           {/* <Route exact path='/search/:searchtext' component={SearchView} /> */}
           <Route render={ () => ( <Redirect to='/' />) } />
         </Switch>
