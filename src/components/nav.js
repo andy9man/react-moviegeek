@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
@@ -51,30 +51,30 @@ class MovieGeekNav extends Component {
         <MenuItem
           primaryText="Home"
           leftIcon={<ActionHome />}
-          containerElement={<NavLink to="/" activeClassName="selected" />}
+          containerElement={<Link to="/" />}
           onClick={this.handleMenuOpen}
         />
         <Divider />
         <MenuItem
           primaryText="Rankings"
-          containerElement={<NavLink to="/ranking" />}
+          containerElement={<Link to="/ranking" />}
           onClick={this.handleMenuOpen}
         />
           <MenuItem
             primaryText="Movies"
-            containerElement={<NavLink to="/movie" />}
+            containerElement={<Link to="/movie" />}
             onClick={this.handleMenuOpen}
           />
           <MenuItem
             primaryText="Our Top Movies"
-            containerElement={<NavLink to="/top-movies" />}
+            containerElement={<Link to="/top-movies" />}
             onClick={this.handleMenuOpen}
           />
           <Divider />
           <MenuItem
             leftIcon={<ActionAccountCircle />}
             primaryText="Profile"
-            containerElement={<NavLink to="/profile" />}
+            containerElement={<Link to="/profile" />}
             onClick={this.handleMenuOpen}
           />
 

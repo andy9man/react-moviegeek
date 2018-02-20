@@ -12,14 +12,14 @@ class Search extends Component {
   }
 
   render() {
-    const search = this.state;
+
     return (
       <form
         onSubmit={ (e) => {
           e.preventDefault();
 
-          console.log(`Attempting to search:  ${search}`);
-          this.props.history.push(`/search/${search}`);
+          console.log(`Attempting to search:  ${this.state.search}`);
+          this.state.search !== '' && this.props.history.push(`/search/${this.state.search}`);
           this.setState({search: ''});
         }}
       >
