@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+
 import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
+import ActionHome from 'material-ui/svg-icons/action/home';
+
+import Search from '../components/search';
 import icon from '../assets/clapper-icon.png';
 
+const Title = () => {
+  return (
+    <div>
+      <span style={ {marginRight: 10} }>Movie Geek</span>
+      <img src={icon} alt="Movie Geek Logo" />
+    </div>
+  );
+}
 class MovieGeekNav extends Component {
   constructor(props) {
     super(props);
@@ -26,10 +36,10 @@ class MovieGeekNav extends Component {
     return (
       <nav>
         <AppBar
-          title="Movie Geek"
+          title={<Title />}
           onTitleClick={() => this.props.history.push("/")}
           onLeftIconButtonClick={this.handleMenuOpen}
-          iconElementRight={<img src={icon} />}
+          iconElementRight={<Search history={this.props.history} />}
         />
 
         <Drawer
@@ -38,26 +48,33 @@ class MovieGeekNav extends Component {
           docked={false}
           onRequestChange={this.handleMenuOpen}
         >
-          <MenuItem
-            primaryText="Rankings"
-            containerElement={<NavLink to="/ranking" />}
-            onClick={this.handleMenuOpen}
-          />
+        <MenuItem
+          primaryText="Home"
+          leftIcon={<ActionHome />}
+          containerElement={<Link to="/" />}
+          onClick={this.handleMenuOpen}
+        />
+        <Divider />
+        <MenuItem
+          primaryText="Rankings"
+          containerElement={<Link to="/ranking" />}
+          onClick={this.handleMenuOpen}
+        />
           <MenuItem
             primaryText="Movies"
-            containerElement={<NavLink to="/movie" />}
+            containerElement={<Link to="/movie" />}
             onClick={this.handleMenuOpen}
           />
           <MenuItem
             primaryText="Our Top Movies"
-            containerElement={<NavLink to="/top-movies" />}
+            containerElement={<Link to="/top-movies" />}
             onClick={this.handleMenuOpen}
           />
           <Divider />
           <MenuItem
             leftIcon={<ActionAccountCircle />}
             primaryText="Profile"
-            containerElement={<NavLink to="/profile" />}
+            containerElement={<Link to="/profile" />}
             onClick={this.handleMenuOpen}
           />
 

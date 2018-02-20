@@ -36,6 +36,10 @@ nav img {
   height: 50px;
 }
 
+.selected {
+  background-color: #B3B3B3
+}
+
 /* .rankcontainer {
   height: 20vh;
   width: 20vh;
