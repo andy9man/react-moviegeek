@@ -22,7 +22,7 @@ class MovieGeekNav extends Component {
   }
 
   render() {
-    console.log(this.props)
+
     return (
       <nav>
         <AppBar
