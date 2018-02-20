@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import {
   Switch,
   Route,
-  Redirect
+  Redirect,
+  withRouter
 } from 'react-router-dom';
+import { getFlashWatch } from './store/actions';
 import Home from './views/home';
 import Rankings from './views/ranking';
 import Movie from './views/movie';
@@ -13,10 +16,16 @@ import Search from './views/search';
 
 import MovieGeekNav from './components/nav';
 import background from './assets/movieBackground-1.png';
-import Top50 from './views/top50'
+import Top50 from './views/top50';
+import FlashWatch from './views/flashwatch';
 import TestView from './views/test'
 
 class App extends Component {
+
+  componentDidMount(){
+    this.props.dispatchGetFlashWatch() 
+  }
+
   render() {
 
     return (
@@ -30,6 +39,7 @@ class App extends Component {
               <Route exact path='/ranking' component={Rankings} />
               <Route exact path='/movie' component={Movie} />
               <Route exact path='/top-movies' component={Top50} />
+              <Route exact path='/flashwatch' component={FlashWatch} />
               <Route exact path='/test' component={TestView} />
               {/* <Route exact path='/search/:searchtext' component={SearchView} /> */}
               <Route exact path='/search/:search' component={Search} />
@@ -43,4 +53,22 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  console.log('mapping state to props - FlashWatch')
+  return {
+    viewData: state.viewData,
+    loadingData: state.loadingData,
+    flashWatchData: state.flashWatchData,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchGetFlashWatch(data){
+      dispatch(getFlashWatch(data))
+    }
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+
