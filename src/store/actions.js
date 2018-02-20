@@ -226,7 +226,7 @@ export const postToWatched = (movieObj, user_id) => {
 
 export const postToQueue = (movieObj, user_id) => {
   let localUrl = MOCKAPI_API_URL + user_id + "/queue"
-  let localRating = movieObj.Ratings.find((rating) => { return (rating.Source === "Rotten Tomatoes") } )
+  let localRating = deconstructRatings(movieObj.Ratings)
   let localObject = {
     Title: movieObj.Title,
     Year: movieObj.Year,
