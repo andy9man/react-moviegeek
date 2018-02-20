@@ -60,23 +60,18 @@ class MovieGeekNav extends Component {
           containerElement={<Link to="/ranking" />}
           onClick={this.handleMenuOpen}
         />
-          <MenuItem
-            primaryText="Movies"
-            containerElement={<Link to="/movie" />}
-            onClick={this.handleMenuOpen}
-          />
-          <MenuItem
-            primaryText="Our Top Movies"
-            containerElement={<Link to="/top-movies" />}
-            onClick={this.handleMenuOpen}
-          />
-          <Divider />
-          <MenuItem
-            leftIcon={<ActionAccountCircle />}
-            primaryText="Profile"
-            containerElement={<Link to="/profile" />}
-            onClick={this.handleMenuOpen}
-          />
+        <MenuItem
+          primaryText="Our Top Movies"
+          containerElement={<Link to="/top-movies" />}
+          onClick={this.handleMenuOpen}
+        />
+        <Divider />
+        <MenuItem
+          leftIcon={<ActionAccountCircle />}
+          primaryText="Profile"
+          containerElement={<Link to="/profile" />}
+          onClick={this.handleMenuOpen}
+        />
 
         </Drawer>
       </nav>

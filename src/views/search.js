@@ -47,8 +47,8 @@ class Search extends Component{
 
   render(){
     const {search, searchResults, loading} = this.state;
-    console.log(`Loading:  ${loading}   \nSearch Term:  ${search}\nSearch Results... `)
-    console.log(searchResults);
+    // console.log(`Loading:  ${loading}   \nSearch Term:  ${search}\nSearch Results... `)
+    // console.log(searchResults);
 
     return(
       <div>
@@ -60,7 +60,7 @@ class Search extends Component{
           :
             searchResults.length > 0 ?
               searchResults.map( (movie, index) => (
-                <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
+                <Movie key={`${movie.imdbID}idx${index}`} movie={movie} expand={false} />
               ))
             :
               <h4><em>No results found for <b>{search}</b></em></h4>
