@@ -66,7 +66,7 @@ class Movie extends Component {
                     <p>{movieDetails.Plot}</p>
                   </div>
                   <div style={ {textAlign: 'right'} }>
-                    <img src={movieDetails.Poster ? movieDetails.Poster : noImage} alt={Title} />
+                    <img src={movieDetails.Poster ? movieDetails.Poster.includes("http") ? movieDetails.Poster : noImage : noImage} alt={Title} />
                   </div>
                 </div>
               :
