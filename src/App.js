@@ -30,12 +30,9 @@ class App extends Component {
               <Route exact path='/ranking' component={Rankings} />
               <Route exact path='/movie' component={Movie} />
               <Route exact path='/top-movies' component={Top50} />
-<<<<<<< HEAD
               <Route exact path='/test' component={TestView} />
               {/* <Route exact path='/search/:searchtext' component={SearchView} /> */}
-=======
               <Route exact path='/search/:search' component={Search} />
->>>>>>> 0c4b777105e1cfa6a2444e0b34e6a2dbbfeb1a1a
               <Route render={ () => ( <Redirect to='/' />) } />
             </Switch>
         </div>
