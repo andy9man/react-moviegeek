@@ -20,4 +20,4 @@ export const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-export const movieSearch = (movie, page=1) => axios.get(`${movieApi}&t=${movie}&page=${page}`);
+export const movieSearch = (movie, page=1) => axios.get(`${movieApi}&s=${movie}&page=${page}`);
