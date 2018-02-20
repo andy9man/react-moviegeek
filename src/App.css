@@ -33,7 +33,8 @@ nav {
 }
 
 nav img {
-  height: 50px;
+  height: 40px;
+  padding: 10px;
 }
 
 .selected {
