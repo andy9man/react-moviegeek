@@ -5,7 +5,7 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
-import HomeView from './views/HomeView';
+import Home from './views/Home';
 import RankingsView from './views/ranking';
 import MovieView from './views/movie';
 import ProfileView from './views/profile';
@@ -18,11 +18,11 @@ class App extends Component {
 
     return (
       <div className="App" style={ {backgroundImage: `url(${background})`} }>
-        <MovieGeekNav history />
+        <MovieGeekNav />
 
         <div className="content-container">
             <Switch>
-              <Route exact path='/' component={HomeView} />
+              <Route exact path='/' component={Home} />
               <Route exact path='/profile' component={ProfileView} />
               <Route exact path='/ranking' component={RankingsView} />
               <Route exact path='/movie' component={MovieView} />
