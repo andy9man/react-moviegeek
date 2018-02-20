@@ -175,9 +175,15 @@ export const getFlashWatch = () => {
   }
 }
 
+export const deconstructRatings = (ratingObj) => {
+  let deconstructedRating = ratingObj.Ratings.find((rating) => { return (rating.Source === "Rotten Tomatoes") } ) 
+  if(deconstructedRating) return deconstructedRating
+  return {Source: '', Value: ''}
+}
+
 export const postToWatched = (movieObj, user_id) => {
   let localUrl = MOCKAPI_API_URL + user_id + "/watched"
-  let localRating = movieObj.Ratings.find((rating) => { return (rating.Source === "Rotten Tomatoes") } )
+  let localRating = deconstructRatings(movieObj.Ratings)
   let localObject = {
     Title: movieObj.Title,
     Year: movieObj.Year,
