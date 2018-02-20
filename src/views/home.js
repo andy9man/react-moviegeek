@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class HomeView extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -18,4 +18,4 @@ class HomeView extends Component {
   }
 }
 
-export default HomeView;
+export default Home;

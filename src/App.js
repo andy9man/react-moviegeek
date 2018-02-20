@@ -5,8 +5,7 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
-import Paper from 'material-ui/Paper';
-import HomeView from './views/HomeView';
+import Home from './views/home';
 import RankingsView from './views/ranking';
 import MovieView from './views/movie';
 import ProfileView from './views/profile';
@@ -16,13 +15,14 @@ import Top50 from './views/top50'
 
 class App extends Component {
   render() {
+
     return (
       <div className="App" style={ {backgroundImage: `url(${background})`} }>
         <MovieGeekNav />
 
         <div className="content-container">
             <Switch>
-              <Route exact path='/' component={HomeView} />
+              <Route exact path='/' component={Home} />
               <Route exact path='/profile' component={ProfileView} />
               <Route exact path='/ranking' component={RankingsView} />
               <Route exact path='/movie' component={MovieView} />
