@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { getQueue } from '../store/actions';
 import { getWatched } from '../store/actions';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import CircularProgress from 'material-ui/CircularProgress';
 import {
   Card,
