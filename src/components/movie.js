@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import CircularProgress from 'material-ui/CircularProgress';
 import FlatButton from 'material-ui/FlatButton';
 import { movieFetchImdbId, deconstructRatings } from './helper';
 import noImage from '../assets/no-image.gif';
+import { postToWatched } from '../store/actions';
 
 
 class Movie extends Component {
@@ -33,7 +35,8 @@ class Movie extends Component {
   render() {
     const { imdbID, Title, Year, Poster} = this.props.movie;
     const { loading, movieDetails } = this.state;
-    console.log(movieDetails)
+    const { addMovieWatched, userId } = this.props;
+    const expand = this.props.expand === undefined ? true : !this.props.expand;
 
     return (
       <Card style={ {marginBottom: 15} }>
@@ -44,7 +47,7 @@ class Movie extends Component {
           actAsExpander={true}
           showExpandableButton={true}
         />
-        <CardText expandable={true}>
+        <CardText expandable={expand}>
 
           {
             loading ?
@@ -53,15 +56,16 @@ class Movie extends Component {
             </div>
             :
               movieDetails ?
-                <div style={ {display: 'flex', flexDirection: 'row'} } className="movieDetails">
+                <div style={ {display: 'flex', flexDirection: 'row', width: '100%'} } className="movieDetails">
                   <div>
                     <p><span className="movieDetails-title">Rated:</span> {movieDetails.Rated}</p>
                     <p><span className="movieDetails-title">Runtime:</span>  {movieDetails.Runtime}</p>
                     <p><span className="movieDetails-title">Rotten Tomatoes Score:</span>  {deconstructRatings(movieDetails.Ratings).Value}</p>
+                    <p><span className="movieDetails-title">imDb:</span>  {movieDetails.imdbID}</p>
                     <p><span className="movieDetails-title">Plot:</span></p>
                     <p>{movieDetails.Plot}</p>
                   </div>
-                  <div>
+                  <div style={ {textAlign: 'right'} }>
                     <img src={movieDetails.Poster} alt={Title} />
                   </div>
                 </div>
@@ -70,8 +74,14 @@ class Movie extends Component {
           }
 
           <CardActions>
-            <FlatButton label="Action1" />
-            <FlatButton label="Action2" />
+            <FlatButton
+              label="I Want To Watch"
+              onClick={this.prop}
+            />
+            <FlatButton
+              label="Watched"
+              onClick={() => addMovieWatched(movieDetails, userId)}
+            />
           </CardActions>
         </CardText>
       </Card>
@@ -79,4 +89,20 @@ class Movie extends Component {
   }
 }
 
-export default Movie;
+const mapStateToProps = (state) => {
+  return {
+    watchedData: state.watchedData,
+    userId: state.userId,
+    loadingData: state.loadingData
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addMovieWatched(movieObj, uId){
+      dispatch(postToWatched(movieObj, uId))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Movie);

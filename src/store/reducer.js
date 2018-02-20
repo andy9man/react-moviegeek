@@ -11,11 +11,11 @@ import { DATA_STATUS_HANDLER, GET_RANKING, GET_QUEUE, GET_WATCHED, GET_FLASHWATC
 //  };
 
 const initialState = {
-  rankingData: [],
-  queueData: [],
-  watchedData: [],
-  flashWatchData: [],
-  movieData: [],
+  rankingData: [], //Participant rankings
+  queueData: [], //Users movies they want to watch
+  watchedData: [], //Users movies they HAVE watched
+  flashWatchData: [], //Daily bonus movie
+  ourTopMovies: [], //Our top movie choices
   // Expecting this data structure for movieData[]
   // {
   //   Title: "Batman",

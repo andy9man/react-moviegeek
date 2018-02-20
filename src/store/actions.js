@@ -2,8 +2,9 @@ import axios from 'axios';
 import { deconstructRatings } from '../components/helper'
 
 export const API_URL = "";
-// export const MOCKAPI_API_URL = 'http://5a8b1dc33d92490012370bcc.mockapi.io/user/'; //Paul's
-export const MOCKAPI_API_URL = 'http://5a8b034f3d92490012370bb4.mockapi.io/user/'; //Dan's
+//export const MOCKAPI_API_URL = 'http://5a8b1dc33d92490012370bcc.mockapi.io/user/'; //Paul's
+//export const MOCKAPI_API_URL = 'http://5a8b034f3d92490012370bb4.mockapi.io/user/'; //Dan's
+export const MOCKAPI_API_URL = 'http://5a8c94d2d6c8840012dde929.mockapi.io/api/v1/user/';
 export const DATA_STATUS_HANDLER = 'DATA_STATUS_HANDLER';
 export const GET_RANKING = 'GET_RANKING';
 export const GET_QUEUE = 'GET_QUEUE';
@@ -189,13 +190,13 @@ export const postToWatched = (movieObj, user_id) => {
     Ratings: {
       Source: localRating.Source,
       Value: localRating.Value
-    }
+    },
+    imdbID: movieObj.imdbID
   }
 
   return (dispatch, getState) => {
     dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
     console.log('Posting data...')
-
     axios.post(localUrl, localObject)
       .then( response => {
         console.log(response);
@@ -237,7 +238,8 @@ export const postToQueue = (movieObj, user_id) => {
     Ratings: {
       Source: localRating.Source,
       Value: localRating.Value
-    }
+    },
+    imdbID: localRating.imdbID
   }
 
   return (dispatch, getState) => {

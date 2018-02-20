@@ -60,7 +60,7 @@ class Search extends Component{
           :
             searchResults.length > 0 ?
               searchResults.map( (movie, index) => (
-                <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
+                <Movie key={`${movie.imdbID}idx${index}`} movie={movie} expand={false} />
               ))
             :
               <h4><em>No results found for <b>{search}</b></em></h4>
