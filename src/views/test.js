@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { postToWatched, postToQueue } from '../store/actions'
+import { postToWatched, postToQueue, deleteFromWatched, deleteFromQueue } from '../store/actions'
 import { connect } from 'react-redux'
 
 class TestView extends Component{
@@ -48,8 +48,10 @@ class TestView extends Component{
 
     return (
       <div>
-        <button onClick={() => {this.props.dispatchPostToWatched(localWatched, '1')}}>Add to Watched</button>
-        <button onClick={() => {this.props.dispatchPostToQueue(localQueue, '1')}}>Add to Queue</button>
+        <button onClick={() => {this.props.dispatchPostToWatched(localWatched, '3')}}>Add to Watched</button>
+        <button onClick={() => {this.props.dispatchPostToQueue(localQueue, '3')}}>Add to Queue</button>
+        <button onClick={() => {this.props.dispatchDeleteFromWatched('1', '1')}}>Delete from Watched</button>
+        <button onClick={() => {this.props.dispatchDeleteFromQueue('1', '1')}}>Delete from Queue</button>
       </div>
     )
   }
@@ -71,6 +73,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     dispatchPostToQueue(movieObj, user_id){
       dispatch(postToQueue(movieObj, user_id))
+    },
+    dispatchDeleteFromWatched(movie_id, user_id){
+      dispatch(deleteFromWatched(movie_id, user_id))
+    },
+    dispatchDeleteFromQueue(movie_id, user_id){
+      dispatch(deleteFromQueue(movie_id, user_id))
     }
   }
 }

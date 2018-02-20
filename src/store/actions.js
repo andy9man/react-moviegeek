@@ -153,7 +153,7 @@ export const getWatched = (userId) => {
 }
 
 export const postToWatched = (movieObj, user_id) => {
-  let localUrl = MOCKAPI_API_URL + "/1/watched"
+  let localUrl = MOCKAPI_API_URL + user_id + "/watched"
   let localObject = {
     title: movieObj.title,
     year: movieObj.year,
@@ -201,7 +201,7 @@ export const postToWatched = (movieObj, user_id) => {
 }
 
 export const postToQueue = (movieObj, user_id) => {
-  let localUrl = MOCKAPI_API_URL + "/1/queue"
+  let localUrl = MOCKAPI_API_URL + user_id + "/queue"
   let localObject = {
     title: movieObj.title,
     year: movieObj.year,
@@ -242,6 +242,76 @@ export const postToQueue = (movieObj, user_id) => {
           console.log(`General Error: ${error.message}`);
         }
         console.log("Error has occured in saving data...");
+        console.log(error);
+        dispatch( {type: DATA_STATUS_HANDLER, payload: {type: 'loadingError', result: true}} );
+    })
+  }
+}
+
+export const deleteFromWatched = (movie_id, user_id) => {
+  let localUrl = MOCKAPI_API_URL + user_id + "/watched/" + movie_id
+
+  return (dispatch, getState) => {
+    dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
+    console.log('Deleting data...')
+
+    axios.delete(localUrl)
+      .then( (response) => {
+        console.log(response);
+        setTimeout( () => { 
+          // Call getWatched so the watched list is refreshed
+          // dispatch( getWatched() )
+          return true
+        }, 1000);
+      })
+      .catch( error => {
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(`Error Response: ${error.response}`);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(`Error Request: ${error.request}`);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log(`General Error: ${error.message}`);
+        }
+        console.log("Error has occured in deleting data...");
+        console.log(error);
+        dispatch( {type: DATA_STATUS_HANDLER, payload: {type: 'loadingError', result: true}} );
+    })
+  }
+}
+
+export const deleteFromQueue = (movie_id, user_id) => {
+  let localUrl = MOCKAPI_API_URL + user_id + "/queue/" + movie_id
+
+  return (dispatch, getState) => {
+    dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
+    console.log('Deleting data...')
+
+    axios.delete(localUrl)
+      .then( (response) => {
+        console.log(response);
+        setTimeout( () => { 
+          // Call getQueue so the queue list is refreshed
+          // dispatch( getQueue() )
+          return true
+        }, 1000);
+      })
+      .catch( error => {
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(`Error Response: ${error.response}`);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(`Error Request: ${error.request}`);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log(`General Error: ${error.message}`);
+        }
+        console.log("Error has occured in deleting data...");
         console.log(error);
         dispatch( {type: DATA_STATUS_HANDLER, payload: {type: 'loadingError', result: true}} );
     })
