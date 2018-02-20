@@ -56,7 +56,7 @@ export const getTopMovie = () => {
   })
   }
   }
-  
+
 
 export const getRankings = () => {
   let localUrl = MOCKAPI_API_URL + "?sortBy=score&order=desc&page=1&limit=5"
