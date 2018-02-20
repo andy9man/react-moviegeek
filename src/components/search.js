@@ -30,7 +30,7 @@ class Search extends Component {
           value={this.state.search}
           onChange={(e) => this.setState({ search: e.target.value })}
         />
-        <RaisedButton>Search</RaisedButton>
+        <RaisedButton type="submit">Search</RaisedButton>
       </form>
     );
   }
