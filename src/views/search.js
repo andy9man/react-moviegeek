@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { movieSearch } from '../components/helper';
+import Movie from '../components/movie';
 
 class Search extends Component{
   constructor(props) {
@@ -59,7 +60,7 @@ class Search extends Component{
           :
             searchResults.length > 0 ?
               searchResults.map( (movie, index) => (
-                <h4 key={index}>{movie.Title}</h4>
+                <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
               ))
             :
               <h4><em>No results found for <b>{search}</b></em></h4>

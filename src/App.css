@@ -41,6 +41,19 @@ nav img {
   background-color: #B3B3B3
 }
 
+.movieDetails img {
+  height: 50%;
+  text-align: right;
+}
+
+.movieDetails-title {
+  font-weight: 800;
+}
+
+ul {
+  list-style: none;
+}
+
 /* .rankcontainer {
   height: 20vh;
   width: 20vh;

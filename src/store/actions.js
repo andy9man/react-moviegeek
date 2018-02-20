@@ -175,12 +175,6 @@ export const getFlashWatch = () => {
   }
 }
 
-export const deconstructRatings = (ratingObj) => {
-  let deconstructedRating = ratingObj.Ratings.find((rating) => { return (rating.Source === "Rotten Tomatoes") } ) 
-  if(deconstructedRating) return deconstructedRating
-  return {Source: '', Value: ''}
-}
-
 export const postToWatched = (movieObj, user_id) => {
   let localUrl = MOCKAPI_API_URL + user_id + "/watched"
   let localRating = deconstructRatings(movieObj.Ratings)
@@ -204,7 +198,7 @@ export const postToWatched = (movieObj, user_id) => {
     axios.post(localUrl, localObject)
       .then( response => {
         console.log(response);
-        setTimeout( () => { 
+        setTimeout( () => {
           // Call getWatched so the watched list is refreshed
           // dispatch( getWatched() )
           return true
@@ -252,7 +246,7 @@ export const postToQueue = (movieObj, user_id) => {
     axios.post(localUrl, localObject)
       .then( response => {
         console.log(response);
-        setTimeout( () => { 
+        setTimeout( () => {
           // Call getQueue so the queue list is refreshed
           // dispatch( getQueue() )
           return true
@@ -287,7 +281,7 @@ export const deleteFromWatched = (movie_id, user_id) => {
     axios.delete(localUrl)
       .then( (response) => {
         console.log(response);
-        setTimeout( () => { 
+        setTimeout( () => {
           // Call getWatched so the watched list is refreshed
           // dispatch( getWatched() )
           return true
@@ -322,7 +316,7 @@ export const deleteFromQueue = (movie_id, user_id) => {
     axios.delete(localUrl)
       .then( (response) => {
         console.log(response);
-        setTimeout( () => { 
+        setTimeout( () => {
           // Call getQueue so the queue list is refreshed
           // dispatch( getQueue() )
           return true
