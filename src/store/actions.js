@@ -30,7 +30,8 @@ export const getTopMovie = () => {
   return (dispatch, getState, url) => {
     dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true));
     console.log(`Getting Data... ${url}`);
-    axios.get(`http://5a8b07983d92490012370bba.mockapi.io/notes`)
+    //axios.get(`http://5a8b07983d92490012370bba.mockapi.io/notes`)
+    axios.get(`http://5a8b1dc33d92490012370bcc.mockapi.io/top50`)
       .then(({ data }) => {
         //setTimeout( () => { dispatch( {type: LOAD_DATA, payload: products} ) }, 1);
         dispatch({ type: LOAD_TOPMOVIES, payload: data });
