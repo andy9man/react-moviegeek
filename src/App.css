@@ -16,6 +16,15 @@
   margin-bottom: 30px;
 }
 
+.profile-container {
+  width: 90%;
+  overflow: auto;
+  flex-grow: 2;
+  padding: 5px;
+  background: #fff;
+  margin-bottom: 5px;
+}
+
 nav {
   height: 50px;
   width: 100%;

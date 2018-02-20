@@ -62,36 +62,43 @@ class Profile extends Component{
 
     return(
       <div>
-        
+        <div className="profile-container">
           <div>
-            <h2>Geek Score: </h2>
+            <h3>Geek Score: </h3>
           </div>
+        </div>
 
+        <div className="profile-container">
         {this.props.loadingData ?
           <div>
             <CircularProgress size={60} thickness={5} />
           </div>
+          
         :
-          <div>
-            <h2>Movies to Watch</h2>
-            <div className='rankscroll'>
+          
+          <div className="profile-container">
+            <h3>Movies to Watch</h3>
+            <div>
                 {localQueue.map(this.queueMap)}
             </div>
           </div>
         }
+        </div>
 
+        <div className="profile-container">
         {this.props.loadingData ?
-          <div>
-            <CircularProgress size={60} thickness={5} />
-          </div>
-        :
-          <div>
-            <h2>Movies Watched</h2>
-            <div className='rankscroll'>
-                {localWatched.map(this.watchedMap)}
+            <div>
+              <CircularProgress size={60} thickness={5} />
             </div>
-          </div>
+        :
+            <div className="profile-container">
+              <h3>Movies Watched</h3>
+              <div>
+                  {localWatched.map(this.watchedMap)}
+              </div>
+            </div>
         }
+        </div>
       </div>
     )
   }
