@@ -9,6 +9,7 @@ class Search extends Component{
       search: this.props.match.params.search,
       searchResults: [],
       loading: false,
+      error: false,
     }
   }
 
@@ -34,38 +35,41 @@ class Search extends Component{
       const results = movieSearch(newSearch);
       results
         .then( ({data: {Search}}) => {
-          this.setState({searchResults: Search, search: newSearch, loading: false});
+          this.setState({searchResults: Search, search: newSearch, loading: false, error: false});
 
         })
         .catch( error => {
           console.log("Error has occured in loading data...");
           console.log(error);
-          this.setState({loading: false});
+          this.setState({loading: false, error: true});
         })
     }
   }
 
   render(){
-    const {search, searchResults, loading} = this.state;
-    // console.log(`Loading:  ${loading}   \nSearch Term:  ${search}\nSearch Results... `)
-    // console.log(searchResults);
+    const {search, searchResults, loading, error} = this.state;
+    console.log(`Loading:  ${loading}   \nSearch Term:  ${search}\nSearch Results... `)
+    console.log(searchResults);
 
     return(
       <div>
         <h3>Search Results ...  {search}</h3>
-
-        {
-          loading ?
-            <h1>Loading...</h1>
-          :
-            searchResults.length > 0 ?
-              searchResults.map( (movie, index) => (
-                <Movie key={`${movie.imdbID}idx${index}`} movie={movie} expand={false} />
-              ))
+        <div style={ {padding: '0 15px'} }>
+          {
+            loading ?
+              <h1>Loading...</h1>
             :
-              <h4><em>No results found for <b>{search}</b></em></h4>
-        }
-
+              error || (searchResults === undefined) ?
+                <h4><em>No results found for <b>{search}</b></em></h4>
+              :
+                searchResults.length > 0 ?
+                  searchResults.map( (movie, index) => (
+                    <Movie key={`${movie.imdbID}idx${index}`} movie={movie} expand={true} />
+                  ))
+                :
+                  <h4><em>No results found for <b>{search}</b></em></h4>
+          }
+        </div>
       </div>
     );
   }

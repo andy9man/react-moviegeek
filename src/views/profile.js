@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getQueue } from '../store/actions';
 import { getWatched } from '../store/actions';
+import Movie from '../components/movie';
 import { connect } from 'react-redux';
 import CircularProgress from 'material-ui/CircularProgress';
 import {
@@ -17,39 +18,39 @@ class Profile extends Component{
     this.props.dispatchGetWatched(this.props.userId)
   }
 
-  queueMap(queueObject, idx) {
-    console.log(queueObject)
+  // queueMap(queueObject, idx) {
+  //   console.log(queueObject)
 
-    return (
-      <div key={idx}>
-        <Card>
-          <CardHeader
-            title={queueObject.name}
-          />
-          <CardText>
-            {queueObject.name}
-          </CardText>
-        </Card>
-      </div>
-    )
-  }
+  //   return (
+  //     <div key={idx}>
+  //       <Card>
+  //         <CardHeader
+  //           title={queueObject.name}
+  //         />
+  //         <CardText>
+  //           {queueObject.name}
+  //         </CardText>
+  //       </Card>
+  //     </div>
+  //   )
+  // }
 
-  watchedMap(mapObject, idx) {
-    console.log(mapObject)
+  // watchedMap(mapObject, idx) {
+  //   console.log(mapObject)
 
-    return (
-      <div key={idx}>
-        <Card>
-          <CardHeader
-            title={mapObject.name}
-          />
-          <CardText>
-            {mapObject.name}
-          </CardText>
-        </Card>
-      </div>
-    )
-  }
+  //   return (
+  //     <div key={idx}>
+  //       <Card>
+  //         <CardHeader
+  //           title={mapObject.name}
+  //         />
+  //         <CardText>
+  //           {mapObject.name}
+  //         </CardText>
+  //       </Card>
+  //     </div>
+  //   )
+  // }
 
   render(){
     console.log("value of user id")
@@ -79,7 +80,10 @@ class Profile extends Component{
           <div className="profile-container">
             <h3>Movies to Watch</h3>
             <div>
-                {localQueue.map(this.queueMap)}
+                
+                {localQueue.map( (movie, index) => (
+                <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
+              ))}
             </div>
           </div>
         }
@@ -94,7 +98,10 @@ class Profile extends Component{
             <div className="profile-container">
               <h3>Movies Watched</h3>
               <div>
-                  {localWatched.map(this.watchedMap)}
+                  {/* {localWatched.map(this.watchedMap)} */}
+                  {localWatched.map( (movie, index) => (
+                <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
+              ))}
               </div>
             </div>
         }
