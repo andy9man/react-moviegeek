@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
-import { getData } from '../store/actions'
-import { connect } from 'react-redux'
+import { movieSearch } from '../components/helper';
 
 class Search extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: this.props.match.params.search,
+      searchResults: [],
+    }
+  }
+
+  componentDidMount() {
+    const results = movieSearch(this.state.search);
+    results
+      .then( ({data}) => {
+        console.log(data);
+      })
+      .catch( error => {
+        console.log("Error has occured in loading data...");
+        console.log(error);
+      })
+
+  }
+
   render(){
     return(
-      <div>View</div>
+      <h1>Search Results</h1>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log('mapping state to props - Search')
-  return {
-    viewData: state.viewData,
-    loadingData: state.loadingData
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatchGetData(data){
-      dispatch(getData(data))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default Search;
