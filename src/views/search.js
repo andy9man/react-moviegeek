@@ -47,8 +47,8 @@ class Search extends Component{
 
   render(){
     const {search, searchResults, loading} = this.state;
-    console.log(`Loading:  ${loading}   \nSearch Term:  ${search}\nSearch Results... `)
-    console.log(searchResults);
+    // console.log(`Loading:  ${loading}   \nSearch Term:  ${search}\nSearch Results... `)
+    // console.log(searchResults);
 
     return(
       <div>
