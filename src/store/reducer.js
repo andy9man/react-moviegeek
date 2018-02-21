@@ -14,7 +14,7 @@ const initialState = {
   rankingData: [], //Participant rankings
   queueData: [], //Users movies they want to watch
   watchedData: [], //Users movies they HAVE watched
-  flashWatchData: [], //Daily bonus movie
+  flashWatchData: undefined, //Daily bonus movie
   ourTopMovies: [], //Our top movie choices
   // Expecting this data structure for movieData[]
   // {
