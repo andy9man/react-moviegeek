@@ -17,12 +17,13 @@
 }
 
 .profile-container {
-  width: 90%;
+  width: 100%;
   overflow: auto;
   flex-grow: 2;
   padding: 5px;
   background: #fff;
   margin-bottom: 5px;
+  overflow-x: hidden;
 }
 
 nav {

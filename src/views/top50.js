@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {getTopMovie} from '../store/actions';
 import { sortArray } from '../components/helper';
-import {Card, CardActions, CardHeader, CardText,CardMedia} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
 import Movie from '../components/movie'
 
 
@@ -37,7 +35,7 @@ localMovie.map(
 //   <CardMedia>
 //       <img src={movie.img} alt="" />
 //     </CardMedia>
-// <CardText expandable={true}> 
+// <CardText expandable={true}>
 // {movie.Description}
 // </CardText>
 // <CardActions>

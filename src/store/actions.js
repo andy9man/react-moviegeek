@@ -30,7 +30,6 @@ export const getTopMovie = () => {
     console.log(`Getting Top Movie Data... ${url}TopMovies`);
     axios.get(`${url}TopMovies`)
       .then(({ data }) => {
-        //setTimeout( () => { dispatch( {type: LOAD_DATA, payload: products} ) }, 1);
         dispatch({ type: LOAD_TOPMOVIES, payload: data });
       })
       .catch(error => {
@@ -66,7 +65,7 @@ export const getRankings = () => {
 
     axios.get(localUrl)
       .then(({ data: rankings }) => {
-        setTimeout(() => { dispatch({ type: GET_RANKING, payload: rankings }) }, 1000);
+        dispatch({ type: GET_RANKING, payload: rankings });
       })
       .catch(error => {
         if (error.response) {
@@ -124,7 +123,7 @@ export const getWatched = (userId) => {
       .then(({ data: watched }) => {
         console.log("value of retrieve in getWatched")
         console.log(watched)
-        setTimeout(() => { dispatch({ type: GET_WATCHED, payload: watched }) }, 1000);
+        dispatch({ type: GET_WATCHED, payload: watched });
       })
       .catch(error => {
         if (error.response) {
@@ -148,11 +147,9 @@ export const getFlashWatch = () => {
 
     axios.get(`${url}TopMovies`)
       .then(({ data }) => {
-        console.log("value of date in getFlashWatch")
-        console.log(data)
-        let select = Math.floor(Math.random() * data.length)
-        let flashwatch = data[select]
-        setTimeout(() => { dispatch({ type: GET_FLASHWATCH, payload: flashwatch }) }, 1000);
+        const select = Math.floor(Math.random() * data.length)
+        const flashwatch = data[select]
+        dispatch({ type: GET_FLASHWATCH, payload: flashwatch });
       })
       .catch(error => {
         if (error.response) {
@@ -190,12 +187,7 @@ export const postToWatched = (movieObj, user_id) => {
     console.log(`Posting postToWatched data...${localUrl}`)
     axios.post(localUrl, localObject)
       .then( response => {
-        console.log(response);
-        setTimeout( () => {
-          // Call getWatched so the watched list is refreshed
-          // dispatch( getWatched() )
-          return true
-        }, 1000);
+        dispatch( getWatched(user_id) );
       })
       .catch( error => {
         if (error.response) {
@@ -232,18 +224,14 @@ export const postToQueue = (movieObj, user_id) => {
         Source: localRating.Source,
         Value: localRating.Value
       },
-      imdbID: localRating.imdbID
+      imdbID: movieObj.imdbID
     }
     console.log(`Posting postToQueue data...${localUrl}`);
 
     axios.post(localUrl, localObject)
       .then( response => {
         console.log(response);
-        setTimeout( () => {
-          // Call getQueue so the queue list is refreshed
-          // dispatch( getQueue() )
-          return true
-        }, 1000);
+        dispatch( getQueue(user_id) );
       })
       .catch( error => {
         if (error.response) {
@@ -273,11 +261,7 @@ export const deleteFromWatched = (movie_id, user_id) => {
     axios.delete(localUrl)
       .then( (response) => {
         console.log(response);
-        setTimeout( () => {
-          // Call getWatched so the watched list is refreshed
-          // dispatch( getWatched() )
-          return true
-        }, 1000);
+        dispatch( getWatched( user_id ) );
       })
       .catch( error => {
         if (error.response) {
@@ -307,11 +291,7 @@ export const deleteFromQueue = (movie_id, user_id) => {
     axios.delete(localUrl)
       .then( (response) => {
         console.log(response);
-        setTimeout( () => {
-          // Call getQueue so the queue list is refreshed
-          // dispatch( getQueue() )
-          return true
-        }, 1000);
+        dispatch( getQueue(user_id) );
       })
       .catch( error => {
         if (error.response) {

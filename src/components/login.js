@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import { LOAD_USER, MOCKAPI_API_URL } from '../store/actions';
+import { LOAD_USER } from '../store/actions';
 import { getUsers } from './helper';
 
 class Login extends Component {

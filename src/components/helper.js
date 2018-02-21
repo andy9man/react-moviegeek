@@ -21,12 +21,17 @@ export const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-export const deconstructRatings = (ratingObj) => {
+export const deconstructRatings = ratingObj => {
   if( ratingObj ) {
-    let deconstructedRating = ratingObj.find((rating) => { return (rating.Source === "Rotten Tomatoes") } )
-    if(deconstructedRating) return deconstructedRating
+    const deconstructedRating = ratingObj.find(rating => rating.Source === "Rotten Tomatoes");
+    if( deconstructedRating ) { return deconstructedRating; }
   }
   return {Source: '', Value: ''}
+}
+
+export const findMovie = (movieArray, movieName, imdbID = "") => {
+  const checkForMovie = movieArray.find( movie => (movie.Title.toLowerCase().trim() === movieName.toLowerCase().trim() || movie.imdbID === imdbID) );
+  return checkForMovie ? {found: true, id: checkForMovie.movieId} : {found: false};
 }
 
 export const movieSearch = (movie, page=1) => axios.get(`${movieApi}&s=${movie}&page=${page}`);
