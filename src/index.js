@@ -8,7 +8,7 @@ import store from './store';
 import App from './App';
 import './index.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import movieGeekTheme from './components/theme';
+import {movieGeekTheme} from './components/theme';
 
 
 const Root = () => {
