@@ -41,8 +41,9 @@ class Movie extends Component {
   render() {
     const { Title, Year, Poster} = this.props.movie;
     const { loading, movieDetails } = this.state;
-    const { addMovieWatched, addMovieQueue, userId } = this.props;
+    const { addMovieWatched, addMovieQueue, user } = this.props;
     const expand = this.props.expand === undefined ? true : !this.props.expand;
+    const userId = user === undefined ? undefined : user.id;
 
     return (
       <Card style={ {marginBottom: 15} }>
@@ -62,14 +63,14 @@ class Movie extends Component {
             </div>
             :
               movieDetails ?
-                // <div style={ {display: 'flex', flexDirection: 'row', width: '100%'} } className="movieDetails">
+
                 <div className="movieDetails">
                   <div style={{float: 'left', minWidth: 300, width: '50vw'}}>
-                    <p><h3 className="movieDetails-title">Rated:</h3> <span style={{display: 'inline-block'}}>{movieDetails.Rated}</span></p>
-                    <p><h3 className="movieDetails-title">Runtime:</h3>  {movieDetails.Runtime}</p>
-                    <p><h3 className="movieDetails-title">Rotten Tomatoes Score:</h3>  {deconstructRatings(movieDetails.Ratings).Value}</p>
-                    <p><h3 className="movieDetails-title">IMDb ID:</h3>  {movieDetails.imdbID}</p>
-                    <p><h3 className="movieDetails-title">Plot:</h3></p>
+                    <h3 className="movieDetails-title">Rated:</h3> <span>{movieDetails.Rated}</span><br />
+                    <h3 className="movieDetails-title">Runtime:</h3>  <span>{movieDetails.Runtime}</span><br />
+                    <h3 className="movieDetails-title">Rotten Tomatoes Score:</h3>  <span>{deconstructRatings(movieDetails.Ratings).Value}</span><br />
+                    <h3 className="movieDetails-title">IMDb ID:</h3>  <span>{movieDetails.imdbID}</span><br />
+                    <h3 className="movieDetails-title">Plot:</h3>
                     <p style={ {lineHeight: 1.6, marginLeft: 30} }>{movieDetails.Plot}</p>
                   </div>
                   <div style={ {textAlign: 'center', float: 'left', width: '30vw'} }>
@@ -80,7 +81,7 @@ class Movie extends Component {
                 <h3 style={ {color: 'red'} }><em>There was an issue getting additional movie details</em></h3>
           }
 
-          <CardActions>
+          <CardActions style={ {visibility: userId === undefined ? 'hidden' : 'visible'} }>
             <FlatButton
               label="add to queue"
               onClick={() => addMovieQueue(movieDetails, userId)}
@@ -107,7 +108,7 @@ class Movie extends Component {
 const mapStateToProps = (state) => {
   return {
     watchedData: state.watchedData,
-    userId: state.userId,
+    user: state.user,
     loadingData: state.loadingData
   }
 }

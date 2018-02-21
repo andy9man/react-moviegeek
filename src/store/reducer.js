@@ -1,5 +1,5 @@
 //import { SOME_ACTION } from './actions'
-import { DATA_STATUS_HANDLER, GET_RANKING, GET_QUEUE, GET_WATCHED, GET_FLASHWATCH, LOAD_TOPMOVIES } from './actions'
+import { DATA_STATUS_HANDLER, GET_RANKING, GET_QUEUE, GET_WATCHED, GET_FLASHWATCH, LOAD_TOPMOVIES, LOAD_USER } from './actions'
 
 
 
@@ -28,8 +28,16 @@ const initialState = {
   // }
 
   loadingData: false,
-  userId: 1
-
+  userId: 1,
+  //user: undefined
+  user: {
+    id: "1",
+    createdAt: 1519176968,
+    name: "Team Reaction",
+    avatar: "https://cdn.pixabay.com/photo/2012/04/15/19/20/nucleus-35000_960_720.png",
+    username: "reaction",
+    password: "reaction"
+  }
 }
 
 
@@ -72,12 +80,14 @@ export const reducer = (state = initialState, action) => {
         [action.payload.type]: action.payload.result,
         displayAlert: action.payload.result
       }
+    //********* LOAD_TOPMOVIES *********
     case LOAD_TOPMOVIES:
       return { ...state, movies: action.payload, loadingData: false, moviesLoadSuccess: true };
+    //********* LOAD_USER *********
+    case LOAD_USER:
+      return { ...state, user: action.payload };
+    //********* DEFAULT *********
     default:
       return state;
   }
-
-
-
 }

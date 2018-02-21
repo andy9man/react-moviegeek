@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link, Route} from 'react-router-dom';
 import axios from 'axios';
+import {MOCKAPI_API_URL} from '../store/actions';
 
 const movieApi = "http://www.omdbapi.com/?apikey=b99d98de&type=movie";
 
@@ -30,3 +31,4 @@ export const deconstructRatings = (ratingObj) => {
 
 export const movieSearch = (movie, page=1) => axios.get(`${movieApi}&s=${movie}&page=${page}`);
 export const movieFetchImdbId = id => axios.get(`${movieApi}&i=${id}`);
+export const getUsers = () => axios.get(`${MOCKAPI_API_URL}/user`);

@@ -1,17 +1,14 @@
 import axios from 'axios';
 import { deconstructRatings } from '../components/helper'
 
-export const API_URL = "";
-//export const MOCKAPI_API_URL = 'http://5a8b1dc33d92490012370bcc.mockapi.io/user/'; //Paul's
-//export const MOCKAPI_API_URL = 'http://5a8b034f3d92490012370bb4.mockapi.io/user/'; //Dan's
-export const MOCKAPI_API_URL = 'http://5a8c94d2d6c8840012dde929.mockapi.io/api/v1/user/';
+export const MOCKAPI_API_URL = 'http://5a8c94d2d6c8840012dde929.mockapi.io/api/v1/';
 export const DATA_STATUS_HANDLER = 'DATA_STATUS_HANDLER';
 export const GET_RANKING = 'GET_RANKING';
 export const GET_QUEUE = 'GET_QUEUE';
 export const GET_WATCHED = 'GET_WATCHED';
 export const GET_FLASHWATCH = 'GET_FLASHWATCH';
-
-export const LOAD_TOPMOVIES = 'LOAD_TOPMOVIES'
+export const LOAD_TOPMOVIES = 'LOAD_TOPMOVIES';
+export const LOAD_USER = 'LOAD_USER';
 
 
 export const postFavorite = () => {
@@ -30,9 +27,8 @@ export const dataResultHandler = (actionType, stateObjectType, stateObjectResult
 export const getTopMovie = () => {
   return (dispatch, getState, url) => {
     dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true));
-    console.log(`Getting Data... ${url}`);
-    //axios.get(`http://5a8b07983d92490012370bba.mockapi.io/notes`)
-    axios.get(`http://5a8c94d2d6c8840012dde929.mockapi.io/api/v1/TopMovies`)
+    console.log(`Getting Top Movie Data... ${url}TopMovies`);
+    axios.get(`${url}TopMovies`)
       .then(({ data }) => {
         //setTimeout( () => { dispatch( {type: LOAD_DATA, payload: products} ) }, 1);
         dispatch({ type: LOAD_TOPMOVIES, payload: data });
@@ -63,11 +59,10 @@ export const getTopMovie = () => {
 
 
 export const getRankings = () => {
-  let localUrl = MOCKAPI_API_URL + "?sortBy=score&order=desc&page=1&limit=5"
-
-  return (dispatch, getState) => {
+  return (dispatch, getState, url) => {
     dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true));
-    console.log(`Getting data... ${localUrl}`);
+    const localUrl = `${url}user?sortBy=score&order=desc&page=1&limit=5`;
+    console.log(`Getting getRankings Data... ${localUrl}`);
 
     axios.get(localUrl)
       .then(({ data: rankings }) => {
@@ -93,11 +88,10 @@ export const getRankings = () => {
 }
 
 export const getQueue = (userId) => {
-  let localUrl = MOCKAPI_API_URL + userId + "/queue"
-
-  return (dispatch, getState) => {
+  return (dispatch, getState, url) => {
     dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true));
-    console.log(`Getting data... ${localUrl}`);
+    const localUrl = `${url}user/${userId}/queue`;
+    console.log(`Getting getState Data... ${localUrl}`);
 
     axios.get(localUrl)
       .then(({ data: queue }) => {
@@ -121,11 +115,10 @@ export const getQueue = (userId) => {
 }
 
 export const getWatched = (userId) => {
-  let localUrl = MOCKAPI_API_URL + userId + "/watched"
-
-  return (dispatch, getState) => {
+  return (dispatch, getState, url) => {
     dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true));
-    console.log(`Getting data... ${localUrl}`);
+    const localUrl = `${url}user/${userId}/watched`;
+    console.log(`Getting getWatched Data... ${localUrl}`);
 
     axios.get(localUrl)
       .then(({ data: watched }) => {
@@ -149,13 +142,11 @@ export const getWatched = (userId) => {
 }
 
 export const getFlashWatch = () => {
-  let localUrl = "http://5a8b1dc33d92490012370bcc.mockapi.io/top50"
-
-  return (dispatch, getState) => {
+  return (dispatch, getState, url) => {
     dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true));
-    console.log(`Getting data... ${localUrl}`);
+    console.log(`Getting getFlashWatch data... ${url}TopMovies`);
 
-    axios.get(localUrl)
+    axios.get(`${url}TopMovies`)
       .then(({ data }) => {
         console.log("value of date in getFlashWatch")
         console.log(data)
@@ -179,25 +170,24 @@ export const getFlashWatch = () => {
 }
 
 export const postToWatched = (movieObj, user_id) => {
-  let localUrl = MOCKAPI_API_URL + user_id + "/watched"
-  let localRating = deconstructRatings(movieObj.Ratings)
-  let localObject = {
-    Title: movieObj.Title,
-    Year: movieObj.Year,
-    Rated: movieObj.Rated,
-    Runtime: movieObj.Runtime,
-    Plot: movieObj.Plot,
-    Poster: movieObj.Poster,
-    Ratings: {
-      Source: localRating.Source,
-      Value: localRating.Value
-    },
-    imdbID: movieObj.imdbID
-  }
-
-  return (dispatch, getState) => {
+  return (dispatch, getState, url) => {
     dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
-    console.log('Posting data...')
+    const localUrl = `${url}user/${user_id}/watched`;
+    const localRating = deconstructRatings(movieObj.Ratings)
+    const localObject = {
+      Title: movieObj.Title,
+      Year: movieObj.Year,
+      Rated: movieObj.Rated,
+      Runtime: movieObj.Runtime,
+      Plot: movieObj.Plot,
+      Poster: movieObj.Poster,
+      Ratings: {
+        Source: localRating.Source,
+        Value: localRating.Value
+      },
+      imdbID: movieObj.imdbID
+    }
+    console.log(`Posting postToWatched data...${localUrl}`)
     axios.post(localUrl, localObject)
       .then( response => {
         console.log(response);
@@ -227,25 +217,24 @@ export const postToWatched = (movieObj, user_id) => {
 }
 
 export const postToQueue = (movieObj, user_id) => {
-  let localUrl = MOCKAPI_API_URL + user_id + "/queue"
-  let localRating = deconstructRatings(movieObj.Ratings)
-  let localObject = {
-    Title: movieObj.Title,
-    Year: movieObj.Year,
-    Rated: movieObj.Rated,
-    Runtime: movieObj.Runtime,
-    Plot: movieObj.Plot,
-    Poster: movieObj.Poster,
-    Ratings: {
-      Source: localRating.Source,
-      Value: localRating.Value
-    },
-    imdbID: localRating.imdbID
-  }
-
-  return (dispatch, getState) => {
+  return (dispatch, getState, url) => {
     dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
-    console.log('Posting data...')
+    const localUrl = `${url}user/${user_id}/queue`;
+    const localRating = deconstructRatings(movieObj.Ratings)
+    const localObject = {
+      Title: movieObj.Title,
+      Year: movieObj.Year,
+      Rated: movieObj.Rated,
+      Runtime: movieObj.Runtime,
+      Plot: movieObj.Plot,
+      Poster: movieObj.Poster,
+      Ratings: {
+        Source: localRating.Source,
+        Value: localRating.Value
+      },
+      imdbID: localRating.imdbID
+    }
+    console.log(`Posting postToQueue data...${localUrl}`);
 
     axios.post(localUrl, localObject)
       .then( response => {
@@ -276,11 +265,10 @@ export const postToQueue = (movieObj, user_id) => {
 }
 
 export const deleteFromWatched = (movie_id, user_id) => {
-  let localUrl = MOCKAPI_API_URL + user_id + "/watched/" + movie_id
-
-  return (dispatch, getState) => {
+  return (dispatch, getState, url) => {
     dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
-    console.log('Deleting data...')
+    const localUrl = `${url}user/${user_id}/watched/${movie_id}`;
+    console.log(`Deleting deleteFromWatched data...${localUrl}`)
 
     axios.delete(localUrl)
       .then( (response) => {
@@ -311,11 +299,10 @@ export const deleteFromWatched = (movie_id, user_id) => {
 }
 
 export const deleteFromQueue = (movie_id, user_id) => {
-  let localUrl = MOCKAPI_API_URL + user_id + "/queue/" + movie_id
-
-  return (dispatch, getState) => {
+  return (dispatch, getState, url) => {
     dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
-    console.log('Deleting data...')
+    const localUrl = `${url}user/${user_id}/queue/${movie_id}`;
+    console.log('Deleting deleteFromQueue data...')
 
     axios.delete(localUrl)
       .then( (response) => {
