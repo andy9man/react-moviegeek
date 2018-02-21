@@ -14,7 +14,7 @@ import Profile from './views/profile';
 import Search from './views/search';
 
 import MovieGeekNav from './components/nav';
-import background from './assets/movieBackground-1.png';
+import background from './assets/movieBackground-overlay-dark-1.jpg';
 import Top50 from './views/top50';
 import FlashWatch from './views/flashwatch';
 import TestView from './views/test'
