@@ -50,40 +50,40 @@ class Login extends Component {
       <div
         style={ {
           backgroundColor: '#263238',
-          padding: 10,
+          margin: 5,
+          padding: 5,
           width: 195,
           overflow: 'hidden',
           visibility: this.props.user === undefined ? 'visible' : 'hidden',
         }}
       >
-      <form
-        onSubmit={ (e) => {
+      <form onSubmit={ (e) => {
           e.preventDefault();
           this.validateLogin();
         }}
       >
         <TextField
-          style={ {width: 185} }
+          style={ {width: 190} }
           hintText="Username"
           name="username"
           type="text"
           required={true}
           value={username}
           onChange={this.handleInput}
+          tabIndex={-1}
         /><br/>
         <TextField
-          style={ {width: 185} }
+          style={ {width: 190} }
           hintText="Password"
           name="password"
           type="password"
           required={true}
           value={password}
           onChange={this.handleInput}
+          tabIndex={-1}
         /><br/>
         <span className="error">{error}</span>
-        <RaisedButton
-          style={ {width: 195} }
-          type="submit">Login</RaisedButton>
+        <RaisedButton type="submit">Login</RaisedButton>
       </form>
       </div>
     );

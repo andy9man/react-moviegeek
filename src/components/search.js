@@ -15,6 +15,7 @@ class Search extends Component {
 
     return (
       <form
+        id="movieGeekSearch"
         onSubmit={ (e) => {
           e.preventDefault();
 
