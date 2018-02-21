@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { movieSearch } from '../components/helper';
 import Movie from '../components/movie';
+import { Loader } from '../components/theme';
 
 class Search extends Component{
   constructor(props) {
@@ -57,7 +58,7 @@ class Search extends Component{
         <div style={ {padding: '0 15px'} }>
           {
             loading ?
-              <h1>Loading...</h1>
+              <Loader />
             :
               error || (searchResults === undefined) ?
                 <h4><em>No results found for <b>{search}</b></em></h4>

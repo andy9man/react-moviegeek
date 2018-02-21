@@ -14,10 +14,7 @@
   flex-grow: 2;
   padding: 15px;
   margin-bottom: 30px;
-}
-
-.bg-white {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .profile-container {

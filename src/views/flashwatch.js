@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import CircularProgress from 'material-ui/CircularProgress';
+import { Loader } from '../components/theme';
 import {
   Card,
   CardHeader,
@@ -14,13 +14,13 @@ class FlashWatch extends Component{
 
     this.state = {
       flashWatchData: this.props.flashWatchData,
-    
+
     }
   }
 
-  
-  
-  
+
+
+
   render(){
     let localFlashWatch = []
     if(this.props.flashWatchData) localFlashWatch = this.props.flashWatchData
@@ -49,13 +49,5 @@ const mapStateToProps = (state) => {
     flashWatchData: state.flashWatchData,
   }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     dispatchGetFlashWatch(data){
-//       dispatch(getFlashWatch(data))
-//     }
-//   }
-// }
 
 export default connect(mapStateToProps)(FlashWatch)

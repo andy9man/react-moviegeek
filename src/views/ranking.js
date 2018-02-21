@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getRankings } from '../store/actions'
 import { connect } from 'react-redux'
-import CircularProgress from 'material-ui/CircularProgress';
+import { Loader } from '../components/theme';
 import {
   Card,
   CardHeader,
@@ -42,7 +42,7 @@ class RankingsView extends Component{
         <h3 className='rankingtxt'>Rankings - Top: 5</h3>
         {this.props.loadingData ?
           <div>
-            <CircularProgress size={60} thickness={5} />
+            <Loader />
           </div>
         :
           // Map an object - use helper function to return what to render

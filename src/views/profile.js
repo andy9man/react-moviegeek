@@ -3,7 +3,7 @@ import { getQueue } from '../store/actions';
 import { getWatched } from '../store/actions';
 import Movie from '../components/movie';
 import { connect } from 'react-redux';
-import CircularProgress from 'material-ui/CircularProgress';
+import { Loader } from '../components/theme';
 
 class Profile extends Component{
 
@@ -32,7 +32,7 @@ class Profile extends Component{
         <div className="profile-container">
         {this.props.loadingData ?
           <div>
-            <CircularProgress size={60} thickness={5} />
+            <Loader />
           </div>
 
         :
@@ -52,7 +52,7 @@ class Profile extends Component{
         <div className="profile-container">
         {this.props.loadingData ?
             <div>
-              <CircularProgress size={60} thickness={5} />
+              <Loader />
             </div>
         :
             <div className="profile-container">

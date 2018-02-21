@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import CircularProgress from 'material-ui/CircularProgress';
+import { Loader } from './theme';
 import FlatButton from 'material-ui/FlatButton';
 import ListAdded from 'material-ui/svg-icons/av/playlist-add-check';
 import ListAdd from 'material-ui/svg-icons/av/playlist-add';
@@ -73,7 +73,7 @@ class Movie extends Component {
           {
             loading ?
             <div>
-              <CircularProgress size={60} thickness={5} />
+              <Loader />
             </div>
             :
               error ?
