@@ -28,7 +28,7 @@ class FlashWatch extends Component{
           // Map an object - use helper function to return what to render
           <div>
             <h4>Movie of the day</h4>
-            <Movie movie={this.props.flashWatchData} /> 
+            <Movie movie={this.props.flashWatchData} expand='true'/> 
           </div>
         }
       </div>
