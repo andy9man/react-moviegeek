@@ -51,8 +51,6 @@ class Login extends Component {
     this.loadUsers();
   }
 
-
-login =()=>
   render() {
     const {username, password, error} = this.state;
     return (
