@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Loader } from '../components/theme';
 import Movie from '../components/movie';
 import { getFlashWatch } from '../store/actions';
+import { withRouter } from "react-router-dom";
 
 class FlashWatch extends Component{
   
@@ -12,20 +13,22 @@ class FlashWatch extends Component{
   }
 
   render(){
+    console.log('value of this.props.flashWatchData')
     console.log(this.props.flashWatchData)
+    console.log('value of this.props.loadingData')
+    console.log(this.props.loadingData)
 
     return (
       <div>
-        {this.props.loadingData ?
+        {this.props.loadingData || this.props.flashWatchData === undefined ?
           <div>
             <Loader />
           </div>
           :
           // Map an object - use helper function to return what to render
           <div>
-            {
-                this.props.flashWatchData && <Movie movie={this.props.flashWatchData} expand={true} />
-            }
+            <h4>Movie of the day</h4>
+            <Movie movie={this.props.flashWatchData} /> 
           </div>
         }
       </div>
@@ -48,4 +51,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FlashWatch)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FlashWatch))

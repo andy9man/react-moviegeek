@@ -145,13 +145,15 @@ export const getFlashWatch = () => {
   return (dispatch, getState, url) => {
     dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true));
     console.log(`Getting getFlashWatch data... ${url}TopMovies`);
-    axios.get(`${url}TopMovies`)
+    axios.get(`${url}FlashMovie`)
     .then(({ data }) => {
-            axios.get(`${MOVIE_API}&i=${data.imdbID}`)
+      console.log('value of data in actions')
+      console.log(data)
+            axios.get(`${MOVIE_API}&i=${data[0].imdbID}`)
               .then(({ data }) => {
-                const select = Math.floor(Math.random() * data.length)
-                const flashwatch = data[select]
-                dispatch({ type: GET_FLASHWATCH, payload: flashwatch });
+                console.log('this is the value of data from imdb call')
+                console.log(data)
+                dispatch({ type: GET_FLASHWATCH, payload: data });
               })
               .catch(error => {
                 if (error.response) {
