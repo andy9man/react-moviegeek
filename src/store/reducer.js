@@ -29,7 +29,7 @@ const initialState = {
 
   loadingData: false,
   userId: 1,
-  //user: undefined
+  // user: undefined
   user: {
     id: "1",
     createdAt: 1519176968,
