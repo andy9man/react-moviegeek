@@ -34,7 +34,7 @@ const initialState = {
     id: "1",
     createdAt: 1519176968,
     name: "Team Reaction",
-    avatar: "https://cdn.pixabay.com/photo/2012/04/15/19/20/nucleus-35000_960_720.png",
+    avatar: "https://raw.githubusercontent.com/rexxars/react-hexagon/HEAD/logo/react-hexagon.png",
     username: "reaction",
     password: "reaction"
   }

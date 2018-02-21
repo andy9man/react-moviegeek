@@ -39,7 +39,7 @@ class Profile extends Component{
 
           <div className="profile-container">
             <h3>Movies to Watch</h3>
-            <div>
+            <div style={ {padding: '0 15px'} }>
 
                 {localQueue.map( (movie, index) => (
                 <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
@@ -57,7 +57,7 @@ class Profile extends Component{
         :
             <div className="profile-container">
               <h3>Movies Watched</h3>
-              <div>
+              <div style={ {padding: '0 15px'} }>
                   {/* {localWatched.map(this.watchedMap)} */}
                   {localWatched.map( (movie, index) => (
                 <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
