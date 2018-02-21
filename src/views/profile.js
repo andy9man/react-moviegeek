@@ -8,13 +8,13 @@ import CircularProgress from 'material-ui/CircularProgress';
 class Profile extends Component{
 
   componentDidMount(){
-    this.props.dispatchGetQueue(this.props.userId)
-    this.props.dispatchGetWatched(this.props.userId)
+    this.props.dispatchGetQueue(this.props.user.id)
+    this.props.dispatchGetWatched(this.props.user.id)
   }
 
   render(){
     console.log("value of user id")
-    console.log(this.props.userId)
+    console.log(this.props.user.id)
 
     let localQueue = []
     if(this.props.queueData) localQueue = this.props.queueData
@@ -74,7 +74,7 @@ class Profile extends Component{
 const mapStateToProps = (state) => {
   console.log('mapping state to props - Profile')
   return {
-    userId: state.userId,
+    user: state.user,
     queueData: state.queueData,
     watchedData: state.watchedData,
     loadingData: state.loadingData,
