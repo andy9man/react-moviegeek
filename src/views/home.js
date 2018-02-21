@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import icon from '../assets/clapper-icon.png';
 
 class Home extends Component {
   constructor(props) {
@@ -11,8 +12,19 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        Home
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          height: '100%',
+          width: '100%',
+          padding: 25,
+          top: -10,
+        }}
+      >
+        <h1 style={{color: '#263238', display: 'block'}}>Welcome to Movie Geek!</h1>
       </div>
     );
   }

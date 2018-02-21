@@ -9,11 +9,15 @@
 
 .content-container {
   width: 90%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   flex-grow: 2;
   padding: 15px;
-  background: #fff;
   margin-bottom: 30px;
+}
+
+.bg-white {
+  background: #fff;
 }
 
 .profile-container {
