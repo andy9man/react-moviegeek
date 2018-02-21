@@ -16,7 +16,7 @@ class Top50 extends Component {
         console.log(localMovie)
         return (
             <div>
-                <h1>Movie Geek Top Movies</h1>
+                <h3>Movie Geek Top Movies</h3>
                 <div>
                     {
                         localMovie.map( (movie, index) => (
