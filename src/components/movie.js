@@ -66,7 +66,7 @@ class Movie extends Component {
           avatar={Poster.includes("http") ? Poster : noImage}
           subtitle={Year}
           actAsExpander={true}
-          showExpandableButton={true}
+          showExpandableButton={expand}
         />
         <CardText expandable={expand}>
 

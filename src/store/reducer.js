@@ -29,15 +29,16 @@ const initialState = {
 
   loadingData: false,
   userId: 1,
-  //user: undefined
-  user: {
-    id: "1",
-    createdAt: 1519176968,
-    name: "Team Reaction",
-    avatar: "https://raw.githubusercontent.com/rexxars/react-hexagon/HEAD/logo/react-hexagon.png",
-    username: "reaction",
-    password: "reaction"
-  }
+  user: undefined
+  // user: {
+  //   id: "1",
+  //   createdAt: 1519176968,
+  //   name: "Team Reaction",
+  //   avatar: "https://raw.githubusercontent.com/rexxars/react-hexagon/HEAD/logo/react-hexagon.png",
+  //   username: "reaction",
+  //   password: "reaction",
+  //   score: 22
+  // }
 }
 
 
