@@ -7,7 +7,7 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
-import { getFlashWatch } from './store/actions';
+import { getFlashWatch, getTopMovie } from './store/actions';
 import Home from './views/home';
 import Rankings from './views/ranking';
 import Profile from './views/profile';
@@ -23,6 +23,7 @@ class App extends Component {
 
   componentDidMount(){
     this.props.dispatchGetFlashWatch()
+    this.props.dispatchGetTopMovies();
   }
 
   render() {
@@ -60,8 +61,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchGetFlashWatch(data){
-      dispatch(getFlashWatch(data))
+    dispatchGetFlashWatch(){
+      dispatch(getFlashWatch())
+    },
+    dispatchGetTopMovies() {
+      dispatch( getTopMovie() );
     }
   }
 }

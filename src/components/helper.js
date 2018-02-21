@@ -37,3 +37,21 @@ export const findMovie = (movieArray, movieName, imdbID = "") => {
 export const movieSearch = (movie, page=1) => axios.get(`${movieApi}&s=${movie}&page=${page}`);
 export const movieFetchImdbId = id => axios.get(`${movieApi}&i=${id}`);
 export const getUsers = () => axios.get(`${MOCKAPI_API_URL}/user`);
+
+export const calculateMovieScore = ( movie, topMovieArray ) => {
+  //Default movie watched is worth '1' point
+  let score = 1;
+
+  //If the movie is on our Top Movie they get an additional bonus of '5' points
+  score += findMovie( topMovieArray, movie.Title ).found ? 15 : 0;
+
+  //Bad Rotten Tomatoes score adds points
+  const ratingScore = deconstructRatings(movie.Ratings);
+  score += ratingScore.Value === "" ? 0 : 10 - Math.floor(parseInt(ratingScore.Value, 10) / 10)
+
+  //Older movies get more:
+    // <= 1985 + '3' points
+  score += parseInt(movie.Year, 10) <= 1985 ? 3 : 0;
+
+  return score;
+}

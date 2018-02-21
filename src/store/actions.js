@@ -166,10 +166,10 @@ export const getFlashWatch = () => {
   }
 }
 
-export const postToWatched = (movieObj, user_id) => {
+export const postToWatched = (movieObj, userId, score) => {
   return (dispatch, getState, url) => {
     dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
-    const localUrl = `${url}user/${user_id}/watched`;
+    const localUrl = `${url}user/${userId}/watched`;
     const localRating = deconstructRatings(movieObj.Ratings)
     const localObject = {
       Title: movieObj.Title,
@@ -187,7 +187,39 @@ export const postToWatched = (movieObj, user_id) => {
     console.log(`Posting postToWatched data...${localUrl}`)
     axios.post(localUrl, localObject)
       .then( response => {
-        dispatch( getWatched(user_id) );
+        dispatch( getWatched(userId) );
+        dispatch( updateMovieScore(score, userId) );
+      })
+      .catch( error => {
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(`Error Response: ${error.response}`);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(`Error Request: ${error.request}`);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log(`General Error: ${error.message}`);
+        }
+        console.log("Error has occured in saving data...");
+        console.log(error);
+        dispatch( {type: DATA_STATUS_HANDLER, payload: {type: 'loadingError', result: true}} );
+    })
+  }
+}
+
+export const updateMovieScore = (score, userId) => {
+  return (dispatch, getState, url) => {
+    dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
+    const localUrl = `${url}user/${userId}`;
+    const localObject = {
+      score: score,
+    }
+    console.log(`Posting updateMovieScore data...${localUrl}`)
+    axios.put(localUrl, localObject)
+      .then( response => {
+        dispatch( getUser(userId) );
       })
       .catch( error => {
         if (error.response) {
@@ -252,7 +284,7 @@ export const postToQueue = (movieObj, user_id) => {
   }
 }
 
-export const deleteFromWatched = (movie_id, user_id) => {
+export const deleteFromWatched = (movie_id, user_id, score) => {
   return (dispatch, getState, url) => {
     dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
     const localUrl = `${url}user/${user_id}/watched/${movie_id}`;
@@ -262,6 +294,7 @@ export const deleteFromWatched = (movie_id, user_id) => {
       .then( (response) => {
         console.log(response);
         dispatch( getWatched( user_id ) );
+        dispatch( updateMovieScore(score, user_id) );
       })
       .catch( error => {
         if (error.response) {
@@ -306,6 +339,32 @@ export const deleteFromQueue = (movie_id, user_id) => {
           console.log(`General Error: ${error.message}`);
         }
         console.log("Error has occured in deleting data...");
+        console.log(error);
+        dispatch( {type: DATA_STATUS_HANDLER, payload: {type: 'loadingError', result: true}} );
+    })
+  }
+}
+
+export const getUser = userId => {
+  return (dispatch, getState, url) => {
+    console.log(`Get user data...${url}`)
+    axios.get(`${url}user/${userId}`)
+      .then( ({data}) => {
+        dispatch({type: LOAD_USER, payload: data});
+      })
+      .catch( error => {
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(`Error Response: ${error.response}`);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(`Error Request: ${error.request}`);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log(`General Error: ${error.message}`);
+        }
+        console.log("Error has occured in saving data...");
         console.log(error);
         dispatch( {type: DATA_STATUS_HANDLER, payload: {type: 'loadingError', result: true}} );
     })

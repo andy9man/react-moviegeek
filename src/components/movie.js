@@ -9,7 +9,7 @@ import MovieAdd from 'material-ui/svg-icons/image/movie-creation';
 import MovieAdded from 'material-ui/svg-icons/image/movie-filter';
 // import {fullWhite} from 'material-ui/styles/colors';
 
-import { movieFetchImdbId, deconstructRatings, findMovie } from './helper';
+import { movieFetchImdbId, deconstructRatings, findMovie, calculateMovieScore } from './helper';
 import noImage from '../assets/no-image.gif';
 import { postToWatched, postToQueue, deleteFromQueue, deleteFromWatched } from '../store/actions';
 
@@ -58,6 +58,8 @@ class Movie extends Component {
     const onWatchList = findMovie(watchedData, Title );
     const onQueueList = findMovie(queueData, Title);
 
+    user !== undefined && console.log(`USER SCORE:\t${user.score}`)
+
     //console.log(`Movie:\t ${Title}\nWatch List:\t${onWatchList.found}  Queue List:\t${onQueueList.found}`)
     return (
       <Card style={ {marginBottom: 15} }>
@@ -87,6 +89,7 @@ class Movie extends Component {
                       <h3 className="movieDetails-title">Runtime:</h3>  <span>{movieDetails.Runtime}</span><br />
                       <h3 className="movieDetails-title">Rotten Tomatoes Score:</h3>  <span>{deconstructRatings(movieDetails.Ratings).Value}</span><br />
                       <h3 className="movieDetails-title">IMDb ID:</h3>  <span>{movieDetails.imdbID}</span><br />
+                      <h3 className="movieDetails-title">Point Value:</h3>  <span>{calculateMovieScore(movieDetails, this.props.topMovies)}</span><br />
                       <h3 className="movieDetails-title">Plot:</h3>
                       <p style={ {lineHeight: 1.6, marginLeft: 30} }>{movieDetails.Plot}</p>
                     </div>
@@ -123,7 +126,12 @@ class Movie extends Component {
               onWatchList.found ?
                 <FlatButton
                   label="unwatch"
-                  onClick={() => deleteMovieWatched(onWatchList.id, userId)}
+                  onClick={() => {
+                    const score = user.score - calculateMovieScore(movieDetails, this.props.topMovies);
+                    console.log(`NEW SCORE:\t${score}`)
+                    return (
+                      deleteMovieWatched(onWatchList.id, userId, score)
+                    )}}
                   backgroundColor="#64DD17"
                   hoverColor="#CCFF90"
                   icon={<MovieAdded />}
@@ -132,7 +140,7 @@ class Movie extends Component {
               :
                 <FlatButton
                   label="watched"
-                  onClick={() => addMovieWatched(movieDetails, userId)}
+                  onClick={() => addMovieWatched(movieDetails, userId, (user.score + calculateMovieScore(movieDetails, this.props.topMovies) ) )}
                   backgroundColor="#64DD17"
                   hoverColor="#CCFF90"
                   icon={<MovieAdd />}
@@ -150,6 +158,7 @@ const mapStateToProps = (state) => {
   return {
     watchedData: state.watchedData,
     queueData: state.queueData,
+    topMovies: state.ourTopMovies,
     user: state.user,
     loadingData: state.loadingData
   }
@@ -157,14 +166,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addMovieWatched(movieObj, uId) {
-      dispatch( postToWatched(movieObj, uId) );
+    addMovieWatched(movieObj, uId, score) {
+      dispatch( postToWatched(movieObj, uId, score) );
     },
     addMovieQueue(movieObj, uId) {
       dispatch( postToQueue(movieObj, uId) );
     },
-    deleteMovieWatched(movieId, uId) {
-      dispatch( deleteFromWatched(movieId, uId) );
+    deleteMovieWatched(movieId, uId, score) {
+      dispatch( deleteFromWatched(movieId, uId, score) );
     },
     deleteMovieQueue(movieId, uId) {
       dispatch( deleteFromQueue(movieId, uId) );

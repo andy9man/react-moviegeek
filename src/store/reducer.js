@@ -28,7 +28,6 @@ const initialState = {
   // }
 
   loadingData: false,
-  userId: 1,
   user: undefined
   // user: {
   //   id: "1",
@@ -83,7 +82,7 @@ export const reducer = (state = initialState, action) => {
       }
     //********* LOAD_TOPMOVIES *********
     case LOAD_TOPMOVIES:
-      return { ...state, movies: action.payload, loadingData: false, moviesLoadSuccess: true };
+      return { ...state, ourTopMovies: action.payload, loadingData: false, moviesLoadSuccess: true };
     //********* LOAD_USER *********
     case LOAD_USER:
       return { ...state, user: action.payload };
