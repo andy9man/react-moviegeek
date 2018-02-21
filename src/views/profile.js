@@ -3,43 +3,42 @@ import { getQueue } from '../store/actions';
 import { getWatched } from '../store/actions';
 import Movie from '../components/movie';
 import { connect } from 'react-redux';
-import CircularProgress from 'material-ui/CircularProgress';
-import {withRouter} from "react-router-dom";
+import { Loader } from '../components/theme';
+import {Redirect, withRouter} from "react-router-dom";
 
 class Profile extends Component{
 
-
-  componentDidMount(){
-    this.props.dispatchGetQueue(this.props.user.id)
-    this.props.dispatchGetWatched(this.props.user.id)
-    this.props.user === undefined && this.props.history.push("/")
+  componentWillMount() {
+    this.props.user === undefined && this.props.history.push('/');
   }
 
+  componentDidMount(){
+    if(this.props.user !== undefined) {
+      this.props.dispatchGetQueue(this.props.user.id)
+      this.props.dispatchGetWatched(this.props.user.id)
+
+    }
+  }
 
   render(){
-    console.log("value of user id")
-    console.log(this.props.user.id)
-
-    
-    
     let localQueue = []
     if(this.props.queueData) localQueue = this.props.queueData
     let localWatched = []
     if(this.props.watchedData) localWatched = this.props.watchedData
 
     return(
-      
+
       <div>
         <div className="profile-container">
           <div>
-            <h3>Geek Score: </h3>
+            <h3>Geek Score: <b>{this.props.user && this.props.user.score}</b></h3>
           </div>
         </div>
 
         <div className="profile-container">
         {this.props.loadingData ?
           <div>
-            <CircularProgress size={60} thickness={5} />
+            <Loader />
           </div>
 
         :
@@ -59,7 +58,7 @@ class Profile extends Component{
         <div className="profile-container">
         {this.props.loadingData ?
             <div>
-              <CircularProgress size={60} thickness={5} />
+              <Loader />
             </div>
         :
             <div className="profile-container">
@@ -100,4 +99,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile));
