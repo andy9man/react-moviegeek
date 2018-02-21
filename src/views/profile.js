@@ -4,7 +4,7 @@ import { getWatched } from '../store/actions';
 import Movie from '../components/movie';
 import { connect } from 'react-redux';
 import { Loader } from '../components/theme';
-import {Redirect, withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class Profile extends Component{
 
@@ -40,9 +40,7 @@ class Profile extends Component{
           <div>
             <Loader />
           </div>
-
         :
-
           <div className="profile-container">
             <h3>Movies to Watch</h3>
             <div style={ {padding: '0 15px'} }>
