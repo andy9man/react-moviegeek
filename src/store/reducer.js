@@ -29,6 +29,7 @@ const initialState = {
 
   loadingData: false,
   userId: 1,
+<<<<<<< HEAD
   // user: undefined
   user: {
     id: "1",
@@ -38,6 +39,18 @@ const initialState = {
     username: "reaction",
     password: "reaction"
   }
+=======
+  user: undefined
+  // user: {
+  //   id: "1",
+  //   createdAt: 1519176968,
+  //   name: "Team Reaction",
+  //   avatar: "https://raw.githubusercontent.com/rexxars/react-hexagon/HEAD/logo/react-hexagon.png",
+  //   username: "reaction",
+  //   password: "reaction",
+  //   score: 22
+  // }
+>>>>>>> dff7c841cee381c171b6b4acb7999733ff3f4c24
 }
 
 
