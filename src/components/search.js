@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import IconButton from 'material-ui/IconButton';
-import Couch from 'material-ui/svg-icons/content/weekend';
 import FlatButton from 'material-ui/FlatButton';
 import Theaters from 'material-ui/svg-icons/action/theaters';
+import {fullWhite} from 'material-ui/styles/colors';
+import IconButton from 'material-ui/IconButton';
+import Couch from 'material-ui/svg-icons/content/weekend';
 import { movieFetchImdbId, getRandomIntInclusive } from './helper';
 
 class Search extends Component {
@@ -41,16 +42,17 @@ class Search extends Component {
             this.getAddtionalMovieData(`tt${getRandomIntInclusive(100000, 2000000)}`)
           }}
         >
-          <FlatButton
+          <IconButton
             type="submit"
-            label="I Feel Lucky"
-            backgroundColor="#FC6E51"
-            hoverColor="#FFCE54"
-            icon=''
-            style={{ margin: 12, color: '#FFFFFF' }}
-          />
-          <IconButton>
-            <Couch />
+            title="Feeling Lucky..."
+            style={{
+              backgroundColor: '#FC6E51',
+              borderRadius: '50%',
+              marginRight: 15,
+              top: 5,
+            }}
+          >
+            <Couch color={fullWhite}/>
           </IconButton>
         </form>
         <form
