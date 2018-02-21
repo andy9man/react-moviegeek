@@ -35,8 +35,7 @@ const initialState = {
   //   name: "Team Reaction",
   //   avatar: "https://raw.githubusercontent.com/rexxars/react-hexagon/HEAD/logo/react-hexagon.png",
   //   username: "reaction",
-  //   password: "reaction",
-  //   score: 22
+  //   password: "reaction"
   // }
 }
 

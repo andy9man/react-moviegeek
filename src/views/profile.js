@@ -3,25 +3,32 @@ import { getQueue } from '../store/actions';
 import { getWatched } from '../store/actions';
 import Movie from '../components/movie';
 import { connect } from 'react-redux';
-import { Loader } from '../components/theme';
+import CircularProgress from 'material-ui/CircularProgress';
+import {withRouter} from "react-router-dom";
 
 class Profile extends Component{
+
 
   componentDidMount(){
     this.props.dispatchGetQueue(this.props.user.id)
     this.props.dispatchGetWatched(this.props.user.id)
+    this.props.user === undefined && this.props.history.push("/")
   }
+
 
   render(){
     console.log("value of user id")
     console.log(this.props.user.id)
 
+    
+    
     let localQueue = []
     if(this.props.queueData) localQueue = this.props.queueData
     let localWatched = []
     if(this.props.watchedData) localWatched = this.props.watchedData
 
     return(
+      
       <div>
         <div className="profile-container">
           <div>
@@ -32,7 +39,7 @@ class Profile extends Component{
         <div className="profile-container">
         {this.props.loadingData ?
           <div>
-            <Loader />
+            <CircularProgress size={60} thickness={5} />
           </div>
 
         :
@@ -52,7 +59,7 @@ class Profile extends Component{
         <div className="profile-container">
         {this.props.loadingData ?
             <div>
-              <Loader />
+              <CircularProgress size={60} thickness={5} />
             </div>
         :
             <div className="profile-container">
