@@ -13,7 +13,8 @@ class Login extends Component {
       username: '',
       password: '',
       users: [],
-      loading: false
+      loading: false,
+      loginModalOpen: true,
     }
   }
 
@@ -33,7 +34,13 @@ class Login extends Component {
     const {username, password, users} = this.state;
 
     const user = users.find(user => user.username === username && user.password === password);
-    user ? this.props.setUserLogin(user) : this.setState({error: "Invalid username or password."});
+    if( user ) {
+      this.props.setUserLogin(user);
+      this.setState({loginModal: false})
+    }
+    else {
+      this.setState({error: "Invalid username or password."});
+    }
   }
 
   handleInput = e => {
@@ -49,45 +56,39 @@ login =()=>
   render() {
     const {username, password, error} = this.state;
     return (
-      <div
-        style={ {
-          backgroundColor: '#263238',
-          padding: 10,
-          width: 195,
-          overflow: 'hidden',
-          visibility: this.props.user === undefined ? 'visible' : 'hidden',
-        }}
-      >
-      <form
-        onSubmit={ (e) => {
-          e.preventDefault();
-          this.validateLogin();
-        }}
-      >
-        <TextField
-          style={ {width: 185} }
-          hintText="Username"
-          name="username"
-          type="text"
-          required={true}
-          value={username}
-          onChange={this.handleInput}
-        /><br/>
-        <TextField
-          style={ {width: 185} }
-          hintText="Password"
-          name="password"
-          type="password"
-          required={true}
-          value={password}
-          onChange={this.handleInput}
-        /><br/>
-        <span className="error">{error}</span>
-        <RaisedButton
-          style={ {width: 195} }
-          type="submit">Login</RaisedButton>
-      </form>
-      </div>
+
+
+        <form onSubmit={ (e) => {
+            e.preventDefault();
+            this.validateLogin();
+          }}
+        >
+          <TextField
+            hintText="Username"
+            name="username"
+            type="text"
+            required={true}
+            value={username}
+            onChange={this.handleInput}
+            tabIndex={1}
+            textColor= "#424242"
+            style={{width: '100%'}}
+            inputStyle={{color: '#424242'}}
+          /><br/>
+          <TextField
+            hintText="Password"
+            name="password"
+            type="password"
+            required={true}
+            value={password}
+            onChange={this.handleInput}
+            tabIndex={2}
+            style={{width: '100%'}}
+            inputStyle={{color: '#424242'}}
+          /><br/>
+          <span className="error">{error}</span>
+          <RaisedButton type="submit">Login</RaisedButton>
+        </form>
     );
   }
 }

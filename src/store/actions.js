@@ -10,6 +10,7 @@ export const GET_FLASHWATCH = 'GET_FLASHWATCH';
 export const LOAD_TOPMOVIES = 'LOAD_TOPMOVIES';
 export const LOAD_USER = 'LOAD_USER';
 
+export const MOVIE_API = "http://www.omdbapi.com/?apikey=b99d98de&type=movie";
 
 export const postFavorite = () => {
   return true
@@ -144,25 +145,39 @@ export const getFlashWatch = () => {
   return (dispatch, getState, url) => {
     dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true));
     console.log(`Getting getFlashWatch data... ${url}TopMovies`);
-
     axios.get(`${url}TopMovies`)
-      .then(({ data }) => {
-        const select = Math.floor(Math.random() * data.length)
-        const flashwatch = data[select]
-        dispatch({ type: GET_FLASHWATCH, payload: flashwatch });
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log(`Error Response: ${error.response}`);
-        } else if (error.request) {
-          console.log(`Error Request: ${error.request}`);
-        } else {
-          console.log(`General Error: ${error.message}`);
-        }
-        console.log("Error has occured in loading data...");
-        console.log(error);
-        dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingError', true));
-      })
+    .then(({ data }) => {
+            axios.get(`${MOVIE_API}&i=${data.imdbID}`)
+              .then(({ data }) => {
+                const select = Math.floor(Math.random() * data.length)
+                const flashwatch = data[select]
+                dispatch({ type: GET_FLASHWATCH, payload: flashwatch });
+              })
+              .catch(error => {
+                if (error.response) {
+                  console.log(`Error Response: ${error.response}`);
+                } else if (error.request) {
+                  console.log(`Error Request: ${error.request}`);
+                } else {
+                  console.log(`General Error: ${error.message}`);
+                }
+                console.log("Error has occured in loading data...");
+                console.log(error);
+                dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingError', true));
+              })
+    })
+    .catch(error => {
+      if (error.response) {
+        console.log(`Error Response: ${error.response}`);
+      } else if (error.request) {
+        console.log(`Error Request: ${error.request}`);
+      } else {
+        console.log(`General Error: ${error.message}`);
+      }
+      console.log("Error has occured in loading data...");
+      console.log(error);
+      dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingError', true));
+    })
   }
 }
 
