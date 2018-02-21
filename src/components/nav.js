@@ -9,10 +9,13 @@ import Divider from 'material-ui/Divider';
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import ActionHome from 'material-ui/svg-icons/action/home';
+import Favorite from 'material-ui/svg-icons/action/favorite';
+import ExitToApp from 'material-ui/svg-icons/action/exit-to-app';
 import {fullWhite} from 'material-ui/styles/colors';
 
 import Search from '../components/search';
 import Login from '../components/login';
+import { LOAD_USER } from '../store/actions';
 import icon from '../assets/clapper-icon.png';
 
 const Title = () => {
@@ -56,11 +59,33 @@ class MovieGeekNav extends Component {
             user &&
               <div>
                 <MenuItem
-                  leftIcon={user.avatar.includes("http") ? <img style={ {borderRadius: '50%', top: '-10px'}} src={user.avatar} alt={user.name} /> : <ActionAccountCircle />}
+                  leftIcon={
+                    user.avatar.includes("http") ?
+                      <img style={ {borderRadius: '50%', top: '-10px'}} src={user.avatar} alt={user.name} />
+                    :
+                      <ActionAccountCircle />}
+                  rightIcon={<ArrowDropRight />}
                   primaryText={user.name}
-                  containerElement={<Link to="/profile" />}
-                  onClick={this.handleMenuOpen}
+                  // containerElement={<Link to="/profile" />}
+                  // onClick={this.handleMenuOpen}
                   style={{backgroundColor: '#263238', color: '#ECEFF1'}}
+                  menuItems={[
+                    <MenuItem
+                      primaryText="My Summary"
+                      onClick={this.handleMenuOpen}
+                      containerElement={<Link to="/profile" />}
+                      rightIcon={<Favorite />}
+                    />,
+                    <Divider />,
+                    <MenuItem
+                      primaryText="Logout"
+                      rightIcon={<ExitToApp />}
+                      onClick={(e) => {
+                        this.handleMenuOpen(e);
+                        this.props.userLogout();
+                      }}
+                    />
+                  ]}
                 />
                 <Divider />
               </div>
@@ -107,4 +132,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter( connect(mapStateToProps)(MovieGeekNav) );
+const mapDispatchToProps = dispatch => {
+  return {
+    userLogout() {
+      dispatch({type: LOAD_USER, action: undefined});
+    }
+  }
+}
+
+export default withRouter( connect(mapStateToProps, mapDispatchToProps)(MovieGeekNav) );
