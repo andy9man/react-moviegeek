@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import icon from '../assets/clapper-icon.png';
-import FlashWatch from '../views/flashwatch';
 
 class Home extends Component {
   constructor(props) {
@@ -26,7 +25,8 @@ class Home extends Component {
         }}
       >
         <h1 style={{color: '#263238', display: 'block'}}>Welcome to Movie Geek!</h1>
-        <FlashWatch />
+
+        
       </div>
     );
   }

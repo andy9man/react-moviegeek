@@ -40,8 +40,10 @@ nav img {
 }
 
 .error {
-  font-size: 10px;
+  font-size: 12px;
   color: red;
+  display: block;
+  margin-bottom: 5px;
 }
 
 .selected {
