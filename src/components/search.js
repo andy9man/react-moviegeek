@@ -19,7 +19,7 @@ class Search extends Component {
           e.preventDefault();
 
           console.log(`Attempting to search:  ${this.state.search}`);
-          this.state.search !== '' && this.props.history.push(`/search/${this.state.search}`);
+          this.state.search !== '' && this.props.history.push(`/search/${this.state.search.trim()}`);
           this.setState({search: ''});
         }}
       >
