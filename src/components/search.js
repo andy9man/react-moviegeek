@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import IconButton from 'material-ui/IconButton';
+import Couch from 'material-ui/svg-icons/content/weekend';
 import FlatButton from 'material-ui/FlatButton';
 import Theaters from 'material-ui/svg-icons/action/theaters';
 import { movieFetchImdbId, getRandomIntInclusive } from './helper';
@@ -27,7 +29,7 @@ class Search extends Component {
         this.setState({error: true, loading: false})
       })
   }
-  
+
   render() {
 
     return (
@@ -47,6 +49,9 @@ class Search extends Component {
             icon=''
             style={{ margin: 12, color: '#FFFFFF' }}
           />
+          <IconButton>
+            <Couch />
+          </IconButton>
         </form>
         <form
           id="movieGeekSearch"
