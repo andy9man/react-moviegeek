@@ -25,6 +25,8 @@ class Home extends Component {
         }}
       >
         <h1 style={{color: '#263238', display: 'block'}}>Welcome to Movie Geek!</h1>
+
+        
       </div>
     );
   }
