@@ -108,7 +108,7 @@ class MovieGeekNav extends Component {
           />
           <MenuItem
             primaryText="Our Top Movies"
-            containerElement={<Link to="/top-movies" />}
+            containerElement={<Link to="/topmovies" />}
             onClick={this.handleMenuOpen}
           />
           {
