@@ -26,7 +26,7 @@ class RandomMovie extends Component{
     this.setState({loading: true});
 
     const results = movieFetchImdbId(randomImdbId);
-    // const results = movieFetchImdbId('tt0903624');
+    // const results = movieFetchImdbId('tt0903624'); //The Hobbit is tt0903624
 
     console.log({results})
     results
