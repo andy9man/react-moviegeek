@@ -6,7 +6,7 @@ import { LOAD_USER } from '../store/actions';
 import { getUsers } from './helper';
 //import { login, getUser, googleLogin, twitterLogin } from '../Actions/UserActions';
 //import ErrorAlert from '../Components/ErrorAlert';
-import { auth, googleProvider, twitterProvider } from '../Firebase';
+import { app, auth, googleProvider, twitterProvider } from '../Firebase';
 
 function login(email, password) {
     return dispatch => auth.signInWithEmailAndPassword(email, password);
@@ -34,6 +34,7 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+      loginModalOpen: true,
       error:''
     }
   }
@@ -50,16 +51,8 @@ class Login extends Component {
       })
   }
 
-  validateLogin = () => {
-    const {email, password, users} = this.state;
 
-    const user = users.find(user => user.email === email && user.password === password);
-    user ? this.props.setUserLogin(user) : this.setState({error: "Invalid email or password."});
-  }
 
-  handleInput = e => {
-    this.setState({[e.target.name]: e.target.value, error: ''});
-  }
 
   componentDidMount() {
     this.loadUsers();
@@ -72,60 +65,66 @@ class Login extends Component {
 
   submitLogin(event) {
     event.preventDefault();
-    this.props.login(this.state.email, this.state.password).catch(err => {
+    auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+   .then (response=>this.setState({loginModal: false}))
+    .catch(err => {
       this.setState({
         error: err
       });
-    });
+    })
   }
 
   renderBody() {
     const errStyle = {
       borderColor: 'red'
     };
+}
 
-
-//login =()=>
-  render() {
-    const {email, password, error} = this.state;
+render(){
     return (
       <div
         style={ {
           backgroundColor: '#263238',
           padding: 10,
-          width: 195,
+          width: 290,
           overflow: 'hidden',
           visibility: this.props.user === undefined ? 'visible' : 'hidden',
         }}
       >
       <form onSubmit={event => { this.submitLogin(event);}}>
         <TextField
-          style={ {width: 185} }
+          style={ {width: 190} }
           id="email" type="text" label="Email"
-                      inputAction={(event) => this.setState({ email: event.target.value })}
-                      style={this.state.error ? errStyle : null}
+          value = {this.state.email}
+                      onChange={(event) => this.setState({ email: event.target.value })}
+                      style={this.state.error ? "error" : null}
         /><br/>
         <TextField
        id="password" type="password" label="Password"
-       inputAction={(event) => this.setState({ password: event.target.value })}
-       style={this.state.error ? errStyle : null}
+       onChange={(event) => this.setState({ password: event.target.value })}
+       value = {this.state.password}
+       style={this.state.error ? "errStyle" : null}
         /><br/>
         <span className="error"> {this.state.error && <p>Your username/password is incorrect</p>}</span>
         <RaisedButton
-          style={ {width: 195} }
+          style={ {width: 190} }
           type="submit">Login</RaisedButton>
+          <br/>
 
 <RaisedButton
-          style={ {width: 195} }
-          type="submit" goToLink="/CreateAccount" {...this.props}>Login</RaisedButton>
+          style={ {width: 190} }
+          type="submit" goToLink="/CreateAccount" {...this.props}>Create Account</RaisedButton>
 
 
 
       </form>
       </div>
-    );
+    )
   }
+
+
 }
+
 
 const mapStateToProps = (state) => {
   return {
@@ -141,4 +140,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
+
+
+export default connect(mapStateToProps,  { login, getUsers, googleLogin })(Login);

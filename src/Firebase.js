@@ -8,7 +8,7 @@ const config = {
     storageBucket: "moviegeek-8f5a2.appspot.com",
     messagingSenderId: "513280888594"
   };
-  firebase.initializeApp(config);
+  export const  app = firebase.initializeApp(config);
 
   export const database = firebase.database().ref('posts/');
   export const auth = firebase.auth();
