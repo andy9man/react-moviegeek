@@ -5,7 +5,8 @@ import Theaters from 'material-ui/svg-icons/action/theaters';
 import {fullWhite} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import Couch from 'material-ui/svg-icons/content/weekend';
-import { movieFetchImdbId, getRandomIntInclusive } from './helper';
+import { movieFetchImdbId } from './helper';
+import { Link } from 'react-router-dom';
 
 class Search extends Component {
   constructor(props) {
@@ -34,13 +35,7 @@ class Search extends Component {
 
     return (
       <div style={{display: 'flex', FlexDirection: 'row'}}>
-        <form
-          id="movieGeekRandomSearch"
-          onSubmit={(e) => {
-            e.preventDefault()
-            this.getAddtionalMovieData(`tt${getRandomIntInclusive(100000, 2000000)}`)
-          }}
-        >
+        <Link to="/random" >
           <IconButton
             type="submit"
             title="Feeling Lucky..."
@@ -51,9 +46,9 @@ class Search extends Component {
               top: 5,
             }}
           >
-            <Couch color={fullWhite}/>
+            <Couch color={fullWhite} />
           </IconButton>
-        </form>
+        </Link>
         <form
           id="movieGeekSearch"
           onSubmit={(e) => {

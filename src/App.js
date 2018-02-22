@@ -12,6 +12,7 @@ import Home from './views/home';
 import Rankings from './views/ranking';
 import Profile from './views/profile';
 import Search from './views/search';
+import Random from './views/random';
 import MovieGeekNav from './components/nav';
 import background from './assets/movieBackground-overlay-dark-1.jpg';
 import TopMovies from './views/topMovies';
@@ -40,6 +41,7 @@ class App extends Component {
               <Route exact path='/flashwatch' component={FlashWatch} />
               <Route exact path='/test' component={TestView} />
               <Route exact path='/search/:search' component={Search} />
+              <Route exact path='/random' component={Random} />
               <Route render={ () => ( <Redirect to='/' />) } />
             </Switch>
         </div>
