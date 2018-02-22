@@ -15,12 +15,12 @@ import Search from './views/search';
 import MovieGeekNav from './components/nav';
 import background from './assets/movieBackground-overlay-dark-1.jpg';
 import TopMovies from './views/topMovies';
-import FlashWatch from './views/flashWatch';
+import FlashWatch from './views/flashwatch';
 import TestView from './views/test'
 
 class App extends Component {
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.dispatchGetFlashWatch()
     this.props.dispatchGetTopMovies();
   }

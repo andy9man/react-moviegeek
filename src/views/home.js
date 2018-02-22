@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import icon from '../assets/clapper-icon.png';
-import FlashWatch from './flashWatch';
+import FlashWatch from './flashwatch';
 
 class Home extends Component {
   constructor(props) {
