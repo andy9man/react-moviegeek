@@ -36,6 +36,7 @@ class RankingsView extends Component{
                       backgroundRepeat: 'no-repeat',
                       backgroundColor: '#fff',
                       minWidth: 300,
+                      maxWidth: '80vw',
                       width: 500,
                       height: 100,
                       marginBottom: 10,
@@ -45,7 +46,7 @@ class RankingsView extends Component{
                       <div
                         style={{
                           background: "rgba(207, 216, 220, 0.9)",
-                          minWidth: '100%',
+                          width: '100%',
                           height: '100%',
                           display: 'flex',
                           flexDirection: 'row',
