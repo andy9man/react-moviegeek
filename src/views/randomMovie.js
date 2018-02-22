@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { movieImdbIdSearch, getRandomIntInclusive } from '../components/helper';
+import { movieFetchImdbId, deconstructRatings, getRandomIntInclusive } from '../components/helper';
 import Movie from '../components/movie';
 import { Loader } from '../components/theme';
 
@@ -14,13 +14,19 @@ class RandomMovie extends Component{
     }
   }
   
-  componentDidMount() {
-    console.log('RandomMovie - in componentDidMount')
-    this.setState({loading: true});
+  getRandomMovie() {
+    let randomImdbId = getRandomIntInclusive(100000, 2000000).toString()
+    if(randomImdbId.length === 6) {
+      randomImdbId = 'tt0' + randomImdbId
+    } else {
+      randomImdbId = 'tt' + randomImdbId
+    }
     
-    // let randomImdbId = getRandomIntInclusive(100000, 2000000)
+    console.log(`Attempting to get random movie - ${randomImdbId}`)
+    this.setState({loading: true});
 
-    const results = movieImdbIdSearch('tt0903624');
+    const results = movieFetchImdbId(randomImdbId);
+    // const results = movieFetchImdbId('tt0903624');
 
     console.log({results})
     results
@@ -35,9 +41,18 @@ class RandomMovie extends Component{
       })
   }
 
+  componentDidMount() {
+    this.getRandomMovie()
+  }
+
   render(){
+    if(this.state.searchResults){
+      if(!deconstructRatings(this.state.searchResults.Ratings).Value) {
+        console.log('no tomatoes score')
+      }
+    }
+    
     const {searchResults, loading, error} = this.state;
-    console.log('RandomMovie - in Render')
     
     return(
       <div>
