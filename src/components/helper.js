@@ -1,9 +1,7 @@
 import React from 'react';
 import {Link, Route} from 'react-router-dom';
 import axios from 'axios';
-import {MOCKAPI_API_URL} from '../store/actions';
-
-const movieApi = "http://www.omdbapi.com/?apikey=b99d98de&type=movie";
+import {MOCKAPI_API_URL, MOVIE_API} from '../store/actions';
 
 export const CustomNav = ( {label, to, activeOnlyWhenExact, generalClassName} ) => {
     return (
@@ -36,8 +34,8 @@ export const findMovie = (movieArray, movieName, imdbID = "") => {
   return checkForMovie ? {found: true, id: checkForMovie.movieId} : {found: false};
 }
 
-export const movieSearch = (movie, page=1) => axios.get(`${movieApi}&s=${movie}&page=${page}`);
-export const movieFetchImdbId = id => axios.get(`${movieApi}&i=${id}`);
+export const movieSearch = (movie, page=1) => axios.get(`${MOVIE_API}&s=${movie}&page=${page}`);
+export const movieFetchImdbId = id => axios.get(`${MOVIE_API}&i=${id}`);
 export const getUsers = () => axios.get(`${MOCKAPI_API_URL}/user`);
 
 export const calculateMovieScore = ( movie, topMovieArray ) => {
@@ -61,5 +59,5 @@ export const calculateMovieScore = ( movie, topMovieArray ) => {
 export const getRandomIntInclusive = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
 }

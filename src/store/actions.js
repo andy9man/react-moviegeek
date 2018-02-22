@@ -2,6 +2,7 @@ import axios from 'axios';
 import { deconstructRatings } from '../components/helper'
 
 export const MOCKAPI_API_URL = 'http://5a8c94d2d6c8840012dde929.mockapi.io/api/v1/';
+export const MOVIE_API = "http://www.omdbapi.com/?apikey=b99d98de&type=movie";
 export const DATA_STATUS_HANDLER = 'DATA_STATUS_HANDLER';
 export const GET_RANKING = 'GET_RANKING';
 export const GET_QUEUE = 'GET_QUEUE';
@@ -9,8 +10,6 @@ export const GET_WATCHED = 'GET_WATCHED';
 export const GET_FLASHWATCH = 'GET_FLASHWATCH';
 export const LOAD_TOPMOVIES = 'LOAD_TOPMOVIES';
 export const LOAD_USER = 'LOAD_USER';
-
-export const MOVIE_API = "http://www.omdbapi.com/?apikey=b99d98de&type=movie";
 
 export const postFavorite = () => {
   return true
