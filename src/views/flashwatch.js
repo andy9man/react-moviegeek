@@ -9,14 +9,14 @@ import { withRouter } from "react-router-dom";
 class FlashWatch extends Component{
 
   componentDidMount() {
-    this.props.dispatchGetFlashWatch()
+    this.props.flashWatchData === undefined && this.props.dispatchGetFlashWatch()
   }
 
   render(){
-    console.log('value of this.props.flashWatchData')
-    console.log(this.props.flashWatchData)
-    console.log('value of this.props.loadingData')
-    console.log(this.props.loadingData)
+    // console.log('value of this.props.flashWatchData')
+    // console.log(this.props.flashWatchData)
+    // console.log('value of this.props.loadingData')
+    // console.log(this.props.loadingData)
 
     return (
       <div>
@@ -37,7 +37,6 @@ class FlashWatch extends Component{
 }
 
 const mapStateToProps = (state) => {
-  console.log('mapping state to props - FlashWatch')
   return {
     loadingData: state.loadingData,
     flashWatchData: state.flashWatchData,

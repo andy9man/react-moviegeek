@@ -49,7 +49,6 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('mapping state to props - FlashWatch')
   return {
     viewData: state.viewData,
     loadingData: state.loadingData,

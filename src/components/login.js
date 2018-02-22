@@ -69,7 +69,6 @@ class Login extends Component {
             value={username}
             onChange={this.handleInput}
             tabIndex={1}
-            textColor= "#424242"
             style={{width: '100%'}}
             inputStyle={{color: '#424242'}}
           /><br/>
