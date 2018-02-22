@@ -43,7 +43,7 @@ class App extends Component {
               <Route exact path='/flashwatch' component={FlashWatch} />
               <Route exact path='/test' component={TestView} />
               <Route exact path='/search/:search' component={Search} />
-              <Route exact path='/random' component={RandomMovie} />
+              <Route exact path='/random/:random' component={RandomMovie} />
               <Route render={ () => ( <Redirect to='/' />) } />
             </Switch>
         </div>
