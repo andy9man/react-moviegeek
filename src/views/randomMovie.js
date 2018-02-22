@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { movieImdbIdSearch } from '../components/helper';
+import { movieImdbIdSearch, getRandomIntInclusive } from '../components/helper';
 import Movie from '../components/movie';
 import { Loader } from '../components/theme';
 
@@ -15,10 +15,13 @@ class RandomMovie extends Component{
   }
   
   componentDidMount() {
-    // this.getAddtionalMovieData(`tt${getRandomIntInclusive(100000, 2000000)}`)
     console.log('RandomMovie - in componentDidMount')
     this.setState({loading: true});
+    
+    // let randomImdbId = getRandomIntInclusive(100000, 2000000)
+
     const results = movieImdbIdSearch('tt0903624');
+
     console.log({results})
     results
       .then( ({data: imdbMovie}) => {

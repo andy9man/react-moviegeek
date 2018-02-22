@@ -12,7 +12,7 @@ import Home from './views/home';
 import Rankings from './views/ranking';
 import Profile from './views/profile';
 import Search from './views/search';
-import RandomMovie from './views/random_movie';
+import RandomMovie from './views/randomMovie';
 import MovieGeekNav from './components/nav';
 import background from './assets/movieBackground-overlay-dark-1.jpg';
 import TopMovies from './views/topMovies';
