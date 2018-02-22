@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   render() {
-
+    console.log(this.props.user)
     return (
       <div className="App" style={ {backgroundImage: `url(${background})`} }>
         <MovieGeekNav />
@@ -52,6 +52,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     viewData: state.viewData,
     loadingData: state.loadingData,
     flashWatchData: state.flashWatchData,

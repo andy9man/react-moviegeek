@@ -75,7 +75,7 @@ class Movie extends Component {
         <CardText expandable={expand}>
 
           {
-            loading ?
+            loading || watchedData === undefined || queueData === undefined ?
             <div>
               <Loader />
             </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import { LOAD_USER } from '../store/actions';
+import { LOAD_USER, getWatched, getQueue } from '../store/actions';
 import { getUsers } from './helper';
 
 class Login extends Component {
@@ -37,6 +37,8 @@ class Login extends Component {
     if( user ) {
       this.props.setUserLogin(user);
       this.setState({loginModal: false})
+      this.props.dispatchGetQueue(user.id)
+      this.props.dispatchGetWatched(user.id)
     }
     else {
       this.setState({error: "Invalid username or password."});
@@ -101,6 +103,12 @@ const mapDispatchToProps = dispatch => {
     setUserLogin(user){
       dispatch({type: LOAD_USER, payload: user} )
     },
+    dispatchGetQueue(userId){
+      dispatch(getQueue(userId))
+    },
+    dispatchGetWatched(userId){
+      dispatch(getWatched(userId))
+    }
   }
 }
 

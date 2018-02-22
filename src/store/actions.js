@@ -337,6 +337,7 @@ export const updateMovieScore = (score, userId) => {
   return (dispatch, getState, url) => {
     dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
     const localUrl = `${url}user/${userId}`;
+    score = score < 0 ? 0 : score;
     const localObject = {
       score: score,
     }
