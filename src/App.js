@@ -21,7 +21,7 @@ import TestView from './views/test'
 
 class App extends Component {
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.dispatchGetFlashWatch()
     this.props.dispatchGetTopMovies();
   }
