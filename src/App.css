@@ -92,3 +92,30 @@ nav img {
   margin-left: 15px;
   font-size: 1.1em;
 }
+
+.leader-score {
+  background-color: #FC6E51;
+  color: #ECEFF1;
+  border-radius: 50%;
+  padding: 5px 10px;
+  margin: 0 15px;
+  font-size: 1.5em;
+  font-weight: 900;
+}
+
+.leader-rank {
+  background-color: #263238;
+  color: #ECEFF1;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  font-size: 2em;
+  font-weight: 900;
+}
+
+.leader-name {
+  font-size: 2em;
+  font-weight: 900;
+  margin: 0 20px;
+}
