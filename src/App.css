@@ -23,6 +23,7 @@
   overflow: auto;
   flex-grow: 2;
   padding: 5px;
+  border-radius: 4px;
   background: #fff;
   margin-bottom: 5px;
   overflow-x: hidden;
