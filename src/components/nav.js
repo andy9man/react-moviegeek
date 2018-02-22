@@ -126,7 +126,6 @@ class MovieGeekNav extends Component {
                 />
               </div>
           }
-
         </Drawer>
         <Dialog
           title="Login to Movie Geek"
