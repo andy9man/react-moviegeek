@@ -45,9 +45,14 @@ class Profile extends Component{
             <h3>Your Movie Queue</h3>
             <div style={ {padding: '0 15px'} }>
 
-                {queueData.map( (movie, index) => (
-                <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
-              ))}
+                {
+                  queueData.length > 0 ?
+                    queueData.map( (movie, index) => (
+                      <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
+                    ))
+                  :
+                    <em>No movies... you have to have at least 1 movie you want to watch</em>
+                }
             </div>
           </div>
         }
@@ -62,10 +67,14 @@ class Profile extends Component{
             <div className="profile-container">
               <h3>Your Watched Movies</h3>
               <div style={ {padding: '0 15px'} }>
-                  {/* {localWatched.map(this.watchedMap)} */}
-                  {watchedData.map( (movie, index) => (
-                <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
-              ))}
+                  {
+                    watchedData.length > 0 ?
+                      watchedData.map( (movie, index) => (
+                        <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
+                      ))
+                    :
+                      <em>Don't like movies huh? You know you are on the Movie Geek site right? Get Going!</em>
+                  }
               </div>
             </div>
         }
