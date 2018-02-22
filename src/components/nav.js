@@ -55,7 +55,6 @@ class MovieGeekNav extends Component {
 
         <Drawer
           open={this.state.sideNavOpen}
-          style={ {marginTop: 50} }
           docked={false}
           onRequestChange={this.handleMenuOpen}
         >
@@ -132,14 +131,14 @@ class MovieGeekNav extends Component {
           actions={[
             <FlatButton
               label="Cancel"
-              primary={true}
+              hoverColor="#B0BEC5"
               onClick={this.handleLoginModalOpen}
             />
           ]}
           modal={true}
           open={openLogin}
           onRequestClose={this.handleLoginModalOpen}
-          contentStyle={{width: 350}}
+          contentStyle={{width: 450, maxWidth: '90vw'}}
         >
           <Login />
         </Dialog>

@@ -86,7 +86,12 @@ class Login extends Component {
             inputStyle={{color: '#424242'}}
           /><br/>
           <span className="error">{error}</span>
-          <RaisedButton type="submit">Login</RaisedButton>
+          <RaisedButton
+            type="submit"
+            backgroundColor= "#263238"
+            labelColor="#ECEFF1"
+            label="Login"
+          />
         </form>
     );
   }

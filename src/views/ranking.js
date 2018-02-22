@@ -12,7 +12,6 @@ class RankingsView extends Component{
 
   render(){
     const {rankingData} = this.props;
-    console.log(rankingData)
     return(
       <div>
         <h3>Movie Geek Leaderboard</h3>
@@ -71,7 +70,6 @@ class RankingsView extends Component{
 }
 
 const mapStateToProps = (state) => {
-  console.log('mapping state to props - RankingsView')
   return {
     rankingData: state.rankingData,
     loadingData: state.loadingData
