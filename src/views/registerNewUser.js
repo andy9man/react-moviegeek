@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getUsers } from '../components/helper';
+import { getUsers, addUser } from '../components/helper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -14,6 +14,8 @@ class RegisterUser extends Component {
       name: '',
       avatar: '',
       score: 0,
+      error: undefined,
+      success: undefined,
 
       users: [],
       loadUsersSuccess: false
@@ -28,6 +30,16 @@ class RegisterUser extends Component {
       })
   }
 
+  addNewUser = () => {
+    const { username, password, name, avatar, score } = this.state;
+    const result = addUser({username, password, name, avatar, score});
+    result
+     .then( response => console.log(response))
+     .catch( error => console.log(error))
+  }
+
+  handleInput = e => this.setState({[e.target.name]: e.target.value})
+
   componentDidMount() {
     this.getAllUsers();
   }
@@ -36,15 +48,18 @@ class RegisterUser extends Component {
     const { username, password, name, avatar, users, loadUsersSuccess } = this.state;
 
     return (
-      <div>
+      <div style={{width: '80%', padding: '0 15px'}}>
         <h3>Sign Up for Movie Geek</h3>
 
         {
           loadUsersSuccess ?
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              alert('Attempting to register as a new user');
-            }}>
+            <form
+              style={{padding: '0 15px'}}
+              onSubmit={(e) => {
+                e.preventDefault();
+                this.addNewUser();
+              }}
+            >
 
               <TextField
                 floatingLabelText="Username"
@@ -54,7 +69,7 @@ class RegisterUser extends Component {
                 value={username}
                 onChange={this.handleInput}
                 style={{width: '100%', display: 'block'}}
-                inputStyle={{color: '#424242'}}
+                inputStyle={{color: '#263238'}}
               />
               <TextField
                 floatingLabelText="Password"
@@ -64,7 +79,7 @@ class RegisterUser extends Component {
                 value={password}
                 onChange={this.handleInput}
                 style={{width: '100%', display: 'block'}}
-                inputStyle={{color: '#424242'}}
+                inputStyle={{color: '#263238'}}
               />
               <TextField
                 floatingLabelText="Name (name shown in the App)"
@@ -74,18 +89,19 @@ class RegisterUser extends Component {
                 value={name}
                 onChange={this.handleInput}
                 style={{width: '100%', display: 'block'}}
-                inputStyle={{color: '#424242'}}
+                inputStyle={{color: '#263238'}}
               />
               <TextField
                 floatingLabelText="Avatar (link to image)"
                 name="avatar"
                 type="text"
-                required={true}
                 value={avatar}
                 onChange={this.handleInput}
                 style={{width: '100%', display: 'block'}}
-                inputStyle={{color: '#424242'}}
+                inputStyle={{color: '#263238'}}
               />
+
+              <RaisedButton type="submit">Register</RaisedButton>
             </form>
           :
               <em>We are not able to Register New Users at this time...</em>

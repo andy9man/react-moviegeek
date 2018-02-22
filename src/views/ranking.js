@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { getRankings } from '../store/actions'
 import { connect } from 'react-redux'
 import { Loader } from '../components/theme';
-import { Card, CardText } from 'material-ui/Card';
 
 
 class RankingsView extends Component{
