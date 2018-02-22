@@ -35,7 +35,7 @@ export const findMovie = (movieArray, movieName, imdbID = "") => {
 }
 
 export const movieSearch = (movie, page=1) => axios.get(`${MOVIE_API}&s=${movie}&page=${page}`);
-export const movieFetchImdbId = id => axios.get(`${MOVIE_API}&i=${id}`);
+export const movieFetchImdbId = id => axios.get(`${MOVIE_API}&i=${id}&type=movie`);
 export const getUsers = () => axios.get(`${MOCKAPI_API_URL}/user`);
 
 export const calculateMovieScore = ( movie, topMovieArray, flashWatchData ) => {
