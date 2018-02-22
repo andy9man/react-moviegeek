@@ -86,6 +86,7 @@ class MovieGeekNav extends Component {
                         this.handleMenuOpen();
                         this.handleLoginModalOpen();
                         this.props.userLogout();
+                        this.props.history.push("/");
                       }}
                     />
                   ]}

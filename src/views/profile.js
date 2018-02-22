@@ -21,31 +21,31 @@ class Profile extends Component{
   }
 
   render(){
-    let localQueue = []
-    if(this.props.queueData) localQueue = this.props.queueData
-    let localWatched = []
-    if(this.props.watchedData) localWatched = this.props.watchedData
-
+    // let localQueue = []
+    // if(this.props.queueData) localQueue = this.props.queueData
+    // let localWatched = []
+    // if(this.props.watchedData) localWatched = this.props.watchedData
+    const { queueData, watchedData, loadingQueueData, loadingWatchedData } = this.props;
     return(
 
       <div>
         <div className="profile-container">
           <div>
-            <h3>Geek Score: <b>{this.props.user && this.props.user.score}</b></h3>
+            <h3>Geek Score: <b>{this.props.user && <span className="profile-score">{this.props.user.score}</span>}</b></h3>
           </div>
         </div>
 
         <div className="profile-container">
-        {this.props.loadingData ?
+        {loadingQueueData ?
           <div>
             <Loader />
           </div>
         :
           <div className="profile-container">
-            <h3>Movies to Watch</h3>
+            <h3>Your Movie Queue</h3>
             <div style={ {padding: '0 15px'} }>
 
-                {localQueue.map( (movie, index) => (
+                {queueData.map( (movie, index) => (
                 <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
               ))}
             </div>
@@ -54,16 +54,16 @@ class Profile extends Component{
         </div>
 
         <div className="profile-container">
-        {this.props.loadingData ?
+        {loadingWatchedData ?
             <div>
               <Loader />
             </div>
         :
             <div className="profile-container">
-              <h3>Movies Watched</h3>
+              <h3>Your Watched Movies</h3>
               <div style={ {padding: '0 15px'} }>
                   {/* {localWatched.map(this.watchedMap)} */}
-                  {localWatched.map( (movie, index) => (
+                  {watchedData.map( (movie, index) => (
                 <Movie key={`${movie.imdbID}idx${index}`} movie={movie} />
               ))}
               </div>
@@ -81,7 +81,8 @@ const mapStateToProps = (state) => {
     user: state.user,
     queueData: state.queueData,
     watchedData: state.watchedData,
-    loadingData: state.loadingData,
+    loadingQueueData: state.loadingQueueData,
+    loadingWatchedData: state.loadingWatchedData,
 
   }
 }

@@ -47,11 +47,8 @@ export const calculateMovieScore = ( movie, topMovieArray, flashWatchData ) => {
   score += findMovie( topMovieArray, movie.Title ).found ? 5 : 0;
 
   // If the movie is the Flash Watch movie they get an additional 10 points
-  console.log('value of movie.imdbID')
-  console.log(movie.imdbID)
-  console.log('value of flashWatchData.imdbID')
-  console.log(flashWatchData.imdbID)
-  score += (movie.imdbID === flashWatchData.imdbID) ? 10 : 0;
+  flashWatchData === undefined ? console.log("FlashWatch is undefined") :
+    score += (movie.imdbID === flashWatchData.imdbID) ? 10 : 0;
 
   //Bad Rotten Tomatoes score adds points
   const ratingScore = deconstructRatings(movie.Ratings);

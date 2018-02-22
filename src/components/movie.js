@@ -51,14 +51,16 @@ class Movie extends Component {
       deleteMovieQueue,
       user,
       watchedData,
-      queueData
+      queueData,
+      updatingWatchDataStatus,
+      updatingQueueDataStatus,
     } = this.props;
     const expand = this.props.expand === undefined ? true : !this.props.expand;
     const userId = user === undefined ? undefined : user.id;
     const onWatchList = findMovie(watchedData, Title );
     const onQueueList = findMovie(queueData, Title);
 
-    user !== undefined && console.log(`USER SCORE:\t${user.score}`)
+    // user !== undefined && console.log(`USER SCORE:\t${user.score}`)
 
     //console.log(`Movie:\t ${Title}\nWatch List:\t${onWatchList.found}  Queue List:\t${onQueueList.found}`)
     return (
@@ -73,7 +75,7 @@ class Movie extends Component {
         <CardText expandable={expand}>
 
           {
-            loading ?
+            loading || watchedData === undefined || queueData === undefined ?
             <div>
               <Loader />
             </div>
@@ -111,6 +113,7 @@ class Movie extends Component {
                   hoverColor="#FFFF8D"
                   icon={<ListAdded />}
                   style={ {margin: 12} }
+                  disabled={updatingQueueDataStatus}
                 />
               :
                 <FlatButton
@@ -120,6 +123,7 @@ class Movie extends Component {
                   hoverColor="#FFFF8D"
                   icon={<ListAdd />}
                   style={ {margin: 12} }
+                  disabled={updatingQueueDataStatus}
                 />
             }
             {
@@ -136,6 +140,7 @@ class Movie extends Component {
                   hoverColor="#CCFF90"
                   icon={<MovieAdded />}
                   style={ {margin: 12} }
+                  disabled={updatingWatchDataStatus}
                 />
               :
                 <FlatButton
@@ -145,6 +150,7 @@ class Movie extends Component {
                   hoverColor="#CCFF90"
                   icon={<MovieAdd />}
                   style={ {margin: 12} }
+                  disabled={updatingWatchDataStatus}
                 />
             }
           </CardActions>
@@ -160,7 +166,8 @@ const mapStateToProps = (state) => {
     queueData: state.queueData,
     topMovies: state.ourTopMovies,
     user: state.user,
-    loadingData: state.loadingData,
+    updatingWatchDataStatus: state.updatingWatchDataStatus,
+    updatingQueueDataStatus: state.updatingQueueDataStatus,
     flashWatchData: state.flashWatchData
   }
 }
