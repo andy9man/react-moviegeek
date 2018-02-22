@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import { getFlashWatch, getTopMovie } from './store/actions';
 import Home from './views/home';
+import RegisterUser from './views/registerNewUser';
 import Rankings from './views/ranking';
 import Profile from './views/profile';
 import Search from './views/search';
@@ -35,6 +36,7 @@ class App extends Component {
         <div className="content-container">
             <Switch>
               <Route exact path='/' component={Home} />
+              <Route exact path='/register' component={RegisterUser} />
               <Route exact path='/profile' component={Profile} />
               <Route exact path='/ranking' component={Rankings} />
               <Route exact path='/topmovies' component={TopMovies} />

@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { deconstructRatings } from '../components/helper'
 
+const MOVIE_API_KEY = 'bb3cae6f'; //Anonymous
+//const MOVIE_API_KEY = 'b99d98de'; //Dan's API
 export const MOCKAPI_API_URL = 'http://5a8c94d2d6c8840012dde929.mockapi.io/api/v1/';
-export const MOVIE_API = "http://www.omdbapi.com/?apikey=b99d98de&type=movie";
+export const MOVIE_API = `http://www.omdbapi.com/?apikey=${MOVIE_API_KEY}&type=movie`;
 export const DATA_STATUS_HANDLER = 'DATA_STATUS_HANDLER';
 export const GET_RANKING = 'GET_RANKING';
 export const GET_QUEUE = 'GET_QUEUE';

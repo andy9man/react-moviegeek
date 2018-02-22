@@ -11,39 +11,58 @@ class RankingsView extends Component{
     this.props.dispatchGetRankings()
   }
 
-  // helper function to map news object
-  rankingMap(rankingObject, idx) {
-    console.log(rankingObject)
-
-    return (
-      <div key={idx}>
-        <Card>
-          {/* <CardHeader
-            title={rankingObject.name}
-          /> */}
-          <CardText>
-            {idx + 1} - {rankingObject.name}: {rankingObject.score}
-          </CardText>
-        </Card>
-      </div>
-    )
-  }
-
   render(){
-    let localRanking = []
-    if(this.props.rankingData) localRanking = this.props.rankingData
-
+    const {rankingData} = this.props;
+    console.log(rankingData)
     return(
-      <div className='rankcontainer'>
-        <h3 className='rankingtxt'>Rankings - Top: 5</h3>
-        {this.props.loadingData ?
+      <div>
+        <h3>Movie Geek Leaderboard</h3>
+        {
+          this.props.loadingData ?
           <div>
             <Loader />
           </div>
         :
           // Map an object - use helper function to return what to render
-          <div className='rankscroll'>
-            {localRanking.map(this.rankingMap)}
+          <div style={{width: '100%', padding: '0 15px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            {
+              rankingData.length > 0 ?
+                rankingData.map( (player, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      border: '#37474F 2px solid',
+                      backgroundImage: `url(${player.avatar})`,
+                      backgroundSize: '200px',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundColor: '#fff',
+                      minWidth: 300,
+                      width: 500,
+                      height: 100,
+                      marginBottom: 10,
+
+                    }}
+                  >
+                      <div
+                        style={{
+                          background: "rgba(207, 216, 220, 0.9)",
+                          minWidth: '100%',
+                          height: '100%',
+                          display: 'flex',
+                          flexDirection: 'row',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <span className="leader-rank">{index + 1}</span>
+                        <span className="leader-name">{player.name}</span>
+                        <span className="leader-score">{player.score}</span>
+                      </div>
+                  </div>
+                ))
+              :
+                <em>Looks like there aren't any leaders, come help us fix that!</em>
+            }
           </div>
         }
       </div>
