@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getTopMovie } from '../store/actions';
-import { sortArray } from '../components/helper';
 import Movie from '../components/movie'
 
 
-class Top50 extends Component {
+class TopMovies extends Component {
 
     componentDidMount() {
         this.props.dispatchGetTopMovie();
@@ -41,6 +40,6 @@ const mapDispatchToProps = dispatch => {
         }
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Top50);
+export default connect(mapStateToProps, mapDispatchToProps)(TopMovies);
 
 
