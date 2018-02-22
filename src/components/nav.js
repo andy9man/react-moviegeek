@@ -86,6 +86,7 @@ class MovieGeekNav extends Component {
                         this.handleMenuOpen();
                         this.handleLoginModalOpen();
                         this.props.userLogout();
+                        this.props.history.push("/");
                       }}
                     />
                   ]}
@@ -108,7 +109,7 @@ class MovieGeekNav extends Component {
           />
           <MenuItem
             primaryText="Our Top Movies"
-            containerElement={<Link to="/top-movies" />}
+            containerElement={<Link to="/topmovies" />}
             onClick={this.handleMenuOpen}
           />
           {
@@ -125,7 +126,6 @@ class MovieGeekNav extends Component {
                 />
               </div>
           }
-
         </Drawer>
         <Dialog
           title="Login to Movie Geek"

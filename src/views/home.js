@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import icon from '../assets/clapper-icon.png';
+// import icon from '../assets/clapper-icon.png';
 import FlashWatch from './flashwatch';
 
 class Home extends Component {

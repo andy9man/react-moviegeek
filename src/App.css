@@ -13,8 +13,9 @@
   overflow-x: hidden;
   flex-grow: 2;
   padding: 15px;
+  border-radius: 4px;
   margin-bottom: 30px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .profile-container {
@@ -35,8 +36,8 @@ nav {
 }
 
 nav img {
-  height: 40px;
-  padding: 10px;
+  height: 45px;
+  margin-left: 15px;
 }
 
 .error {
@@ -81,4 +82,13 @@ nav img {
 
 .movieDetails-plot {
   margin-left: 30px;
+}
+
+.profile-score {
+  background-color: #FC6E51;
+  color: #ECEFF1;
+  border-radius: 50%;
+  padding: 5px 10px;
+  margin-left: 15px;
+  font-size: 1.1em;
 }

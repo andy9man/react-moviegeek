@@ -7,16 +7,16 @@ import { getFlashWatch } from '../store/actions';
 import { withRouter } from "react-router-dom";
 
 class FlashWatch extends Component{
-  
+
   componentDidMount() {
-    this.props.dispatchGetFlashWatch()
+    this.props.flashWatchData === undefined && this.props.dispatchGetFlashWatch()
   }
 
   render(){
-    console.log('value of this.props.flashWatchData')
-    console.log(this.props.flashWatchData)
-    console.log('value of this.props.loadingData')
-    console.log(this.props.loadingData)
+    // console.log('value of this.props.flashWatchData')
+    // console.log(this.props.flashWatchData)
+    // console.log('value of this.props.loadingData')
+    // console.log(this.props.loadingData)
 
     return (
       <div>
@@ -28,7 +28,7 @@ class FlashWatch extends Component{
           // Map an object - use helper function to return what to render
           <div>
             <h4>Movie of the day</h4>
-            <Movie movie={this.props.flashWatchData} expand='true'/> 
+            <Movie movie={this.props.flashWatchData} expand='true'/>
           </div>
         }
       </div>
@@ -37,7 +37,6 @@ class FlashWatch extends Component{
 }
 
 const mapStateToProps = (state) => {
-  console.log('mapping state to props - FlashWatch')
   return {
     loadingData: state.loadingData,
     flashWatchData: state.flashWatchData,
