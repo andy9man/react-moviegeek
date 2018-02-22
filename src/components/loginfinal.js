@@ -35,7 +35,8 @@ class Login extends Component {
       email: '',
       password: '',
       loginModalOpen: true,
-      error:''
+      error:'',
+      id:''
     }
   }
 
@@ -51,7 +52,22 @@ class Login extends Component {
       })
   }
 
+  validateLogin = (uid) => {
+      
+    const {username, password, users} = this.state;
 
+    const user = users.find(user => user.id === uid );
+
+    console.log(users)
+    console.log(uid)
+    if( user ) {
+      this.props.setUserLogin(user);
+      this.setState({loginModal: false})
+    }
+    else {
+      this.setState({error: "Invalid username or password."});
+    }
+  }
 
 
   componentDidMount() {
@@ -66,8 +82,11 @@ class Login extends Component {
   submitLogin(event) {
     event.preventDefault();
     auth.signInWithEmailAndPassword(this.state.email, this.state.password)
-   .then (response=>this.setState({loginModal: false}))
+  .then (response => {
+      this.validateLogin(response.uid)
+    })
     .catch(err => {
+        console.log(err)
       this.setState({
         error: err
       });
@@ -143,4 +162,4 @@ const mapDispatchToProps = dispatch => {
 
 
 
-export default connect(mapStateToProps,  { login, getUsers, googleLogin })(Login);
+export default connect(mapStateToProps,  mapDispatchToProps)(Login);
