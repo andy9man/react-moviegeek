@@ -1,6 +1,6 @@
 import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import CircularProgress from 'material-ui/CircularProgress';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 // This replaces the textColor value on the palette
 // and then update the keys for each component that depends on it.
@@ -30,6 +30,18 @@ export const movieGeekTheme = getMuiTheme({
 
 export const Loader = props => {
   const size = props.size === undefined ? 60 : props.size;
-  const thickness = props.thickness === undefined ? 5 : props.thickness;
-  return ( <CircularProgress size={size} thickness={thickness} style={{color: '#263238'}} /> );
+  //const thickness = props.thickness === undefined ? 5 : props.thickness;
+  return (
+    <RefreshIndicator
+      size={size}
+      loadingColor="#263238"
+      status="loading"
+      left={10}
+      top={0}
+      style={{
+        display: 'inline-block',
+        position: 'relative',
+      }}
+    />
+  );
 }

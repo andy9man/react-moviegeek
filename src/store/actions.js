@@ -146,26 +146,22 @@ export const getFlashWatch = () => {
     console.log(`Getting getFlashWatch data... ${url}TopMovies`);
     axios.get(`${url}FlashMovie`)
     .then(({ data }) => {
-      console.log('value of data in actions')
-      console.log(data)
-            axios.get(`${MOVIE_API}&i=${data[0].imdbID}`)
-              .then(({ data }) => {
-                console.log('this is the value of data from imdb call')
-                console.log(data)
-                dispatch({ type: GET_FLASHWATCH, payload: data });
-              })
-              .catch(error => {
-                if (error.response) {
-                  console.log(`Error Response: ${error.response}`);
-                } else if (error.request) {
-                  console.log(`Error Request: ${error.request}`);
-                } else {
-                  console.log(`General Error: ${error.message}`);
-                }
-                console.log("Error has occured in loading data...");
-                console.log(error);
-                dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingError', true));
-              })
+      axios.get(`${MOVIE_API}&i=${data[0].imdbID}`)
+        .then(({ data }) => {
+          dispatch({ type: GET_FLASHWATCH, payload: data });
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log(`Error Response: ${error.response}`);
+          } else if (error.request) {
+            console.log(`Error Request: ${error.request}`);
+          } else {
+            console.log(`General Error: ${error.message}`);
+          }
+          console.log("Error has occured in loading data...");
+          console.log(error);
+          dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingError', true));
+        })
     })
     .catch(error => {
       if (error.response) {
@@ -184,7 +180,7 @@ export const getFlashWatch = () => {
 
 export const postToWatched = (movieObj, userId, score) => {
   return (dispatch, getState, url) => {
-    dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
+    dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'updatingWatchDataStatus', true) );
     const localUrl = `${url}user/${userId}/watched`;
     const localRating = deconstructRatings(movieObj.Ratings)
     const localObject = {
@@ -205,6 +201,8 @@ export const postToWatched = (movieObj, userId, score) => {
       .then( response => {
         dispatch( getWatched(userId) );
         dispatch( updateMovieScore(score, userId) );
+        dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'updatingWatchDataStatus', false) );
+
       })
       .catch( error => {
         if (error.response) {
@@ -220,7 +218,117 @@ export const postToWatched = (movieObj, userId, score) => {
         }
         console.log("Error has occured in saving data...");
         console.log(error);
-        dispatch( {type: DATA_STATUS_HANDLER, payload: {type: 'loadingError', result: true}} );
+        dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'updatingWatchDataStatus', false) );
+
+    })
+  }
+}
+
+export const postToQueue = (movieObj, user_id) => {
+  return (dispatch, getState, url) => {
+    dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'updatingQueueDataStatus', true) );
+    const localUrl = `${url}user/${user_id}/queue`;
+    const localRating = deconstructRatings(movieObj.Ratings)
+    const localObject = {
+      Title: movieObj.Title,
+      Year: movieObj.Year,
+      Rated: movieObj.Rated,
+      Runtime: movieObj.Runtime,
+      Plot: movieObj.Plot,
+      Poster: movieObj.Poster,
+      Ratings: {
+        Source: localRating.Source,
+        Value: localRating.Value
+      },
+      imdbID: movieObj.imdbID
+    }
+    console.log(`Posting postToQueue data...${localUrl}`);
+
+    axios.post(localUrl, localObject)
+      .then( response => {
+        console.log(response);
+        dispatch( getQueue(user_id) );
+        dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'updatingQueueDataStatus', false) );
+      })
+      .catch( error => {
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(`Error Response: ${error.response}`);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(`Error Request: ${error.request}`);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log(`General Error: ${error.message}`);
+        }
+        console.log("Error has occured in saving data...");
+        console.log(error);
+        dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'updatingQueueDataStatus', false) );
+
+    })
+  }
+}
+
+export const deleteFromWatched = (movie_id, user_id, score) => {
+  return (dispatch, getState, url) => {
+    dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'updatingWatchDataStatus', true) );
+    const localUrl = `${url}user/${user_id}/watched/${movie_id}`;
+    console.log(`Deleting deleteFromWatched data...${localUrl}`)
+
+    axios.delete(localUrl)
+      .then( (response) => {
+        console.log(response);
+        dispatch( getWatched( user_id ) );
+        dispatch( updateMovieScore(score, user_id) );
+        dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'updatingWatchDataStatus', false) );
+      })
+      .catch( error => {
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(`Error Response: ${error.response}`);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(`Error Request: ${error.request}`);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log(`General Error: ${error.message}`);
+        }
+        console.log("Error has occured in deleting data...");
+        console.log(error);
+        dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'updatingWatchDataStatus', false) );
+    })
+  }
+}
+
+export const deleteFromQueue = (movie_id, user_id) => {
+  return (dispatch, getState, url) => {
+    dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'updatingQueueDataStatus', true) );
+    const localUrl = `${url}user/${user_id}/queue/${movie_id}`;
+    console.log('Deleting deleteFromQueue data...')
+
+    axios.delete(localUrl)
+      .then( (response) => {
+        console.log(response);
+        dispatch( getQueue(user_id) );
+        dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'updatingQueueDataStatus', false) );
+    })
+      .catch( error => {
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(`Error Response: ${error.response}`);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(`Error Request: ${error.request}`);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log(`General Error: ${error.message}`);
+        }
+        console.log("Error has occured in deleting data...");
+        console.log(error);
+        dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'updatingQueueDataStatus', false) );
     })
   }
 }
@@ -250,111 +358,6 @@ export const updateMovieScore = (score, userId) => {
           console.log(`General Error: ${error.message}`);
         }
         console.log("Error has occured in saving data...");
-        console.log(error);
-        dispatch( {type: DATA_STATUS_HANDLER, payload: {type: 'loadingError', result: true}} );
-    })
-  }
-}
-
-export const postToQueue = (movieObj, user_id) => {
-  return (dispatch, getState, url) => {
-    dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
-    const localUrl = `${url}user/${user_id}/queue`;
-    const localRating = deconstructRatings(movieObj.Ratings)
-    const localObject = {
-      Title: movieObj.Title,
-      Year: movieObj.Year,
-      Rated: movieObj.Rated,
-      Runtime: movieObj.Runtime,
-      Plot: movieObj.Plot,
-      Poster: movieObj.Poster,
-      Ratings: {
-        Source: localRating.Source,
-        Value: localRating.Value
-      },
-      imdbID: movieObj.imdbID
-    }
-    console.log(`Posting postToQueue data...${localUrl}`);
-
-    axios.post(localUrl, localObject)
-      .then( response => {
-        console.log(response);
-        dispatch( getQueue(user_id) );
-      })
-      .catch( error => {
-        if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log(`Error Response: ${error.response}`);
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.log(`Error Request: ${error.request}`);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log(`General Error: ${error.message}`);
-        }
-        console.log("Error has occured in saving data...");
-        console.log(error);
-        dispatch( {type: DATA_STATUS_HANDLER, payload: {type: 'loadingError', result: true}} );
-    })
-  }
-}
-
-export const deleteFromWatched = (movie_id, user_id, score) => {
-  return (dispatch, getState, url) => {
-    dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
-    const localUrl = `${url}user/${user_id}/watched/${movie_id}`;
-    console.log(`Deleting deleteFromWatched data...${localUrl}`)
-
-    axios.delete(localUrl)
-      .then( (response) => {
-        console.log(response);
-        dispatch( getWatched( user_id ) );
-        dispatch( updateMovieScore(score, user_id) );
-      })
-      .catch( error => {
-        if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log(`Error Response: ${error.response}`);
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.log(`Error Request: ${error.request}`);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log(`General Error: ${error.message}`);
-        }
-        console.log("Error has occured in deleting data...");
-        console.log(error);
-        dispatch( {type: DATA_STATUS_HANDLER, payload: {type: 'loadingError', result: true}} );
-    })
-  }
-}
-
-export const deleteFromQueue = (movie_id, user_id) => {
-  return (dispatch, getState, url) => {
-    dispatch( dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true) );
-    const localUrl = `${url}user/${user_id}/queue/${movie_id}`;
-    console.log('Deleting deleteFromQueue data...')
-
-    axios.delete(localUrl)
-      .then( (response) => {
-        console.log(response);
-        dispatch( getQueue(user_id) );
-      })
-      .catch( error => {
-        if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log(`Error Response: ${error.response}`);
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.log(`Error Request: ${error.request}`);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log(`General Error: ${error.message}`);
-        }
-        console.log("Error has occured in deleting data...");
         console.log(error);
         dispatch( {type: DATA_STATUS_HANDLER, payload: {type: 'loadingError', result: true}} );
     })

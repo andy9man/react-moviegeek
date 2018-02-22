@@ -31,7 +31,7 @@ class Profile extends Component{
       <div>
         <div className="profile-container">
           <div>
-            <h3>Geek Score: <b>{this.props.user && this.props.user.score}</b></h3>
+            <h3>Geek Score: <b>{this.props.user && <span className="profile-score">{this.props.user.score}</span>}</b></h3>
           </div>
         </div>
 
