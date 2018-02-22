@@ -76,7 +76,6 @@ class Profile extends Component{
 }
 
 const mapStateToProps = (state) => {
-  console.log('mapping state to props - Profile')
   return {
     user: state.user,
     queueData: state.queueData,
