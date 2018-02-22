@@ -52,8 +52,9 @@ class RandomMovie extends Component{
     let randomMovieId = 0
     if(this.props.movies && this.props.movies.length > 0){
       randomMovieId = getRandomIntInclusive(1, this.props.movies.length)
-      this.setState({randomMovieObject: this.props.movies[randomMovieId], loading: false});
+      this.setState({randomMovieObject: this.props.movies[randomMovieId]});
     }
+    this.setState({loading: false});
   }
 
   componentDidMount() {
@@ -86,12 +87,9 @@ class RandomMovie extends Component{
               <Loader />
             :
               error || (randomMovieObject === undefined) ?
-                <h4><em>A random movie could not be searched at this time...</em></h4>
+                <h4><em>The random movie is not available, please try again...</em></h4>
               :
-                !randomMovieObject.length ?
-                    <Movie key="1" movie={randomMovieObject} expand={false} />
-                :
-                  <h4><em>A random movie was not found...</em></h4>
+                <Movie key="1" movie={randomMovieObject} expand={false} />
           }
         </div>
       </div>
