@@ -37,6 +37,10 @@ class Movie extends Component {
       })
   }
 
+  componentDidUpdate(prevProps){
+    this.props.movie !== prevProps.movie && this.getAddtionalMovieData(this.props.movie.imdbID);
+  }
+
   componentDidMount() {
     this.getAddtionalMovieData(this.props.movie.imdbID);
   }

@@ -89,7 +89,7 @@ class RandomMovie extends Component{
               error || (randomMovieObject === undefined) ?
                 <h4><em>The random movie is not available, please try again...</em></h4>
               :
-                <Movie key="1" movie={randomMovieObject} expand={false} />
+                <Movie movie={randomMovieObject} expand={false} />
           }
         </div>
       </div>
