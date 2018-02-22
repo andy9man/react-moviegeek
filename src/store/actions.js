@@ -88,15 +88,15 @@ export const getRankings = () => {
 
 export const getQueue = (userId) => {
   return (dispatch, getState, url) => {
-    dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true));
+    dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingQueueData', true));
     const localUrl = `${url}user/${userId}/queue`;
     console.log(`Getting getState Data... ${localUrl}`);
 
     axios.get(localUrl)
       .then(({ data: queue }) => {
-        console.log("value of retrieve in getQueue")
-        console.log(queue)
-        setTimeout(() => { dispatch({ type: GET_QUEUE, payload: queue }) }, 1000);
+        dispatch({ type: GET_QUEUE, payload: queue })
+        dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingQueueData', false));
+
       })
       .catch(error => {
         if (error.response) {
@@ -108,22 +108,24 @@ export const getQueue = (userId) => {
         }
         console.log("Error has occured in loading data...");
         console.log(error);
-        dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingError', true));
+        dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingQueueData', false));
+        dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingQueueDataError', true));
+
       })
   }
 }
 
 export const getWatched = (userId) => {
   return (dispatch, getState, url) => {
-    dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingData', true));
+    dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingWatchedData', true));
     const localUrl = `${url}user/${userId}/watched`;
     console.log(`Getting getWatched Data... ${localUrl}`);
 
     axios.get(localUrl)
       .then(({ data: watched }) => {
-        console.log("value of retrieve in getWatched")
-        console.log(watched)
         dispatch({ type: GET_WATCHED, payload: watched });
+        dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingWatchedData', false));
+
       })
       .catch(error => {
         if (error.response) {
@@ -135,7 +137,9 @@ export const getWatched = (userId) => {
         }
         console.log("Error has occured in loading data...");
         console.log(error);
-        dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingError', true));
+        dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingWatchedError', true));
+        dispatch(dataResultHandler(DATA_STATUS_HANDLER, 'loadingWatchedData', false));
+
       })
   }
 }

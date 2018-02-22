@@ -60,7 +60,7 @@ class Movie extends Component {
     const onWatchList = findMovie(watchedData, Title );
     const onQueueList = findMovie(queueData, Title);
 
-    user !== undefined && console.log(`USER SCORE:\t${user.score}`)
+    // user !== undefined && console.log(`USER SCORE:\t${user.score}`)
 
     //console.log(`Movie:\t ${Title}\nWatch List:\t${onWatchList.found}  Queue List:\t${onQueueList.found}`)
     return (
