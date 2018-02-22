@@ -35,6 +35,7 @@ export const findMovie = (movieArray, movieName, imdbID = "") => {
 }
 
 export const movieSearch = (movie, page=1) => axios.get(`${MOVIE_API}&s=${movie}&page=${page}`);
+export const movieImdbIdSearch = (movie, page=1) => axios.get(`${MOVIE_API}&i=${movie}&page=${page}`);
 export const movieFetchImdbId = id => axios.get(`${MOVIE_API}&i=${id}`);
 export const getUsers = () => axios.get(`${MOCKAPI_API_URL}/user`);
 
