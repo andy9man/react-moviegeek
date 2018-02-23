@@ -120,3 +120,11 @@ nav img {
   font-weight: 900;
   margin: 0 20px;
 }
+
+.help {
+  padding: 15px;
+}
+
+.help p {
+  margin-left: 15px;
+}

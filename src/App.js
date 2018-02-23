@@ -18,7 +18,8 @@ import MovieGeekNav from './components/nav';
 import background from './assets/movieBackground-overlay-dark-1.jpg';
 import TopMovies from './views/topMovies';
 import FlashWatch from './views/flashwatch';
-import TestView from './views/test'
+import AboutUs from './views/aboutUs';
+import Help from './views/help';
 
 class App extends Component {
 
@@ -28,7 +29,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.user)
+    //console.log(this.props.user)
     return (
       <div className="App" style={ {backgroundImage: `url(${background})`} }>
         <MovieGeekNav />
@@ -41,7 +42,8 @@ class App extends Component {
               <Route exact path='/ranking' component={Rankings} />
               <Route exact path='/topmovies' component={TopMovies} />
               <Route exact path='/flashwatch' component={FlashWatch} />
-              <Route exact path='/test' component={TestView} />
+              <Route exact path='/aboutus' component={AboutUs} />
+              <Route exact path='/help' component={Help} />
               <Route exact path='/search/:search' component={Search} />
               <Route exact path='/random/:random' component={RandomMovie} />
               <Route render={ () => ( <Redirect to='/' />) } />

@@ -46,8 +46,8 @@ export const calculateMovieScore = ( movie, topMovieArray, flashWatchData ) => {
   //If the movie is on our Top Movie they get an additional bonus of '5' points
   score += findMovie( topMovieArray, movie.Title ).found ? 5 : 0;
 
-  // If the movie is the Flash Watch movie they get an additional 10 points
-  score += flashWatchData ? (movie.imdbID === flashWatchData.imdbID) ? 10 : 0 : 0;
+  // If the movie is the Flash Watch movie they get an additional 25 points
+  score += flashWatchData ? (movie.imdbID === flashWatchData.imdbID) ? 25 : 0 : 0;
 
   //Bad Rotten Tomatoes score adds points
   const ratingScore = deconstructRatings(movie.Ratings);

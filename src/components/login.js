@@ -84,6 +84,7 @@ class Login extends Component {
             tabIndex={2}
             style={{width: '100%', display: 'block'}}
             inputStyle={{color: '#424242'}}
+            autoComplete="current-password"
           />
           <span className="error">{error}</span>
           <RaisedButton

@@ -99,7 +99,7 @@ class RegisterUser extends Component {
                   onChange={this.handleInput}
                   style={{width: '100%', display: 'block'}}
                   inputStyle={{color: '#263238'}}
-                  autoComplete="current-password"
+                  autoComplete="new"
                 />
                 <TextField
                   floatingLabelText="Name (name shown in the App)"

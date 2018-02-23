@@ -13,7 +13,10 @@ import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import Favorite from 'material-ui/svg-icons/action/favorite';
 import ExitToApp from 'material-ui/svg-icons/action/exit-to-app';
-import VpnKey from 'material-ui/svg-icons/communication/vpn-key';
+import Key from 'material-ui/svg-icons/communication/vpn-key';
+import Help from 'material-ui/svg-icons/action/help';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import WhatsHot from 'material-ui/svg-icons/social/whatshot';
 import {fullWhite} from 'material-ui/styles/colors';
 
 import Search from '../components/search';
@@ -36,6 +39,7 @@ class MovieGeekNav extends Component {
   render() {
     const {user} = this.props;
     const openLogin = (user === undefined && this.state.loginModalOpen);
+
     return (
       <nav>
         <AppBar
@@ -102,6 +106,13 @@ class MovieGeekNav extends Component {
             containerElement={<Link to="/topmovies" />}
             onClick={this.handleMenuOpen}
           />
+          <Divider />
+          <MenuItem
+            primaryText="Help"
+            rightIcon={<Help />}
+            containerElement={<Link to="/help" />}
+            onClick={this.handleMenuOpen}
+          />
           {
             !user &&
               <div>
@@ -113,7 +124,7 @@ class MovieGeekNav extends Component {
                 />
                 <MenuItem
                   primaryText="Login"
-                  rightIcon={<VpnKey />}
+                  rightIcon={<Key />}
                   onClick={() => {
                     this.handleMenuOpen();
                     this.handleLoginModalOpen();
@@ -121,6 +132,22 @@ class MovieGeekNav extends Component {
                 />
               </div>
           }
+          <div
+            style={{
+              position: 'fixed',
+              bottom: 0,
+              textAlign: 'center',
+              marginBottom: 20,
+              width: '100%',
+            }}
+          >
+          <FloatingActionButton
+            onClick={this.handleMenuOpen}
+            containerElement={<Link to="/aboutus" />}
+            backgroundColor="#263238">
+            <WhatsHot />
+          </FloatingActionButton>
+          </div>
         </Drawer>
         <Dialog
           title="Login to Movie Geek"
