@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 // import icon from '../assets/clapper-icon.png';
-import FlashWatch from './flashwatch';
 
 class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      input: ''
+      backgroundColor: '',
     }
+  }
+  componentDidMount() {
+    document.getElementById('main').style.backgroundColor="transparent";
+  }
+
+  componentWillUnmount() {
+    document.getElementById('main').style.backgroundColor="";
   }
 
   render() {
@@ -25,9 +31,6 @@ class Home extends Component {
           top: -10,
         }}
       >
-        <h1 style={{color: '#263238', display: 'block'}}>Welcome to Movie Geek!</h1>
-
-        <FlashWatch />
 
       </div>
     );

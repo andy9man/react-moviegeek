@@ -33,7 +33,7 @@ class App extends Component {
       <div className="App" style={ {backgroundImage: `url(${background})`} }>
         <MovieGeekNav />
 
-        <div className="content-container">
+        <div id="main" className="content-container">
             <Switch>
               <Route exact path='/' component={Home} />
               <Route exact path='/register' component={RegisterUser} />

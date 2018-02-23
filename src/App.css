@@ -54,8 +54,8 @@ nav img {
 
 .movieDetails {
   width: 100%;
-  height: 250px;
-  overflow: auto;
+  height: 300px;
+  overflow-y: auto;
 }
 
 .movieDetails h3 {
@@ -63,7 +63,7 @@ nav img {
 }
 
 .movieDetails img {
-  height: 245px;
+  height: 275px;
 }
 
 .movieDetails span {

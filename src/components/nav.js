@@ -18,17 +18,9 @@ import {fullWhite} from 'material-ui/styles/colors';
 
 import Search from '../components/search';
 import Login from '../components/login';
+import Title from '../components/title';
 import { LOAD_USER } from '../store/actions';
-import icon from '../assets/clapper-icon.png';
 
-const Title = () => {
-  return (
-    <div style={ {display: 'flex', flexDirection: 'row', justifyContent: 'left', alignItems: 'center'}}>
-      Movie Geek
-      <img src={icon} alt="Movie Geek Logo" />
-    </div>
-  );
-}
 class MovieGeekNav extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +31,7 @@ class MovieGeekNav extends Component {
   }
 
   handleMenuOpen = () => this.setState( {sideNavOpen: !this.state.sideNavOpen} );
-  handleLoginModalOpen = () => this.setState({loginModalOpen: !this.state.loginModalOpen} );
+  handleLoginModalOpen = () => this.setState( {loginModalOpen: !this.state.loginModalOpen} );
 
   render() {
     const {user} = this.props;

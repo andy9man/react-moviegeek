@@ -90,16 +90,16 @@ class Movie extends Component {
                 movieDetails ?
 
                   <div className="movieDetails">
-                    <div style={{float: 'left', minWidth: 300, width: '50vw'}}>
+                    <div style={{float: 'left', minWidth: 300, maxWidth: 'calc(100% - 200px)'}}>
                       <h3 className="movieDetails-title">Rated:</h3> <span>{movieDetails.Rated}</span><br />
                       <h3 className="movieDetails-title">Runtime:</h3>  <span>{movieDetails.Runtime}</span><br />
                       <h3 className="movieDetails-title">Rotten Tomatoes Score:</h3>  <span>{deconstructRatings(movieDetails.Ratings).Value}</span><br />
                       <h3 className="movieDetails-title">IMDb ID:</h3>  <span>{movieDetails.imdbID}</span><br />
                       <h3 className="movieDetails-title">Point Value:</h3>  <span>{calculateMovieScore(movieDetails, this.props.topMovies, this.props.flashWatchData)}</span><br />
                       <h3 className="movieDetails-title">Plot:</h3>
-                      <p style={ {lineHeight: 1.6, marginLeft: 30} }>{movieDetails.Plot}</p>
+                      <p style={ {lineHeight: 1.6, marginLeft: 20} }>{movieDetails.Plot}</p>
                     </div>
-                    <div style={ {textAlign: 'center', float: 'left', width: '30vw'} }>
+                    <div style={ {textAlign: 'right', float: 'left', width: 200} }>
                       <img src={movieDetails.Poster ? movieDetails.Poster.includes("http") ? movieDetails.Poster : noImage : noImage} alt={Title} />
                     </div>
                   </div>

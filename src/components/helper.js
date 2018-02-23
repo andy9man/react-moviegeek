@@ -35,7 +35,7 @@ export const findMovie = (movieArray, movieName, imdbID = "") => {
 }
 
 export const movieSearch = (movie, page=1) => axios.get(`${MOVIE_API}&s=${movie}&page=${page}`);
-export const movieFetchImdbId = id => axios.get(`${MOVIE_API}&i=${id}&type=movie`);
+export const movieFetchImdbId = id => axios.get(`${MOVIE_API}&i=${id}&type=movie&plot=full`);
 export const getUsers = () => axios.get(`${MOCKAPI_API_URL}/user`);
 export const addUser = user => axios.post(`${MOCKAPI_API_URL}/user`, user);
 
@@ -47,8 +47,7 @@ export const calculateMovieScore = ( movie, topMovieArray, flashWatchData ) => {
   score += findMovie( topMovieArray, movie.Title ).found ? 5 : 0;
 
   // If the movie is the Flash Watch movie they get an additional 10 points
-  flashWatchData === undefined ? console.log("FlashWatch is undefined") :
-    score += (movie.imdbID === flashWatchData.imdbID) ? 10 : 0;
+  score += flashWatchData ? (movie.imdbID === flashWatchData.imdbID) ? 10 : 0 : 0;
 
   //Bad Rotten Tomatoes score adds points
   const ratingScore = deconstructRatings(movie.Ratings);

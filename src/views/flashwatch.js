@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 import { Loader } from '../components/theme';
 import Movie from '../components/movie';
@@ -13,10 +12,6 @@ class FlashWatch extends Component{
   }
 
   render(){
-    // console.log('value of this.props.flashWatchData')
-    // console.log(this.props.flashWatchData)
-    // console.log('value of this.props.loadingData')
-    // console.log(this.props.loadingData)
 
     return (
       <div>
@@ -27,7 +22,6 @@ class FlashWatch extends Component{
           :
           // Map an object - use helper function to return what to render
           <div>
-            <h4>Movie of the day</h4>
             <Movie movie={this.props.flashWatchData} expand='true'/>
           </div>
         }
