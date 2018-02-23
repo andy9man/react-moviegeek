@@ -71,9 +71,9 @@ class Login extends Component {
             value={username}
             onChange={this.handleInput}
             tabIndex={1}
-            style={{width: '100%'}}
+            style={{width: '100%', display: 'block'}}
             inputStyle={{color: '#424242'}}
-          /><br/>
+          />
           <TextField
             hintText="Password"
             name="password"
@@ -82,9 +82,9 @@ class Login extends Component {
             value={password}
             onChange={this.handleInput}
             tabIndex={2}
-            style={{width: '100%'}}
+            style={{width: '100%', display: 'block'}}
             inputStyle={{color: '#424242'}}
-          /><br/>
+          />
           <span className="error">{error}</span>
           <RaisedButton
             type="submit"
