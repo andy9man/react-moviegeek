@@ -40,7 +40,6 @@ class MovieGeekNav extends Component {
       <nav>
         <AppBar
           title={<Title />}
-          onTitleClick={() => this.props.history.push("/")}
           onLeftIconButtonClick={this.handleMenuOpen}
           iconElementRight={<Search history={this.props.history} />}
         />
@@ -56,7 +55,7 @@ class MovieGeekNav extends Component {
                 <MenuItem
                   leftIcon={
                     user.avatar.includes("http") ?
-                      <img style={ {borderRadius: '50%', top: '-10px'}} src={user.avatar} alt={user.name} />
+                      <img style={ {borderRadius: '50%',}} src={user.avatar} alt={user.name} />
                     :
                       <ActionAccountCircle />}
                   rightIcon={<ArrowDropRight />}

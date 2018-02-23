@@ -3,6 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import icon from '../assets/clapper-icon.png';
 import FlashWatch from '../views/flashwatch';
+import { withRouter } from 'react-router-dom';
 
 class Title extends Component {
   state = {
@@ -16,7 +17,7 @@ class Title extends Component {
 
     return (
       <div style={ {display: 'flex', flexDirection: 'row', justifyContent: 'left', alignItems: 'center'}}>
-        Movie Geek
+        <span style={{cursor: 'pointer'}} onClick={() => this.props.history.push("/")}>Movie Geek</span>
         <img src={icon} onClick={this.handleFlashWatchModal} alt="Movie Geek Logo" />
 
         <Dialog
@@ -40,4 +41,4 @@ class Title extends Component {
   }
 }
 
-export default Title;
+export default withRouter(Title);
