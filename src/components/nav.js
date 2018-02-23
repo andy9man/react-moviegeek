@@ -107,6 +107,11 @@ class MovieGeekNav extends Component {
               <div>
                 <Divider />
                 <MenuItem
+                  primaryText="Register"
+                  containerElement={<Link to="/register" />}
+                  onClick={this.handleMenuOpen}
+                />
+                <MenuItem
                   primaryText="Login"
                   rightIcon={<VpnKey />}
                   onClick={() => {

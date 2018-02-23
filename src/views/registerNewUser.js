@@ -63,7 +63,7 @@ class RegisterUser extends Component {
       <div style={{width: '100%', paddingLeft: 15, paddingRight: 15}}>
         <h3>Sign Up for Movie Geek</h3>
 
-        <Paper style={{width: 'calc(100% - 45px)', margin: 15, padding: 30}} zDepth={2}>
+        <Paper style={{width: 'calc(100% - 45px)', margin: 15, paddingLeft: 30, paddingBottom: 30}} zDepth={2}>
         {
           loadUsersSuccess ?
             success ?
@@ -72,7 +72,7 @@ class RegisterUser extends Component {
               </div>
             :
               <form
-                style={{padding: '0 15px', maxWidth: 500}}
+                style={{maxWidth: 500}}
                 onSubmit={(e) => {
                   e.preventDefault();
                   this.addNewUser();
@@ -121,7 +121,14 @@ class RegisterUser extends Component {
                   inputStyle={{color: '#263238'}}
                 />
                 <span className="error">{error}</span>
-                <RaisedButton disabled={error !== undefined} type="submit">Register</RaisedButton>
+                <RaisedButton
+                  disabled={error !== undefined}
+                  type="submit"
+                  label="Register"
+                  backgroundColor= "#263238"
+                  labelColor="#ECEFF1"
+                  style={{marginTop: 15}}
+                />
               </form>
           :
               <em>We are not able to Register New Users at this time...</em>
